@@ -1,0 +1,6 @@
+push 30
+push 70
+add
+dump
+out
+hlt
