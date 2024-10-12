@@ -1,5 +1,7 @@
 #ifndef MY_PROCESSOR_H_
 #define MY_PROCESSOR_H_
+#include <stdlib.h>
+#include <my_stack.h>
 
 typedef long long proc_code_t;
 typedef long long proc_val_t;
@@ -20,7 +22,17 @@ enum processor_commands
     DUMP     = 11,
 };
 
+struct proc_t
+{
+    size_t               code_size;
+    size_t               instr_ptr;
+    proc_val_t               *code;
+    my_stack_t               stack;
+    proc_val_t      *registers_arr;
+};
+
 int run_code(proc_code_t *code);
 int read_code(char *input_filename, proc_code_t *code);
+int processor_dump(proc_t proc);
 
 #endif // MY_PROCESSOR_H_
