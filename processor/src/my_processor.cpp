@@ -1,8 +1,11 @@
 #include "my_processor.h"
+// #include "my_settings.h"
+#include "my_log.h"
 #include "my_stack.h"
-// #include "my_macros.h"
 #include <stdio.h>
 #include <stdlib.h>
+
+static FILE *LOG_FILE = fopen("my_log.log", "w");
 
 int read_code(char *input_filename, proc_code_t *code)
 {
@@ -107,7 +110,13 @@ int processor_dump(proc_t proc)
     {
         printf("   ");
     }
-    printf("  ^ ip = %d\n", proc.instr_ptr);
+    printf("  ^ ip = %d\n\n", proc.instr_ptr);
+
+    printf("Stack dump: ");
+    for (size_t stack_index = 0;  stack_index < proc.stack.size; stack_index++)
+    {
+        printf("%d ", proc.stack.data + stack_index * proc.stack.elem_size);
+    }
 
     return 0;
 }

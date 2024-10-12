@@ -1,0 +1,82 @@
+Hash struct val = 60603381e3dff168
+Hash buffer val = 7c21bb43818fd3f5
+Entered stack_push
+Finished checking
+Quit stack_push
+Entered stack_push
+Finished checking
+Quit stack_push
+Entered stack_pop
+Decreasing memory :( ):
+Quit stack_pop
+Entered stack_pop
+Decreasing memory :( ):
+Quit stack_pop
+Entered stack_push
+Finished checking
+Quit stack_push
+Entered stack_pop
+Decreasing memory :( ):
+Quit stack_pop
+
+Buffer hash = 812130c772900d4b
+
+data canary #1 = 6070deadbbb6
+{
+   *[i] = 0 elem =  30 (1e)
+    [i] = 1 elem =  1162628936 (454c4f48)
+    [i] = 2 elem =  1162628936 (454c4f48)
+    [i] = 3 elem =  1162628936 (454c4f48)
+    [i] = 4 elem =  1162628936 (454c4f48)
+    [i] = 5 elem =  1162628936 (454c4f48)
+    [i] = 6 elem =  1162628936 (454c4f48)
+    [i] = 7 elem =  1162628936 (454c4f48)
+}
+data canary #2 = 6070deadbbb6
+Canary #2 = 7fff6f566f5e
+[-----------------END STACK_DUMP-----------------]
+
+
+[----------------BEGIN STACK_DUMP----------------]
+Stack_t[0x7fffb1fbd5e0] "progr_stack" born at src/my_processor.cpp:33 function:[run_code()] called from ../../Stack/src/my_stack.cpp:191 function:[stack_realloc()]
+Canary #1 = 7fff6f566f5e
+Stack capacity: 2
+Stack size    : 0
+
+CalcSt hash = 898dac57f4ff220f
+Struct hash = 898dac57f4ff220f
+
+Stack->data [0x603000000048]
+CalcBu hash = c35ae2b1bda8b163
+Buffer hash = c35ae2b1bda8b163
+
+data canary #1 = 6030deadbaf6
+{
+    [i] = 0 elem =  1162628936 (454c4f48)
+    [i] = 1 elem =  1162628936 (454c4f48)
+}
+data canary #2 = 6030deadbaf6
+Canary #2 = 7fff6f566f5e
+[-----------------END STACK_DUMP-----------------]
+
+
+[----------------BEGIN STACK_DUMP----------------]
+Stack_t[0x7fffb1fbd5e0] "progr_stack" born at src/my_processor.cpp:33 function:[run_code()] called from ../../Stack/src/my_stack.cpp:191 function:[stack_realloc()]
+Canary #1 = 7fff6f566f5e
+Stack capacity: 0
+Stack size    : 0
+
+CalcSt hash = f1b8d268fa864fc4
+Struct hash = f1b8d268fa864fc4
+
+Stack->data [0x602000000018]
+CalcBu hash = 9ace4aed7ef39dd3
+Buffer hash = 9ace4aed7ef39dd3
+
+data canary #1 = 6020deadbaa6
+{
+}
+data canary #2 = 6020deadbaa6
+Canary #2 = 7fff6f566f5e
+[-----------------END STACK_DUMP-----------------]
+
