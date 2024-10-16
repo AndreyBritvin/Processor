@@ -1,13 +1,12 @@
 #include "my_processor.h"
 // #include "my_settings.h"
-#include "my_log.h"
 #include "my_stack.h"
 #include <stdio.h>
 #include <stdlib.h>
 
 static FILE *LOG_FILE = fopen("my_log.log", "w");
 
-int read_code(char *input_filename, proc_code_t *code)
+size_t read_code(char *input_filename, proc_code_t *code)
 {
     FILE *input_file = fopen(input_filename, "r");
 
@@ -78,6 +77,11 @@ int run_code(proc_code_t *code)
                 proc.instr_ptr += 1;
                 break;
             }
+            case JUMP:
+            {
+                proc.instr_ptr = (size_t) proc.code[proc.instr_ptr + 1];
+                break;
+            }
 
             default:
                 printf("Invalid instruction #%lld\n", code[proc.instr_ptr]);
@@ -96,13 +100,13 @@ int processor_dump(proc_t proc)
     printf("Code index: ");
     for (size_t instr_index = 0; instr_index < proc.code_size; instr_index++)
     {
-        printf("%02X ", instr_index);
+        printf("%02LX ", instr_index);
     }
 
     printf("\nCode cmmnd: ");
     for (size_t instr_index = 0; instr_index < proc.code_size; instr_index++)
     {
-        printf("%02X ", proc.code[instr_index]);
+        printf("%02llX ", proc.code[instr_index]);
     }
 
     printf("\nWe`re here:");
@@ -110,12 +114,12 @@ int processor_dump(proc_t proc)
     {
         printf("   ");
     }
-    printf("  ^ ip = %d\n\n", proc.instr_ptr);
+    printf("  ^ ip = %lu\n\n", proc.instr_ptr);
 
     printf("Stack dump: ");
     for (size_t stack_index = 0;  stack_index < proc.stack.size; stack_index++)
     {
-        printf("%d ", proc.stack.data + stack_index * proc.stack.elem_size);
+        printf("%lld ", ((proc_val_t *)proc.stack.data)[stack_index]);
     }
 
     return 0;

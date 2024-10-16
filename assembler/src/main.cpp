@@ -18,4 +18,6 @@ int main(const int argc, const char **argv)
             printf("Wrong arguments count. %s [input_file] [out_file]\n", argv[0]);
             break;
     }
+
+    return 0;
 }
