@@ -28,10 +28,10 @@ int run_code(proc_code_t *code)
     proc.code_size = 20; // TODO: make auto text file
     proc.instr_ptr = 0;
 
-    my_stack_t progr_stack = {};
-    INIT_STACK(progr_stack);
+    proc.stack = {};
+    INIT_STACK(proc.stack);
     proc_val_t stack_poison_value = (proc_val_t) STACK_POISON_VALUE;
-    stack_ctor(&progr_stack, 32, sizeof(proc_val_t), print_longs, &stack_poison_value);
+    stack_ctor(&proc.stack, 32, sizeof(proc_val_t), print_longs, &stack_poison_value);
 
     bool is_valid_code = true;
 
@@ -39,6 +39,14 @@ int run_code(proc_code_t *code)
     {
         switch (code[proc.instr_ptr])
         {
+            #define COMMAND_DESCR(ENUM_NAME, STR_NAME, ASS_CODE, ...) \
+            case ENUM_NAME:         \
+            {                       \
+                __VA_ARGS__         \
+                break;              \
+            }
+            #include "../command_descriptions.cpp"
+        /*
             case HLT:
             {
                 is_valid_code = false;
@@ -82,15 +90,16 @@ int run_code(proc_code_t *code)
                 proc.instr_ptr = (size_t) proc.code[proc.instr_ptr + 1];
                 break;
             }
-
+*/
             default:
                 printf("Invalid instruction #%lld\n", code[proc.instr_ptr]);
                 is_valid_code = false;
                 break;
+            #undef COMMAND_DESCR
         }
     }
 
-    stack_dtor(&progr_stack);
+    stack_dtor(&proc.stack);
 
     return 0;
 }

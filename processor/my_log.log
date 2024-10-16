@@ -1,4 +1,4 @@
-Hash struct val = 97cb5a19da09e708
+Hash struct val = ff93c097dc640d3f
 Hash buffer val = 7c21bb43818fd3f5
 Entered stack_push
 Finished checking
@@ -18,7 +18,6 @@ Quit stack_push
 Entered stack_pop
 Decreasing memory :( ):
 Quit stack_pop
-
 Buffer hash = 812130c772900d4b
 
 data canary #1 = 6070deadbbb6
@@ -33,18 +32,18 @@ data canary #1 = 6070deadbbb6
     [i] = 7 elem =  1162628936 (454c4f48)
 }
 data canary #2 = 6070deadbbb6
-Canary #2 = 7fff072dd36e
+Canary #2 = 7ffd707c2606
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fffd98069d0] "progr_stack" born at src/my_processor.cpp:32 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fff072dd36e
+Stack_t[0x7ffdaed19cb8] "proc.stack" born at src/my_processor.cpp:32 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffd707c2606
 Stack capacity: 2
 Stack size    : 0
 
-CalcSt hash = c0f8d2efeb2917af
-Struct hash = c0f8d2efeb2917af
+CalcSt hash = 28c1396ded833de6
+Struct hash = 28c1396ded833de6
 
 Stack->data [0x603000000048]
 CalcBu hash = c35ae2b1bda8b163
@@ -56,18 +55,18 @@ data canary #1 = 6030deadbaf6
     [i] = 1 elem =  1162628936 (454c4f48)
 }
 data canary #2 = 6030deadbaf6
-Canary #2 = 7fff072dd36e
+Canary #2 = 7ffd707c2606
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fffd98069d0] "progr_stack" born at src/my_processor.cpp:32 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fff072dd36e
+Stack_t[0x7ffdaed19cb8] "proc.stack" born at src/my_processor.cpp:32 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffd707c2606
 Stack capacity: 0
 Stack size    : 0
 
-CalcSt hash = 2923f900f0b04564
-Struct hash = 2923f900f0b04564
+CalcSt hash = 90ec5f7ef30a6b9b
+Struct hash = 90ec5f7ef30a6b9b
 
 Stack->data [0x602000000018]
 CalcBu hash = 9ace4aed7ef39dd3
@@ -77,6 +76,6 @@ data canary #1 = 6020deadbaa6
 {
 }
 data canary #2 = 6020deadbaa6
-Canary #2 = 7fff072dd36e
+Canary #2 = 7ffd707c2606
 [-----------------END STACK_DUMP-----------------]
 

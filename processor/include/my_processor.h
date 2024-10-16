@@ -3,6 +3,9 @@
 #include <stdlib.h>
 #include <my_stack.h>
 
+const char *SIGNATURE = "Lychok";
+const int   CODE_VER  = 1;
+
 typedef long long proc_code_t;
 typedef long long proc_val_t;
 

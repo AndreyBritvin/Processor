@@ -20,7 +20,16 @@ int compile_file(const char *input_filename, const char *output_filename)
     char command[20] = "";
     while (fscanf(input_file, "%s", command) != EOF)
     {
-        // printf("Command = %s", strerror(errno));
+        if(false)
+        {
+            // skip for next else if
+        }
+        #define COMMAND_DESCR(ENUM_NAME, STR_NAME, ASS_CODE, ...) \
+            else if (strcmp(command, STR_NAME) == 0)              \
+                ASS_CODE
+            #include "../../command_descriptions.cpp"
+        #undef COMMAND_DESCR
+        /*
         if (strcmp(command, "push") == 0)
         {
             proc_val_t to_scan = 0;
@@ -43,6 +52,7 @@ int compile_file(const char *input_filename, const char *output_filename)
         {
             printf("%d", fprintf(output_file, "%d\n", OUT));
         }
+        */
     }
 
     return 0;
