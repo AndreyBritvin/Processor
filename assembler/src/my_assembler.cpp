@@ -1,4 +1,5 @@
 #include "my_assembler.h"
+#include "utils.h"
 #include "my_processor.h"
 #include <stdio.h>
 #include <errno.h>
@@ -6,18 +7,14 @@
 
 int compile_file(const char *input_filename, const char *output_filename)
 {
-    FILE *input_file = fopen(input_filename, "r");
-    if (input_file == NULL)
-    {
-        printf("Unable open input file '%s'\n", input_filename);
-    }
-    FILE *output_file = fopen(output_filename, "w");
-    if (output_file == NULL)
-    {
-        printf("Unable open output file '%s'\n", output_filename);
-    }
+    SAFE_OPEN_FILE( input_file,  input_filename, "r");
+    SAFE_OPEN_FILE(output_file, output_filename, "w");
+
+    fprintf(output_file, "       "); // commands counter
+    fprintf(output_file, "%s %d\n", SIGNATURE, CODE_VER);
 
     char command[20] = "";
+    int commands_counter = 0;
     while (fscanf(input_file, "%s", command) != EOF)
     {
         if(false)
@@ -54,6 +51,12 @@ int compile_file(const char *input_filename, const char *output_filename)
         }
         */
     }
+
+    fseek(output_file, 0, SEEK_SET);
+    fprintf(output_file, "%d", commands_counter);
+
+    fclose( input_file);
+    fclose(output_file);
 
     return 0;
 }

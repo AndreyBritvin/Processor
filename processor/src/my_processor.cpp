@@ -3,29 +3,58 @@
 #include "my_stack.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include "utils.h"
 
 static FILE *LOG_FILE = fopen("my_log.log", "w");
 
-size_t read_code(char *input_filename, proc_code_t *code)
+bool check_signature(char *signature, int version)
 {
-    FILE *input_file = fopen(input_filename, "r");
+    return strcmp(signature, SIGNATURE) == 0 && version == CODE_VER;
+}
+
+int read_code(char *input_filename, proc_code_t *code)
+{
+    // FILE *input_file = fopen(input_filename, "r");
+    SAFE_OPEN_FILE(input_file, input_filename, "r");
+
+    fscanf(input_file, "%lu", &code->size);
+
+    char signature[sizeof(SIGNATURE)] = {};
+    int version = 0;
+
+    fscanf(input_file, "%s", signature);
+    fscanf(input_file, "%d", &version);
+
+    if (check_signature(signature, version))
+    {
+        return ERROR_SIGNATURE;
+    }
+
+    code->arr = (proc_val_t *) calloc(code->size, sizeof(proc_val_t));
+
+    if (code->arr == NULL)
+    {
+        return ERROR_ALLOC;
+    }
 
     proc_val_t command = 0;
     size_t instr_ptr = 0;
 
     while (fscanf(input_file, "%lld", &command) != EOF)
     {
-        code[instr_ptr++] = command;
+        code->arr[instr_ptr++] = command;
     }
 
-    return instr_ptr;
+    fclose(input_file);
+
+    return SUCCESS;
 }
 
-int run_code(proc_code_t *code)
+int run_code(proc_code_t code)
 {
     proc_t proc = {};
     proc.code = code;
-    proc.code_size = 20; // TODO: make auto text file
     proc.instr_ptr = 0;
 
     proc.stack = {};
@@ -37,13 +66,13 @@ int run_code(proc_code_t *code)
 
     while (is_valid_code)
     {
-        switch (code[proc.instr_ptr])
+        switch (proc.code.arr[proc.instr_ptr])
         {
             #define COMMAND_DESCR(ENUM_NAME, STR_NAME, ASS_CODE, ...) \
-            case ENUM_NAME:         \
-            {                       \
-                __VA_ARGS__         \
-                break;              \
+            case ENUM_NAME:                                           \
+            {                                                         \
+                __VA_ARGS__                                           \
+                break;                                                \
             }
             #include "../command_descriptions.cpp"
         /*
@@ -92,7 +121,7 @@ int run_code(proc_code_t *code)
             }
 */
             default:
-                printf("Invalid instruction #%lld\n", code[proc.instr_ptr]);
+                printf("Invalid instruction #%lld\n", code.arr[proc.instr_ptr]);
                 is_valid_code = false;
                 break;
             #undef COMMAND_DESCR
@@ -107,15 +136,15 @@ int run_code(proc_code_t *code)
 int processor_dump(proc_t proc)
 {
     printf("Code index: ");
-    for (size_t instr_index = 0; instr_index < proc.code_size; instr_index++)
+    for (size_t instr_index = 0; instr_index < proc.code.size; instr_index++)
     {
-        printf("%02LX ", instr_index);
+        printf("%02lX ", instr_index);
     }
 
     printf("\nCode cmmnd: ");
-    for (size_t instr_index = 0; instr_index < proc.code_size; instr_index++)
+    for (size_t instr_index = 0; instr_index < proc.code.size; instr_index++)
     {
-        printf("%02llX ", proc.code[instr_index]);
+        printf("%02llX ", (unsigned long long) proc.code.arr[instr_index]);
     }
 
     printf("\nWe`re here:");

@@ -3,11 +3,18 @@
 #include <stdlib.h>
 #include <my_stack.h>
 
-const char *SIGNATURE = "Lychok";
-const int   CODE_VER  = 1;
+static const char        *SIGNATURE = "Lychok";
+static const int           CODE_VER = 1;
+static const size_t REGISTERS_COUNT = 16;
 
-typedef long long proc_code_t;
 typedef long long proc_val_t;
+
+enum proc_errors
+{
+    // SUCCESS         = 0,
+    ERROR_SIGNATURE = 1,
+    ERROR_ALLOC = 2,
+};
 
 enum processor_commands
 {
@@ -26,17 +33,25 @@ enum processor_commands
     JUMP     = 12,
 };
 
-struct proc_t
+struct proc_code_t
 {
-    size_t               code_size;
-    size_t               instr_ptr;
-    proc_val_t               *code;
-    my_stack_t               stack;
-    proc_val_t      *registers_arr;
+    size_t         size;
+    proc_val_t     *arr;
 };
 
-int run_code(proc_code_t *code);
-size_t read_code(char *input_filename, proc_code_t *code);
+struct proc_t
+{
+    size_t                            instr_ptr;
+    proc_code_t                            code;
+    proc_val_t   registers_arr[REGISTERS_COUNT];
+    my_stack_t                            stack;
+    my_stack_t                    ret_val_stack;
+};
+
+int run_code(proc_code_t code);
+bool check_signature(char *signature, int version);
+
+int read_code(char *input_filename, proc_code_t *code);
 int processor_dump(proc_t proc);
 
 #endif // MY_PROCESSOR_H_
