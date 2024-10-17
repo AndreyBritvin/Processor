@@ -48,7 +48,10 @@ build/my_log.o: ../src/my_log.cpp
 	@$(CC) $(CFLAGS) -c ../src/my_log.cpp -o build/my_log.o
 
 run:
-	./proc.out
+	./proc.out ../compiled/comp_test.txt
+
+run_reg:
+	./proc.out ../compiled/registers_code_asm.txt
 
 clean:
 	rm proc.out

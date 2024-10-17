@@ -37,7 +37,8 @@ enum processor_commands
     SIN      =  9,
     COS      = 10,
     DUMP     = 11,
-    JUMP     = 12,
+    POP      = 12,
+    JUMP     = 13,
 };
 
 struct proc_code_t
@@ -58,7 +59,7 @@ struct proc_t
 int run_code(proc_code_t code);
 bool check_signature(char *signature, int version);
 
-int read_code(char *input_filename, proc_code_t *code);
+int read_code(const char *input_filename, proc_code_t *code);
 int processor_dump(proc_t proc);
 
 #endif // MY_PROCESSOR_H_

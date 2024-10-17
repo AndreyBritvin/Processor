@@ -1,6 +1,6 @@
 CC = g++
 
-HEADERS_INCLUDE = -Iinclude -I../../Stack/include -I../processor/include
+HEADERS_INCLUDE = -Iinclude -I../../Stack/include -I../processor/include -I../include
 
 #CFLAGS = $(HEADERS_INCLUDE) -lm -D _DEBUG -ggdb3 -std=c++17 -O0 -Wall -Wextra -Weffc++ 						\
 							-Waggressive-loop-optimizations -Wc++14-compat -Wmissing-declarations 			\
@@ -46,6 +46,9 @@ build/my_assembler.o: src/my_assembler.cpp include/my_assembler.h
 
 run:
 	./assembler.out
+
+run_reg:
+	./assembler.out ../program_codes/registers_code.txt ../compiled/registers_code_asm.txt
 
 clean:
 	rm assembler.out

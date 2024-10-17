@@ -13,7 +13,7 @@ bool check_signature(char *signature, int version)
     return (strcmp(signature, SIGNATURE) == 0) && (version == CODE_VER);
 }
 
-int read_code(char *input_filename, proc_code_t *code)
+int read_code(const char *input_filename, proc_code_t *code)
 {
     // FILE *input_file = fopen(input_filename, "r");
     SAFE_OPEN_FILE(input_file, input_filename, "r");
@@ -160,6 +160,18 @@ int processor_dump(proc_t proc)
     for (size_t stack_index = 0;  stack_index < proc.stack.size; stack_index++)
     {
         printf("%lld ", ((proc_val_t *)proc.stack.data)[stack_index]);
+    }
+
+    printf("\nRegisters dump: ");
+    for (size_t reg_index = 0; reg_index < REGISTERS_COUNT; reg_index++)
+    {
+        printf("%cx ", reg_index + 'a');
+    }
+
+    printf("\n                ");
+    for (size_t reg_index = 0; reg_index < REGISTERS_COUNT; reg_index++)
+    {
+        printf("%02llX ", (unsigned long long) proc.registers_arr[reg_index]);
     }
 
     return 0;
