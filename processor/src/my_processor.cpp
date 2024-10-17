@@ -10,7 +10,7 @@ static FILE *LOG_FILE = fopen("my_log.log", "w");
 
 bool check_signature(char *signature, int version)
 {
-    return strcmp(signature, SIGNATURE) == 0 && version == CODE_VER;
+    return (strcmp(signature, SIGNATURE) == 0) && (version == CODE_VER);
 }
 
 int read_code(char *input_filename, proc_code_t *code)
@@ -26,8 +26,9 @@ int read_code(char *input_filename, proc_code_t *code)
     fscanf(input_file, "%s", signature);
     fscanf(input_file, "%d", &version);
 
-    if (check_signature(signature, version))
+    if (!check_signature(signature, version))
     {
+        printf("Please recompile code\n");
         return ERROR_SIGNATURE;
     }
 
@@ -66,7 +67,7 @@ int run_code(proc_code_t code)
 
     while (is_valid_code)
     {
-        switch (proc.code.arr[proc.instr_ptr])
+        switch (proc.code.arr[proc.instr_ptr] & CMD_MASK)
         {
             #define COMMAND_DESCR(ENUM_NAME, STR_NAME, ASS_CODE, ...) \
             case ENUM_NAME:                                           \
@@ -129,6 +130,7 @@ int run_code(proc_code_t code)
     }
 
     stack_dtor(&proc.stack);
+    free(code.arr);
 
     return 0;
 }

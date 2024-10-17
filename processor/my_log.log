@@ -1,4 +1,4 @@
-Hash struct val = eb20221fd86143ec
+Hash struct val = a90e793b91e94deb
 Hash buffer val = 7c21bb43818fd3f5
 Entered stack_push
 Finished checking
@@ -32,18 +32,18 @@ data canary #1 = 6070deadbbb6
     [i] = 7 elem =  1162628936 (454c4f48)
 }
 data canary #2 = 6070deadbbb6
-Canary #2 = 7fff3d571246
+Canary #2 = 7ffc17109f16
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fffe3faa8f8] "proc.stack" born at src/my_processor.cpp:61 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fff3d571246
+Stack_t[0x7ffcc9bd25a8] "proc.stack" born at src/my_processor.cpp:62 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffc17109f16
 Stack capacity: 2
 Stack size    : 0
 
-CalcSt hash = 144d9af5e9807493
-Struct hash = 144d9af5e9807493
+CalcSt hash = d23bf211a3087e92
+Struct hash = d23bf211a3087e92
 
 Stack->data [0x603000000048]
 CalcBu hash = c35ae2b1bda8b163
@@ -55,18 +55,18 @@ data canary #1 = 6030deadbaf6
     [i] = 1 elem =  1162628936 (454c4f48)
 }
 data canary #2 = 6030deadbaf6
-Canary #2 = 7fff3d571246
+Canary #2 = 7ffc17109f16
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fffe3faa8f8] "proc.stack" born at src/my_processor.cpp:61 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fff3d571246
+Stack_t[0x7ffcc9bd25a8] "proc.stack" born at src/my_processor.cpp:62 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffc17109f16
 Stack capacity: 0
 Stack size    : 0
 
-CalcSt hash = 7c78c106ef07a248
-Struct hash = 7c78c106ef07a248
+CalcSt hash = 3a671822a88fac47
+Struct hash = 3a671822a88fac47
 
 Stack->data [0x602000000018]
 CalcBu hash = 9ace4aed7ef39dd3
@@ -76,6 +76,6 @@ data canary #1 = 6020deadbaa6
 {
 }
 data canary #2 = 6020deadbaa6
-Canary #2 = 7fff3d571246
+Canary #2 = 7ffc17109f16
 [-----------------END STACK_DUMP-----------------]
 

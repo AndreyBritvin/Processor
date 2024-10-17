@@ -6,6 +6,7 @@
 static const char        *SIGNATURE = "Lychok";
 static const int           CODE_VER = 1;
 static const size_t REGISTERS_COUNT = 16;
+static const int           CMD_MASK = 0b00011111;
 
 typedef long long proc_val_t;
 
@@ -14,6 +15,12 @@ enum proc_errors
     // SUCCESS         = 0,
     ERROR_SIGNATURE = 1,
     ERROR_ALLOC = 2,
+};
+
+enum proc_coommands_argument
+{
+    IMMEDIATE_VALUE = 0b001,
+    REGISTER_VALUE  = 0b010,
 };
 
 enum processor_commands
