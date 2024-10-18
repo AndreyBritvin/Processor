@@ -1,8 +1,10 @@
 push 10
 pop ax
-dump
 push 20
 push ax
+add
+push ax 30
+dump
 add
 out
 hlt

@@ -13,8 +13,9 @@ int compile_file(const char *input_filename, const char *output_filename)
     fprintf(output_file, "       "); // commands counter
     fprintf(output_file, "%s %d\n", SIGNATURE, CODE_VER);
 
-    char command[20] = "";
+    char command[MAX_COMMAND_LEN] = "";
     int commands_counter = 0;
+
     while (fscanf(input_file, "%s", command) != EOF)
     {
         if(false)

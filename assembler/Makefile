@@ -41,7 +41,7 @@ build/main.o: src/main.cpp
 ../build/my_stack_print.o: ../../Stack/src/my_stack_print.cpp ../../Stack/include/my_stack.h
 	@$(CC) $(CFLAGS) -c ../../Stack/src/my_stack_print.cpp -o ../build/my_stack_print.o
 
-build/my_assembler.o: src/my_assembler.cpp include/my_assembler.h
+build/my_assembler.o: src/my_assembler.cpp include/my_assembler.h ../command_descriptions.cpp
 	@$(CC) $(CFLAGS) -c src/my_assembler.cpp -o build/my_assembler.o
 
 run:

@@ -13,8 +13,34 @@ COMMAND_DESCR(HLT, "hlt",
 COMMAND_DESCR(PUSH, "push",
 {
     proc_val_t to_scan = 0;
-    fscanf(input_file, "%d", &to_scan);
-    fprintf(output_file, "%d %d\n", PUSH, to_scan);
+    char register_num  = 0;
+    char push_arg[MAX_COMMAND_LEN] = {};
+
+    fgets(push_arg, MAX_COMMAND_LEN, input_file);
+    printf("Readed value is '%s'", push_arg);
+
+    if (sscanf(push_arg, "%d", &to_scan) == 1)
+    {
+        fprintf(output_file, "%d %d\n", PUSH | IMMEDIATE_VALUE << 5, to_scan);
+        printf("We are in immediate_val\n");
+    }
+    else if (sscanf(push_arg, " %cx %d", &register_num, &to_scan) == 2)
+    {
+        fprintf(output_file, "%d %d %d\n", PUSH | REGISTER_VALUE << 5 | IMMEDIATE_VALUE << 5,
+                                           register_num - 'a', to_scan);
+        commands_counter += 1;
+        printf("We are in register+immediate_value\n");
+    }
+    else if (sscanf(push_arg, " %cx", &register_num) == 1)
+    {
+        fprintf(output_file, "%d %d\n", PUSH | REGISTER_VALUE << 5, register_num - 'a');
+        printf("We are in register_value\n");
+    }
+    else
+    {
+        printf("Wtf this is command: %s", push_arg);
+    }
+
     commands_counter += 2;
 },
 {
@@ -34,9 +60,21 @@ COMMAND_DESCR(PUSH, "push",
             proc.instr_ptr += 2;
             break;
         }
+        case (IMMEDIATE_VALUE << 5) | (REGISTER_VALUE << 5):
+        {
+            proc_val_t reg_num = proc.code.arr[proc.instr_ptr + 1];
+            proc_val_t to_push = proc.code.arr[proc.instr_ptr + 2];
+            proc_val_t reg_plus_imm = proc.registers_arr[reg_num] + to_push;
+
+            stack_push(&proc.stack, &reg_plus_imm);
+
+            proc.instr_ptr += 3;
+            break;
+        }
         default:
         {
             fprintf(stderr, "No such command: %lx", (unsigned long) proc.code.arr[proc.instr_ptr]);
+            is_valid_code = false;
             break;
         }
     }
