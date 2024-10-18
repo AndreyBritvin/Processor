@@ -53,6 +53,9 @@ run:
 run_reg:
 	./proc.out ../compiled/registers_code_asm.txt
 
+run_jump:
+	./proc.out ../compiled/jump_code_asm.txt
+
 clean:
 	rm proc.out
 

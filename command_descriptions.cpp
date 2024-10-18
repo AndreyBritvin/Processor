@@ -1,7 +1,9 @@
+#define PUT_ONE_CMD(CMD) fprintf(output_file, "%d\n", CMD);\
+                         commands_counter += 1;
+
 COMMAND_DESCR(HLT, "hlt",
 {
-    fprintf(output_file, "%d\n", HLT);
-    commands_counter += 1;
+    PUT_ONE_CMD(HLT)
 },
 {
     is_valid_code = false;
@@ -85,8 +87,7 @@ COMMAND_DESCR(PUSH, "push",
 
 COMMAND_DESCR(ADD, "add",
 {
-    fprintf(output_file, "%d\n", ADD);
-    commands_counter += 1;
+    PUT_ONE_CMD(ADD);
 },
 {
     proc_val_t  first_add = 0;
@@ -103,8 +104,7 @@ COMMAND_DESCR(ADD, "add",
 
 COMMAND_DESCR(OUT, "out",
 {
-    fprintf(output_file, "%d\n", OUT);
-    commands_counter += 1;
+    PUT_ONE_CMD(OUT);
 },
 {
     proc_val_t to_out = 0;
@@ -118,8 +118,7 @@ COMMAND_DESCR(OUT, "out",
 
 COMMAND_DESCR(DUMP, "dump",
 {
-    fprintf(output_file, "%d\n", DUMP);
-    commands_counter += 1;
+    PUT_ONE_CMD(DUMP);
 },
 {
     // STACK_DUMP(&progr_stack);
@@ -151,8 +150,7 @@ COMMAND_DESCR(POP, "pop",
 
 COMMAND_DESCR(SUB, "sub",
 {
-    fprintf(output_file, "%d\n", SUB);
-    commands_counter += 1;
+    PUT_ONE_CMD(SUB);
 },
 {
     proc_val_t  first_sub = 0;
@@ -169,8 +167,7 @@ COMMAND_DESCR(SUB, "sub",
 
 COMMAND_DESCR(MUL, "mul",
 {
-    fprintf(output_file, "%d\n", MUL);
-    commands_counter += 1;
+    PUT_ONE_CMD(MUL);
 },
 {
     proc_val_t  first_mul = 0;
@@ -187,8 +184,7 @@ COMMAND_DESCR(MUL, "mul",
 
 COMMAND_DESCR(DIV, "div",
 {
-    fprintf(output_file, "%d\n", DIV);
-    commands_counter += 1;
+    PUT_ONE_CMD(DIV);
 },
 {
     proc_val_t  first_div = 0;
@@ -205,8 +201,7 @@ COMMAND_DESCR(DIV, "div",
 
 COMMAND_DESCR(IN, "in",
 {
-    fprintf(output_file, "%d\n", IN);
-    commands_counter += 1;
+    PUT_ONE_CMD(IN);
 },
 {
     proc_val_t user_input = 0;
@@ -222,8 +217,7 @@ COMMAND_DESCR(IN, "in",
 
 COMMAND_DESCR(SIN, "sin",
 {
-    fprintf(output_file, "%d\n", SIN);
-    commands_counter += 1;
+    PUT_ONE_CMD(SIN);
 },
 {
     proc_val_t stack_value = 0;
@@ -239,8 +233,7 @@ COMMAND_DESCR(SIN, "sin",
 
 COMMAND_DESCR(COS, "cos",
 {
-    fprintf(output_file, "%d\n", COS);
-    commands_counter += 1;
+    PUT_ONE_CMD(COS);
 },
 {
     proc_val_t stack_value = 0;
@@ -256,8 +249,7 @@ COMMAND_DESCR(COS, "cos",
 
 COMMAND_DESCR(SQRT, "sqrt",
 {
-    fprintf(output_file, "%d\n", SQRT);
-    commands_counter += 1;
+    PUT_ONE_CMD(SQRT);
 },
 {
     proc_val_t stack_value = 0;
@@ -268,3 +260,39 @@ COMMAND_DESCR(SQRT, "sqrt",
     proc.instr_ptr += 1;
 }
 )
+
+/////////////////////////////////////////////
+
+COMMAND_DESCR(JMP, "jump",
+{
+    proc_val_t to_scan = 0;
+    char label_str[MAX_COMMAND_LEN] = 0;
+    char jump_arg [MAX_COMMAND_LEN] = {};
+
+    fgets(jump_arg, MAX_COMMAND_LEN, input_file);
+    printf("Readed value is '%s'", jump_arg);
+
+    if (sscanf(jump_arg, "%d", &to_scan) == 1)
+    {
+        fprintf(output_file, "%d %d\n", JMP | IMMEDIATE_VALUE << 5, to_scan);
+        printf("We are in immediate_val\n");
+    }
+    else if (sscanf(push_arg, " %s:", &label_str) == 1)
+    {
+        fprintf(output_file, "%d %d\n", JMP | REGISTER_VALUE << 5, labels[find_label(label_str)]);
+        printf("We are in register_value\n");
+    }
+    else
+    {
+        printf("Wtf this is command: %s", push_arg);
+    }
+
+    commands_counter += 2;
+},
+{
+    proc.instr_ptr = proc.code.arr[proc.instr_ptr + 1];
+}
+)
+
+
+#undef PUT_ONE_CMD

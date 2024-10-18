@@ -39,7 +39,7 @@ enum processor_commands
     COS      = 10,
     DUMP     = 11,
     POP      = 12,
-    JUMP     = 13,
+    JMP      = 13,
 };
 
 struct proc_code_t

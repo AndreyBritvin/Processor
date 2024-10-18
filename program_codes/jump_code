@@ -1,0 +1,5 @@
+push 10
+push 100
+add
+jump 0
+hlt
