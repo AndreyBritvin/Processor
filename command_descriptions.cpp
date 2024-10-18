@@ -46,7 +46,7 @@ COMMAND_DESCR(PUSH, "push",
     commands_counter += 2;
 },
 {
-    switch (proc.code.arr[proc.instr_ptr] & ~CMD_MASK)
+    switch (proc.code.arr[proc.instr_ptr] & ~CMD_MASK)  // TODO: Make universal getarg function
     {
         case IMMEDIATE_VALUE << 5:
         {
@@ -351,5 +351,54 @@ COMMAND_DESCR(GPU, "gpu",
     proc.instr_ptr += 1;
 }
 )
+
+
+///////////////////////////////////////////////////////////////
+
+COMMAND_DESCR(CALL, "call",
+{
+    proc_val_t to_scan = 0;
+    char label_str[MAX_LABEL_LEN] = {};
+    char jump_arg [MAX_COMMAND_LEN] = {};
+
+    fgets(jump_arg, MAX_COMMAND_LEN, input_file);
+    printf("Readed value is '%s'", jump_arg);
+
+    if (sscanf(jump_arg, "%d", &to_scan) == 1)
+    {
+        fprintf(output_file, "%d %d\n", CALL, to_scan);
+        printf("We are in immediate_jump value\n");
+    }
+    else if (sscanf(jump_arg, " %s:", &label_str) == 1)
+    {
+        fprintf(output_file, "%d %d\n", CALL, labels[find_label(labels, label_str)].label_code_ptr);
+        print_label_arr(labels);
+    }
+    else
+    {
+        printf("Wtf this is command: %s", jump_arg);
+    }
+
+    commands_counter += 2;
+},
+{
+    // proc_val_t ip_proc_val = (proc_val_t)proc.instr_ptr;
+    stack_push(&proc.ret_val_stack, &proc.instr_ptr);
+    proc.instr_ptr = proc.code.arr[proc.instr_ptr + 1];
+}
+)
+
+////////////////////////////////////////////////////////////
+
+COMMAND_DESCR(RET, "ret",
+{
+    PUT_ONE_CMD(RET);
+},
+{
+    stack_pop(&proc.ret_val_stack, &proc.instr_ptr);
+    proc.instr_ptr += 2;
+}
+)
+
 
 #undef PUT_ONE_CMD

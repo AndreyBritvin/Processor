@@ -1,0 +1,14 @@
+in
+pop ax
+call SUMMA:
+push ax
+out
+hlt
+
+SUMMA:
+in
+in
+add
+out
+ret
+

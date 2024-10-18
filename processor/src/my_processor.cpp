@@ -62,7 +62,12 @@ int run_code(proc_code_t code)
     proc.stack = {};
     INIT_STACK(proc.stack);
     proc_val_t stack_poison_value = (proc_val_t) STACK_POISON_VALUE;
-    stack_ctor(&proc.stack, 32, sizeof(proc_val_t), print_longs, &stack_poison_value);
+    stack_ctor(&proc.stack, DEFAULT_STACK_SIZE, sizeof(proc_val_t), print_longs, &stack_poison_value);
+
+    proc.ret_val_stack = {};
+    INIT_STACK(proc.ret_val_stack);
+    size_t stack_poison_value_ip = (size_t) STACK_POISON_VALUE;
+    stack_ctor(&proc.ret_val_stack, DEFAULT_RET_STACK_SIZE, sizeof(size_t), print_longs, &stack_poison_value_ip);
 
     bool is_valid_code = true;
 
@@ -131,6 +136,7 @@ int run_code(proc_code_t code)
     }
 
     stack_dtor(&proc.stack);
+    stack_dtor(&proc.ret_val_stack);
     free(code.arr);
 
     return 0;

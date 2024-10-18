@@ -1,4 +1,4 @@
-NAME = squares
+NAME = funcs
 
 all:
 	make -C assembler

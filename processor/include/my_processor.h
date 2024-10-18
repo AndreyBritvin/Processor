@@ -4,11 +4,14 @@
 #include <my_stack.h>
 
 static const char        *SIGNATURE = "Lychok";
-static const int           CODE_VER = 7;
+static const int           CODE_VER = 8;
 static const size_t REGISTERS_COUNT = 16;
 static const int           CMD_MASK = 0b00011111;
 static const size_t MAX_COMMAND_LEN = 20;
 static const size_t    MAX_RAM_SIZE = 25;
+
+static const size_t DEFAULT_RET_STACK_SIZE = 32;
+static const size_t DEFAULT_STACK_SIZE     = 32;
 
 typedef long long proc_val_t;
 
@@ -48,6 +51,8 @@ enum processor_commands
     JMP      = 13,
     JA       = 14,
     GPU      = 15,
+    CALL     = 16,
+    RET      = 17,
 };
 
 struct proc_code_t
