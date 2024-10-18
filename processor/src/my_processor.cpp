@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "utils.h"
+#include <math.h>
 
 static FILE *LOG_FILE = fopen("my_log.log", "w");
 

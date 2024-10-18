@@ -200,3 +200,71 @@ COMMAND_DESCR(DIV, "div",
     proc.instr_ptr += 1;
 }
 )
+
+////////////////////////////////////////////
+
+COMMAND_DESCR(IN, "in",
+{
+    fprintf(output_file, "%d\n", IN);
+    commands_counter += 1;
+},
+{
+    proc_val_t user_input = 0;
+    printf("Enter a number: ");
+    scanf("%d", &user_input);
+
+    stack_push(&proc.stack, &user_input);
+    proc.instr_ptr += 1;
+}
+)
+
+///////////////////////////////////////////
+
+COMMAND_DESCR(SIN, "sin",
+{
+    fprintf(output_file, "%d\n", SIN);
+    commands_counter += 1;
+},
+{
+    proc_val_t stack_value = 0;
+    stack_pop(&proc.stack, &stack_value);
+    stack_value = sin(stack_value);
+
+    stack_push(&proc.stack, &stack_value);
+    proc.instr_ptr += 1;
+}
+)
+
+///////////////////////////////////////////
+
+COMMAND_DESCR(COS, "cos",
+{
+    fprintf(output_file, "%d\n", COS);
+    commands_counter += 1;
+},
+{
+    proc_val_t stack_value = 0;
+    stack_pop(&proc.stack, &stack_value);
+    stack_value = cos(stack_value);
+
+    stack_push(&proc.stack, &stack_value);
+    proc.instr_ptr += 1;
+}
+)
+
+//////////////////////////////////////////
+
+COMMAND_DESCR(SQRT, "sqrt",
+{
+    fprintf(output_file, "%d\n", SQRT);
+    commands_counter += 1;
+},
+{
+    proc_val_t stack_value = 0;
+    stack_pop(&proc.stack, &stack_value);
+    stack_value = sqrt(stack_value);
+
+    stack_push(&proc.stack, &stack_value);
+    proc.instr_ptr += 1;
+}
+)
