@@ -146,3 +146,57 @@ COMMAND_DESCR(POP, "pop",
     proc.instr_ptr += 2;
 }
 )
+
+//////////////////////////////////////////////
+
+COMMAND_DESCR(SUB, "sub",
+{
+    fprintf(output_file, "%d\n", SUB);
+    commands_counter += 1;
+},
+{
+    proc_val_t  first_sub = 0;
+    proc_val_t second_sub = 0;
+    stack_pop(&proc.stack, &second_sub);
+    stack_pop(&proc.stack,  &first_sub);
+    proc_val_t to_sub = first_sub - second_sub;
+    stack_push(&proc.stack, &to_sub);
+    proc.instr_ptr += 1;
+}
+)
+
+//////////////////////////////////////////////
+
+COMMAND_DESCR(MUL, "mul",
+{
+    fprintf(output_file, "%d\n", MUL);
+    commands_counter += 1;
+},
+{
+    proc_val_t  first_mul = 0;
+    proc_val_t second_mul = 0;
+    stack_pop(&proc.stack, &second_mul);
+    stack_pop(&proc.stack,  &first_mul);
+    proc_val_t to_mul = first_mul + second_mul;
+    stack_push(&proc.stack, &to_mul);
+    proc.instr_ptr += 1;
+}
+)
+
+//////////////////////////////////////////////
+
+COMMAND_DESCR(DIV, "div",
+{
+    fprintf(output_file, "%d\n", DIV);
+    commands_counter += 1;
+},
+{
+    proc_val_t  first_div = 0;
+    proc_val_t second_div = 0;
+    stack_pop(&proc.stack, &second_div);
+    stack_pop(&proc.stack,  &first_div);
+    proc_val_t to_div = first_div / second_div;
+    stack_push(&proc.stack, &to_div);
+    proc.instr_ptr += 1;
+}
+)
