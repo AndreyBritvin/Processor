@@ -174,7 +174,7 @@ COMMAND_DESCR(MUL, "mul",
     proc_val_t second_mul = 0;
     stack_pop(&proc.stack, &second_mul);
     stack_pop(&proc.stack,  &first_mul);
-    proc_val_t to_mul = first_mul + second_mul;
+    proc_val_t to_mul = first_mul * second_mul;
     stack_push(&proc.stack, &to_mul);
     proc.instr_ptr += 1;
 }

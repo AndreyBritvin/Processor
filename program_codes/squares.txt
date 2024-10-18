@@ -1,0 +1,17 @@
+in
+pop bx
+
+FACT:
+push ax
+push ax
+mul
+out
+
+push ax 1
+pop ax
+
+push bx
+push ax
+ja FACT:
+
+hlt

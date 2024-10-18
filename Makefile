@@ -1,6 +1,8 @@
-all:
-	make assembler/Makefile
-	assembler/assembler.out program_codes/ram_exp.txt compiled/ram_exp_asm.txt
+NAME = squares
 
-	make processor/Makefile
-	processor/proc.out compiled/ram_exp_asm.txt
+all:
+	make -C assembler
+	assembler/assembler.out program_codes/$(NAME).txt compiled/$(NAME)_asm.txt
+
+	make -C processor
+	processor/proc.out compiled/$(NAME)_asm.txt
