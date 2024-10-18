@@ -1,0 +1,4 @@
+push 10
+gpu
+out
+hlt

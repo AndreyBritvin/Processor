@@ -340,4 +340,16 @@ COMMAND_DESCR(JA, "ja",
 }
 )
 
+/////////////////////////////////////////////////////////////
+
+COMMAND_DESCR(GPU, "gpu",
+{
+    PUT_ONE_CMD(GPU);
+},
+{
+    print_RAM(proc);
+    proc.instr_ptr += 1;
+}
+)
+
 #undef PUT_ONE_CMD

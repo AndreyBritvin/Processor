@@ -56,6 +56,9 @@ run_reg:
 run_jump:
 	./proc.out ../compiled/jump_code_asm.txt
 
+run_ram:
+	./proc.out ../compiled/ram_exp_asm.txt
+
 clean:
 	rm proc.out
 

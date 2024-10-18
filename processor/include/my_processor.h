@@ -8,6 +8,7 @@ static const int           CODE_VER = 7;
 static const size_t REGISTERS_COUNT = 16;
 static const int           CMD_MASK = 0b00011111;
 static const size_t MAX_COMMAND_LEN = 20;
+static const size_t    MAX_RAM_SIZE = 25;
 
 typedef long long proc_val_t;
 
@@ -26,6 +27,11 @@ enum proc_coommands_argument
 
 enum processor_commands
 {
+/*
+    #define COMMAND_DESCR(ENUM_NAME, STR_NAME, ASS_CODE, ...) ENUM_NAME,
+
+    #include "../command_descriptions.cpp"
+    #undef COMMAND_DESCR*/
     HLT      =  0,
     PUSH     =  1,
     ADD      =  2,
@@ -41,6 +47,7 @@ enum processor_commands
     POP      = 12,
     JMP      = 13,
     JA       = 14,
+    GPU      = 15,
 };
 
 struct proc_code_t
@@ -56,6 +63,7 @@ struct proc_t
     proc_val_t   registers_arr[REGISTERS_COUNT];
     my_stack_t                            stack;
     my_stack_t                    ret_val_stack;
+    proc_val_t                ram[MAX_RAM_SIZE];
 };
 
 int run_code(proc_code_t code);
@@ -63,5 +71,7 @@ bool check_signature(char *signature, int version);
 
 int read_code(const char *input_filename, proc_code_t *code);
 int processor_dump(proc_t proc);
+
+int print_RAM(proc_t proc);
 
 #endif // MY_PROCESSOR_H_

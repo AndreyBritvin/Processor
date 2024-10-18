@@ -53,6 +53,9 @@ run_reg:
 run_jump:
 	./assembler.out ../program_codes/jump_code.txt ../compiled/jump_code_asm.txt
 
+run_ram:
+	./assembler.out ../program_codes/ram_exp.txt ../compiled/ram_exp_asm.txt
+
 clean:
 	rm assembler.out
 

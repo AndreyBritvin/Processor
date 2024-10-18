@@ -1,4 +1,4 @@
-Hash struct val = d9b6c2a89b0668da
+Hash struct val = f7c9041a319a25a0
 Hash buffer val = 7c21bb43818fd3f5
 Entered stack_push
 Finished checking
@@ -7,12 +7,12 @@ Entered stack_pop
 Decreasing memory :( ):
 Quit stack_pop
 cpp:190 function:[stack_realloc()]
-Canary #1 = 7ffd4e22ca56
+Canary #1 = 7fff376c8e76
 Stack capacity: 8
 Stack size    : 0
 
-CalcSt hash = 39718865596d1250
-Struct hash = 39718865596d1250
+CalcSt hash = 5783c9d6f000cf16
+Struct hash = 5783c9d6f000cf16
 
 Stack->data [0x607000000108]
 CalcBu hash = d2f1b369d8f1b455
@@ -30,6 +30,6 @@ data canary #1 = 6070deadbbb6
     [i] = 7 elem =  1162628936 (454c4f48)
 }
 data canary #2 = 6070deadbbb6
-Canary #2 = 7ffd4e22ca56
+Canary #2 = 7fff376c8e76
 [-----------------END STACK_DUMP-----------------]
 

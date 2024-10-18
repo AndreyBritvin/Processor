@@ -177,3 +177,28 @@ int processor_dump(proc_t proc)
 
     return 0;
 }
+
+int print_RAM(proc_t proc)
+{
+    size_t length = sqrt(MAX_RAM_SIZE);
+    size_t height = sqrt(MAX_RAM_SIZE);
+
+    for (size_t line = 0; line < height; line++)
+    {
+        for (size_t row = 0; row < length; row++)
+        {
+            if (proc.ram[line * length + row] == 0)
+            {
+                printf(".");
+            }
+            else
+            {
+                printf("*");
+            }
+        }
+
+        printf("\n");
+    }
+
+    return 0;
+}
