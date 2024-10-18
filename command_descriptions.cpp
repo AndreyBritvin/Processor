@@ -19,28 +19,28 @@ COMMAND_DESCR(PUSH, "push",
     char push_arg[MAX_COMMAND_LEN] = {};
 
     fgets(push_arg, MAX_COMMAND_LEN, input_file);
-    printf("Readed value is '%s'", push_arg);
+    printf("Readed value is '%s'\n", push_arg);
 
     if (sscanf(push_arg, "%d", &to_scan) == 1)
     {
         fprintf(output_file, "%d %d\n", PUSH | IMMEDIATE_VALUE << 5, to_scan);
-        printf("We are in immediate_val\n");
+        // printf("We are in immediate_val\n");
     }
     else if (sscanf(push_arg, " %cx %d", &register_num, &to_scan) == 2)
     {
         fprintf(output_file, "%d %d %d\n", PUSH | REGISTER_VALUE << 5 | IMMEDIATE_VALUE << 5,
                                            register_num - 'a', to_scan);
         commands_counter += 1;
-        printf("We are in register+immediate_value\n");
+        // printf("We are in register+immediate_value\n");
     }
     else if (sscanf(push_arg, " %cx", &register_num) == 1)
     {
         fprintf(output_file, "%d %d\n", PUSH | REGISTER_VALUE << 5, register_num - 'a');
-        printf("We are in register_value\n");
+        // printf("We are in register_value\n");
     }
     else
     {
-        printf("Wtf this is command: %s", push_arg);
+        printf("Wtf this is command: %s\n", push_arg);
     }
 
     commands_counter += 2;
@@ -266,7 +266,7 @@ COMMAND_DESCR(SQRT, "sqrt",
 COMMAND_DESCR(JMP, "jump",
 {
     proc_val_t to_scan = 0;
-    char label_str[MAX_COMMAND_LEN] = 0;
+    char label_str[MAX_LABEL_LEN] = {};
     char jump_arg [MAX_COMMAND_LEN] = {};
 
     fgets(jump_arg, MAX_COMMAND_LEN, input_file);
@@ -274,17 +274,17 @@ COMMAND_DESCR(JMP, "jump",
 
     if (sscanf(jump_arg, "%d", &to_scan) == 1)
     {
-        fprintf(output_file, "%d %d\n", JMP | IMMEDIATE_VALUE << 5, to_scan);
-        printf("We are in immediate_val\n");
+        fprintf(output_file, "%d %d\n", JMP, to_scan);
+        printf("We are in immediate_jump value\n");
     }
-    else if (sscanf(push_arg, " %s:", &label_str) == 1)
+    else if (sscanf(jump_arg, " %s:", &label_str) == 1)
     {
-        fprintf(output_file, "%d %d\n", JMP | REGISTER_VALUE << 5, labels[find_label(label_str)]);
-        printf("We are in register_value\n");
+        fprintf(output_file, "%d %d\n", JMP, labels[find_label(labels, label_str)].label_code_ptr);
+        print_label_arr(labels);
     }
     else
     {
-        printf("Wtf this is command: %s", push_arg);
+        printf("Wtf this is command: %s", jump_arg);
     }
 
     commands_counter += 2;
@@ -294,5 +294,50 @@ COMMAND_DESCR(JMP, "jump",
 }
 )
 
+///////////////////////////////////////////////////////
+
+COMMAND_DESCR(JA, "ja",
+{
+    proc_val_t to_scan = 0;
+    char label_str[MAX_LABEL_LEN] = {};
+    char jump_arg [MAX_COMMAND_LEN] = {};
+
+    fgets(jump_arg, MAX_COMMAND_LEN, input_file);
+    printf("Readed value is '%s'", jump_arg);
+
+    if (sscanf(jump_arg, "%d", &to_scan) == 1)
+    {
+        fprintf(output_file, "%d %d\n", JA, to_scan);
+        printf("We are in immediate_jump value\n");
+    }
+    else if (sscanf(jump_arg, " %s:", &label_str) == 1)
+    {
+        fprintf(output_file, "%d %d\n", JA, labels[find_label(labels, label_str)].label_code_ptr);
+        print_label_arr(labels);
+    }
+    else
+    {
+        printf("Wtf this is command: %s", jump_arg);
+    }
+
+    commands_counter += 2;
+},
+{
+
+    proc_val_t  first_val = 0;
+    proc_val_t second_val = 0;
+    stack_pop(&proc.stack, &second_val);
+    stack_pop(&proc.stack, &first_val);
+
+    if (first_val >= second_val)
+    {
+        proc.instr_ptr = proc.code.arr[proc.instr_ptr + 1];
+    }
+    else
+    {
+        proc.instr_ptr += 2;
+    }
+}
+)
 
 #undef PUT_ONE_CMD

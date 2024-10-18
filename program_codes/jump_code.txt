@@ -1,0 +1,13 @@
+in
+NEXT:
+dump
+in
+push 100
+add
+out
+in
+push 10
+dump
+ja NEXT:
+out
+hlt

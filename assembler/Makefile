@@ -50,6 +50,9 @@ run:
 run_reg:
 	./assembler.out ../program_codes/registers_code.txt ../compiled/registers_code_asm.txt
 
+run_jump:
+	./assembler.out ../program_codes/jump_code.txt ../compiled/jump_code_asm.txt
+
 clean:
 	rm assembler.out
 

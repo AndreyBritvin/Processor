@@ -4,7 +4,7 @@
 #include <my_stack.h>
 
 static const char        *SIGNATURE = "Lychok";
-static const int           CODE_VER = 1;
+static const int           CODE_VER = 7;
 static const size_t REGISTERS_COUNT = 16;
 static const int           CMD_MASK = 0b00011111;
 static const size_t MAX_COMMAND_LEN = 20;
@@ -40,6 +40,7 @@ enum processor_commands
     DUMP     = 11,
     POP      = 12,
     JMP      = 13,
+    JA       = 14,
 };
 
 struct proc_code_t

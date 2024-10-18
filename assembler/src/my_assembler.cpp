@@ -14,13 +14,27 @@ int compile_file(const char *input_filename, const char *output_filename)
     fprintf(output_file, "%s %d\n", SIGNATURE, CODE_VER);
 
     char command[MAX_COMMAND_LEN] = "";
-    int commands_counter = 0;
+    int  commands_counter = 0;
+
+    static label_t labels[MAX_LABEL_COUNT] = {};
+    static size_t first_free_label = 0;
+
+    // fixup_t fixup [MAX_FIXUP_COUNT] = {};
 
     while (fscanf(input_file, "%s", command) != EOF)
     {
-        if(false)
+        // if(false)
+        // {
+        // }
+        if (strchr(command, ':') != NULL)
         {
-            // skip for next else if
+            printf("At addres %d we met up with label %s\n", commands_counter, command);
+
+            if (find_label(labels, command) >= first_free_label)
+            {
+                labels[first_free_label].label_code_ptr = commands_counter;
+                strcpy(labels[first_free_label++].label_str, command);
+            }
         }
         #define COMMAND_DESCR(ENUM_NAME, STR_NAME, ASS_CODE, ...) \
             else if (strcmp(command, STR_NAME) == 0)              \
@@ -58,6 +72,37 @@ int compile_file(const char *input_filename, const char *output_filename)
 
     fclose( input_file);
     fclose(output_file);
+
+    return 0;
+}
+
+int fill_fixup(fixup_t *fixup_arr, size_t cmd_counter)
+{
+    return 0;
+}
+
+int find_label(label_t *label_arr, char *label_to_find)
+{
+    size_t label_ind = 0;
+    for (; label_ind < MAX_LABEL_COUNT; label_ind++)
+    {
+        if (strcmp(label_to_find, label_arr[label_ind].label_str) == 0)
+        {
+            break;
+        }
+    }
+
+    return label_ind;
+}
+
+int print_label_arr(label_t *label_arr)
+{
+    printf("Begin printing labels table:\n");
+    for (size_t label_ind = 0; label_ind < MAX_LABEL_COUNT; label_ind++)
+    {
+        printf("%02u: addr: %d, name: %s\n", label_ind, label_arr[label_ind].label_code_ptr,
+                                                        label_arr[label_ind].label_str);
+    }
 
     return 0;
 }

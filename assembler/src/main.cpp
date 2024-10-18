@@ -7,11 +7,14 @@ int main(const int argc, const char **argv)
     {
         case 1:
             compile_file("../program_codes/test.txt", "../compiled/comp_test.txt");
+            compile_file("../program_codes/test.txt", "../compiled/comp_test.txt");
             break;
         case 2:
             compile_file(argv[1], "../compiled/comp_test.txt");
+            compile_file(argv[1], "../compiled/comp_test.txt");
             break;
         case 3:
+            compile_file(argv[1], argv[2]);
             compile_file(argv[1], argv[2]);
             break;
         default:
