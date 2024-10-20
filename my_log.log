@@ -1,6 +1,6 @@
-Hash struct val = 486ea4a7a6aac9d2
+Hash struct val = b6dea1005443ea99
 Hash buffer val = 7c21bb43818fd3f5
-Hash struct val = 2f719e91fcb7d8bf
+Hash struct val = 5309fd2982d5f612
 Hash buffer val = ce30aef43014ff77
 Entered stack_push
 Finished checking
@@ -304,24 +304,24 @@ Quit stack_push
 Entered stack_pop
 Decreasing memory :( ):
 Quit stack_pop
-8c8dd2f613
+c06e8c8dd2f613
 
 data canary #1 = 6020deadbac6
 {
 }
 data canary #2 = 6020deadbac6
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 2
 Stack size    : 0
 
-CalcSt hash = 509c82aa1698073
-Struct hash = 509c82aa1698073
+CalcSt hash = 7379c4834f02a13a
+Struct hash = 7379c4834f02a13a
 
 Stack->data [0x603000000108]
 CalcBu hash = 56c88ad96f408d65
@@ -333,18 +333,18 @@ data canary #1 = 6030deadbbb6
     [i] = 1 elem =  1162628936 (454c4f48)
 }
 data canary #2 = 6030deadbbb6
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 0
 Stack size    : 0
 
-CalcSt hash = 198388fa4eba67b7
-Struct hash = 198388fa4eba67b7
+CalcSt hash = 87f38552fc53887e
+Struct hash = 87f38552fc53887e
 
 Stack->data [0x602000000098]
 CalcBu hash = 9696d969ba70fed3
@@ -354,18 +354,18 @@ data canary #1 = 6020deadba26
 {
 }
 data canary #2 = 6020deadba26
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 2
 Stack size    : 0
 
-CalcSt hash = d232aa3a9e7b62c
-Struct hash = d232aa3a9e7b62c
+CalcSt hash = 7b9326fc5780d6f3
+Struct hash = 7b9326fc5780d6f3
 
 Stack->data [0x603000000138]
 CalcBu hash = 4eaf22fa21232905
@@ -377,18 +377,18 @@ data canary #1 = 6030deadbb86
     [i] = 1 elem =  1162628936 (454c4f48)
 }
 data canary #2 = 6030deadbb86
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 0
 Stack size    : 0
 
-CalcSt hash = c994750f6a83ae5d
-Struct hash = c994750f6a83ae5d
+CalcSt hash = 38047168181ccf24
+Struct hash = 38047168181ccf24
 
 Stack->data [0x6020000000b8]
 CalcBu hash = 17a4b5caab91a693
@@ -398,18 +398,18 @@ data canary #1 = 6020deadba06
 {
 }
 data canary #2 = 6020deadba06
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 2
 Stack size    : 0
 
-CalcSt hash = 153c8ced485c72ee
-Struct hash = 153c8ced485c72ee
+CalcSt hash = 83ac8945f5f593b5
+Struct hash = 83ac8945f5f593b5
 
 Stack->data [0x603000000168]
 CalcBu hash = 6d97ac3a35425a5
@@ -421,18 +421,18 @@ data canary #1 = 6030deadbbd6
     [i] = 1 elem =  1162628936 (454c4f48)
 }
 data canary #2 = 6030deadbbd6
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 0
 Stack size    : 0
 
-CalcSt hash = 79a56b317034892d
-Struct hash = 79a56b317034892d
+CalcSt hash = e815678a1dcda9f4
+Struct hash = e815678a1dcda9f4
 
 Stack->data [0x6020000000d8]
 CalcBu hash = 947b20a7d82faf53
@@ -442,18 +442,18 @@ data canary #1 = 6020deadba66
 {
 }
 data canary #2 = 6020deadba66
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 2
 Stack size    : 0
 
-CalcSt hash = 9cce83bbd3c497d3
-Struct hash = 9cce83bbd3c497d3
+CalcSt hash = b3e8014815db89a
+Struct hash = b3e8014815db89a
 
 Stack->data [0x603000000198]
 CalcBu hash = bf03d28d25852245
@@ -465,18 +465,18 @@ data canary #1 = 6030deadbb26
     [i] = 1 elem =  1162628936 (454c4f48)
 }
 data canary #2 = 6030deadbb26
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 0
 Stack size    : 0
 
-CalcSt hash = 29b65795dbef75f3
-Struct hash = 29b65795dbef75f3
+CalcSt hash = 982653ee898896ba
+Struct hash = 982653ee898896ba
 
 Stack->data [0x6020000000f8]
 CalcBu hash = 1588fd08c9505713
@@ -486,18 +486,18 @@ data canary #1 = 6020deadba46
 {
 }
 data canary #2 = 6020deadba46
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 2
 Stack size    : 0
 
-CalcSt hash = a4e7e60572c5b6b6
-Struct hash = a4e7e60572c5b6b6
+CalcSt hash = 1357e25e205ed77d
+Struct hash = 1357e25e205ed77d
 
 Stack->data [0x6030000001c8]
 CalcBu hash = 772e2a56a7b61ee5
@@ -509,18 +509,18 @@ data canary #1 = 6030deadbb76
     [i] = 1 elem =  1162628936 (454c4f48)
 }
 data canary #2 = 6030deadbb76
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 0
 Stack size    : 0
 
-CalcSt hash = cd56d0c887afd539
-Struct hash = cd56d0c887afd539
+CalcSt hash = 3bc6cd213548f600
+Struct hash = 3bc6cd213548f600
 
 Stack->data [0x602000000118]
 CalcBu hash = 1178b42c6f354855
@@ -530,18 +530,18 @@ data canary #1 = 6020deadbba6
 {
 }
 data canary #2 = 6020deadbba6
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 2
 Stack size    : 0
 
-CalcSt hash = ad01483190c642ad
-Struct hash = ad01483190c642ad
+CalcSt hash = 1b71448a3e5f6374
+Struct hash = 1b71448a3e5f6374
 
 Stack->data [0x6030000001f8]
 CalcBu hash = 6f14c2775998ba85
@@ -553,18 +553,18 @@ data canary #1 = 6030deadbb46
     [i] = 1 elem =  1162628936 (454c4f48)
 }
 data canary #2 = 6030deadbb46
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 0
 Stack size    : 0
 
-CalcSt hash = 7d67bcdff64c723e
-Struct hash = 7d67bcdff64c723e
+CalcSt hash = ebd7b938a3e59305
+Struct hash = ebd7b938a3e59305
 
 Stack->data [0x602000000138]
 CalcBu hash = 9286908d6055f015
@@ -574,18 +574,18 @@ data canary #1 = 6020deadbb86
 {
 }
 data canary #2 = 6020deadbb86
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 2
 Stack size    : 0
 
-CalcSt hash = a8aa37397192226d
-Struct hash = a8aa37397192226d
+CalcSt hash = 171a33921f2b4334
+Struct hash = 171a33921f2b4334
 
 Stack->data [0x603000000228]
 CalcBu hash = cc0902faedefcf9f
@@ -597,18 +597,18 @@ data canary #1 = 6030deadb896
     [i] = 1 elem =  1162628936 (454c4f48)
 }
 data canary #2 = 6030deadb896
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 0
 Stack size    : 0
 
-CalcSt hash = 2d78a913066756ab
-Struct hash = 2d78a913066756ab
+CalcSt hash = 9be8a56bb4007772
+Struct hash = 9be8a56bb4007772
 
 Stack->data [0x602000000158]
 CalcBu hash = f5cfb6a8cf3f8d5
@@ -618,18 +618,18 @@ data canary #1 = 6020deadbbe6
 {
 }
 data canary #2 = 6020deadbbe6
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 2
 Stack size    : 0
 
-CalcSt hash = b0c3a36fb10122d2
-Struct hash = b0c3a36fb10122d2
+CalcSt hash = 1f339fc85e9a4399
+Struct hash = 1f339fc85e9a4399
 
 Stack->data [0x603000000258]
 CalcBu hash = 84335ac47020cc3f
@@ -641,18 +641,18 @@ data canary #1 = 6030deadb8e6
     [i] = 1 elem =  1162628936 (454c4f48)
 }
 data canary #2 = 6030deadb8e6
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 0
 Stack size    : 0
 
-CalcSt hash = dd89952a8983d6d2
-Struct hash = dd89952a8983d6d2
+CalcSt hash = 4bf99183371cf799
+Struct hash = 4bf99183371cf799
 
 Stack->data [0x602000000178]
 CalcBu hash = 906ad7cb7e14a095
@@ -662,18 +662,18 @@ data canary #1 = 6020deadbbc6
 {
 }
 data canary #2 = 6020deadbbc6
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 2
 Stack size    : 0
 
-CalcSt hash = 38559053f0a9be94
-Struct hash = 38559053f0a9be94
+CalcSt hash = a6c58cac9e42df5b
+Struct hash = a6c58cac9e42df5b
 
 Stack->data [0x603000000288]
 CalcBu hash = 3c5db28df251c8df
@@ -685,18 +685,18 @@ data canary #1 = 6030deadb836
     [i] = 1 elem =  1162628936 (454c4f48)
 }
 data canary #2 = 6030deadb836
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 0
 Stack size    : 0
 
-CalcSt hash = d1315e4c9197621
-Struct hash = d1315e4c9197621
+CalcSt hash = 7b83123d76b296e8
+Struct hash = 7b83123d76b296e8
 
 Stack->data [0x602000000198]
 CalcBu hash = d4142a8aab2a955
@@ -706,18 +706,18 @@ data canary #1 = 6020deadbb26
 {
 }
 data canary #2 = 6020deadbb26
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 2
 Stack size    : 0
 
-CalcSt hash = 406efcb93afcd54d
-Struct hash = 406efcb93afcd54d
+CalcSt hash = aedef911e895f614
+Struct hash = aedef911e895f614
 
 Stack->data [0x6030000002b8]
 CalcBu hash = 34444aaea434647f
@@ -729,18 +729,18 @@ data canary #1 = 6030deadb806
     [i] = 1 elem =  1162628936 (454c4f48)
 }
 data canary #2 = 6030deadb806
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 0
 Stack size    : 0
 
-CalcSt hash = bd24024934d48308
-Struct hash = bd24024934d48308
+CalcSt hash = 2b93fea1e26da3cf
+Struct hash = 2b93fea1e26da3cf
 
 Stack->data [0x6020000001b8]
 CalcBu hash = 8e4f1f099bd35115
@@ -750,18 +750,18 @@ data canary #1 = 6020deadbb06
 {
 }
 data canary #2 = 6020deadbb06
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 2
 Stack size    : 0
 
-CalcSt hash = 48885f03390cfc31
-Struct hash = 48885f03390cfc31
+CalcSt hash = b6f85b5be6a61cf8
+Struct hash = b6f85b5be6a61cf8
 
 Stack->data [0x6030000002e8]
 CalcBu hash = ec6ea2782665611f
@@ -773,18 +773,18 @@ data canary #1 = 6030deadb856
     [i] = 1 elem =  1162628936 (454c4f48)
 }
 data canary #2 = 6030deadb856
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 0
 Stack size    : 0
 
-CalcSt hash = 6d34ee7eabb1dab5
-Struct hash = 6d34ee7eabb1dab5
+CalcSt hash = dba4ead7594afb7c
+Struct hash = dba4ead7594afb7c
 
 Stack->data [0x6020000001d8]
 CalcBu hash = b2589e6c87159d5
@@ -794,18 +794,18 @@ data canary #1 = 6020deadbb66
 {
 }
 data canary #2 = 6020deadbb66
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 2
 Stack size    : 0
 
-CalcSt hash = 44314e1a334d6e4b
-Struct hash = 44314e1a334d6e4b
+CalcSt hash = b2a14a72e0e68f12
+Struct hash = b2a14a72e0e68f12
 
 Stack->data [0x603000000318]
 CalcBu hash = 17a102ec21b8a841
@@ -817,18 +817,18 @@ data canary #1 = 6030deadb9a6
     [i] = 1 elem =  1162628936 (454c4f48)
 }
 data canary #2 = 6030deadb9a6
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 0
 Stack size    : 0
 
-CalcSt hash = 1d45da93c80bc69c
-Struct hash = 1d45da93c80bc69c
+CalcSt hash = 8bb5d6ec75a4e763
+Struct hash = 8bb5d6ec75a4e763
 
 Stack->data [0x6020000001f8]
 CalcBu hash = 8c336647b9920195
@@ -838,18 +838,18 @@ data canary #1 = 6020deadbb46
 {
 }
 data canary #2 = 6020deadbb46
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 2
 Stack size    : 0
 
-CalcSt hash = 4c4ab063d1c22b0d
-Struct hash = 4c4ab063d1c22b0d
+CalcSt hash = babaacbc7f5b4bd4
+Struct hash = babaacbc7f5b4bd4
 
 Stack->data [0x603000000348]
 CalcBu hash = cfcb5ab5a3e9a4e1
@@ -861,18 +861,18 @@ data canary #1 = 6030deadb9f6
     [i] = 1 elem =  1162628936 (454c4f48)
 }
 data canary #2 = 6030deadb9f6
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 0
 Stack size    : 0
 
-CalcSt hash = c0e65393250191e2
-Struct hash = c0e65393250191e2
+CalcSt hash = 2f564febd29ab2a9
+Struct hash = 2f564febd29ab2a9
 
 Stack->data [0x602000000218]
 CalcBu hash = ad79786f9e7048cf
@@ -882,18 +882,18 @@ data canary #1 = 6020deadb8a6
 {
 }
 data canary #2 = 6020deadb8a6
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 2
 Stack size    : 0
 
-CalcSt hash = 546412dcec54a0a5
-Struct hash = 546412dcec54a0a5
+CalcSt hash = c2d40f3599edc16c
+Struct hash = c2d40f3599edc16c
 
 Stack->data [0x603000000378]
 CalcBu hash = c7b1f2d655cc4081
@@ -905,18 +905,18 @@ data canary #1 = 6030deadb9c6
     [i] = 1 elem =  1162628936 (454c4f48)
 }
 data canary #2 = 6030deadb9c6
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 0
 Stack size    : 0
 
-CalcSt hash = 70f73fa83e758ee7
-Struct hash = 70f73fa83e758ee7
+CalcSt hash = df673c00ec0eafae
+Struct hash = df673c00ec0eafae
 
 Stack->data [0x602000000238]
 CalcBu hash = 2e8754d08f90f08f
@@ -926,18 +926,18 @@ data canary #1 = 6020deadb886
 {
 }
 data canary #2 = 6020deadb886
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 2
 Stack size    : 0
 
-CalcSt hash = dbf609adbad09b49
-Struct hash = dbf609adbad09b49
+CalcSt hash = 4a6606066869bc10
+Struct hash = 4a6606066869bc10
 
 Stack->data [0x6030000003a8]
 CalcBu hash = 7fdc4a9fd7fd3d21
@@ -949,18 +949,18 @@ data canary #1 = 6030deadb916
     [i] = 1 elem =  1162628936 (454c4f48)
 }
 data canary #2 = 6030deadb916
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 0
 Stack size    : 0
 
-CalcSt hash = 210835ca44222896
-Struct hash = 210835ca44222896
+CalcSt hash = 8f783222f1bb495d
+Struct hash = 8f783222f1bb495d
 
 Stack->data [0x602000000258]
 CalcBu hash = ab5dbfadbc2ef94f
@@ -970,18 +970,18 @@ data canary #1 = 6020deadb8e6
 {
 }
 data canary #2 = 6020deadb8e6
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 2
 Stack size    : 0
 
-CalcSt hash = e40f6bf76bf89dee
-Struct hash = e40f6bf76bf89dee
+CalcSt hash = 527f68501991beb5
+Struct hash = 527f68501991beb5
 
 Stack->data [0x6030000003d8]
 CalcBu hash = 3806a2695a2e39c1
@@ -993,18 +993,18 @@ data canary #1 = 6030deadb966
     [i] = 1 elem =  1162628936 (454c4f48)
 }
 data canary #2 = 6030deadb966
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 0
 Stack size    : 0
 
-CalcSt hash = d11921e1b5a0757d
-Struct hash = d11921e1b5a0757d
+CalcSt hash = 3f891e3a63399644
+Struct hash = 3f891e3a63399644
 
 Stack->data [0x602000000278]
 CalcBu hash = 2c6b9c0ead4fa10f
@@ -1014,18 +1014,18 @@ data canary #1 = 6020deadb8c6
 {
 }
 data canary #2 = 6020deadb8c6
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 2
 Stack size    : 0
 
-CalcSt hash = dfb85b6f1222d901
-Struct hash = dfb85b6f1222d901
+CalcSt hash = 4e2857c7bfbbf9c8
+Struct hash = 4e2857c7bfbbf9c8
 
 Stack->data [0x603000000408]
 CalcBu hash = 317722cdbc7db2eb
@@ -1037,18 +1037,18 @@ data canary #1 = 6030deadbeb6
     [i] = 1 elem =  1162628936 (454c4f48)
 }
 data canary #2 = 6030deadbeb6
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 0
 Stack size    : 0
 
-CalcSt hash = a298af787f72ca
-Struct hash = a298af787f72ca
+CalcSt hash = 6f12950826189391
+Struct hash = 6f12950826189391
 
 Stack->data [0x602000000298]
 CalcBu hash = a94206ebd9eda9cf
@@ -1058,18 +1058,18 @@ data canary #1 = 6020deadb826
 {
 }
 data canary #2 = 6020deadb826
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 2
 Stack size    : 0
 
-CalcSt hash = e7d1bde82cb54e99
-Struct hash = e7d1bde82cb54e99
+CalcSt hash = 5641ba40da4e6f60
+Struct hash = 5641ba40da4e6f60
 
 Stack->data [0x603000000438]
 CalcBu hash = 295dbaee6e604e8b
@@ -1081,18 +1081,18 @@ data canary #1 = 6030deadbe86
     [i] = 1 elem =  1162628936 (454c4f48)
 }
 data canary #2 = 6030deadbe86
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 0
 Stack size    : 0
 
-CalcSt hash = b0b38513e44c9911
-Struct hash = b0b38513e44c9911
+CalcSt hash = 1f23816c91e5b9d8
+Struct hash = 1f23816c91e5b9d8
 
 Stack->data [0x6020000002b8]
 CalcBu hash = 2a4fe34ccb0e518f
@@ -1102,18 +1102,18 @@ data canary #1 = 6020deadb806
 {
 }
 data canary #2 = 6020deadb806
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 2
 Stack size    : 0
 
-CalcSt hash = efeb2a1c04d0673d
-Struct hash = efeb2a1c04d0673d
+CalcSt hash = 5e5b2674b2698804
+Struct hash = 5e5b2674b2698804
 
 Stack->data [0x603000000468]
 CalcBu hash = e18812b7f0914b2b
@@ -1125,18 +1125,18 @@ data canary #1 = 6030deadbed6
     [i] = 1 elem =  1162628936 (454c4f48)
 }
 data canary #2 = 6030deadbed6
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 0
 Stack size    : 0
 
-CalcSt hash = 60c47b3394c29960
-Struct hash = 60c47b3394c29960
+CalcSt hash = cf34778c425bba27
+Struct hash = cf34778c425bba27
 
 Stack->data [0x6020000002d8]
 CalcBu hash = a7264e29f7ac5a4f
@@ -1146,18 +1146,18 @@ data canary #1 = 6020deadb866
 {
 }
 data canary #2 = 6020deadb866
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 2
 Stack size    : 0
 
-CalcSt hash = 777d170056965060
-Struct hash = 777d170056965060
+CalcSt hash = e5ed1359042f7127
+Struct hash = e5ed1359042f7127
 
 Stack->data [0x603000000498]
 CalcBu hash = 99b26a8172c247cb
@@ -1169,18 +1169,18 @@ data canary #1 = 6030deadbe26
     [i] = 1 elem =  1162628936 (454c4f48)
 }
 data canary #2 = 6030deadbe26
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 0
 Stack size    : 0
 
-CalcSt hash = 10d5674b05b48106
-Struct hash = 10d5674b05b48106
+CalcSt hash = 7f4563a3b34da1cd
+Struct hash = 7f4563a3b34da1cd
 
 Stack->data [0x6020000002f8]
 CalcBu hash = 28342a8ae8cd020f
@@ -1190,18 +1190,18 @@ data canary #1 = 6020deadb846
 {
 }
 data canary #2 = 6020deadb846
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 2
 Stack size    : 0
 
-CalcSt hash = 7f96833684624be3
-Struct hash = 7f96833684624be3
+CalcSt hash = ee067f8f31fb6caa
+Struct hash = ee067f8f31fb6caa
 
 Stack->data [0x6030000004c8]
 CalcBu hash = 51dcc24af4f3446b
@@ -1213,18 +1213,18 @@ data canary #1 = 6030deadbe76
     [i] = 1 elem =  1162628936 (454c4f48)
 }
 data canary #2 = 6030deadbe76
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 0
 Stack size    : 0
 
-CalcSt hash = b475e07d9d07158a
-Struct hash = b475e07d9d07158a
+CalcSt hash = 22e5dcd64aa03651
+Struct hash = 22e5dcd64aa03651
 
 Stack->data [0x602000000318]
 CalcBu hash = 2423e1ae8eb1f351
@@ -1234,18 +1234,18 @@ data canary #1 = 6020deadb9a6
 {
 }
 data canary #2 = 6020deadb9a6
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 2
 Stack size    : 0
 
-CalcSt hash = 87afe562904e97fb
-Struct hash = 87afe562904e97fb
+CalcSt hash = f61fe1bb3de7b8c2
+Struct hash = f61fe1bb3de7b8c2
 
 Stack->data [0x6030000004f8]
 CalcBu hash = 49c35a6ba6d5e00b
@@ -1257,18 +1257,18 @@ data canary #1 = 6030deadbe46
     [i] = 1 elem =  1162628936 (454c4f48)
 }
 data canary #2 = 6030deadbe46
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 0
 Stack size    : 0
 
-CalcSt hash = 6486cc95209de271
-Struct hash = 6486cc95209de271
+CalcSt hash = d2f6c8edce370338
+Struct hash = d2f6c8edce370338
 
 Stack->data [0x602000000338]
 CalcBu hash = a531be0f7fd29b11
@@ -1278,18 +1278,18 @@ data canary #1 = 6020deadb986
 {
 }
 data canary #2 = 6020deadb986
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 2
 Stack size    : 0
 
-CalcSt hash = 8358d4c8dc578d16
-Struct hash = 8358d4c8dc578d16
+CalcSt hash = f1c8d12189f0addd
+Struct hash = f1c8d12189f0addd
 
 Stack->data [0x603000000528]
 CalcBu hash = 74f5badfa229272d
@@ -1301,18 +1301,18 @@ data canary #1 = 6030deadbf96
     [i] = 1 elem =  1162628936 (454c4f48)
 }
 data canary #2 = 6030deadbf96
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 0
 Stack size    : 0
 
-CalcSt hash = 1497b8ca8566fa3f
-Struct hash = 1497b8ca8566fa3f
+CalcSt hash = 8307b52333001b06
+Struct hash = 8307b52333001b06
 
 Stack->data [0x602000000358]
 CalcBu hash = 220828ecac70a3d1
@@ -1322,18 +1322,18 @@ data canary #1 = 6020deadb9e6
 {
 }
 data canary #2 = 6020deadb9e6
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 2
 Stack size    : 0
 
-CalcSt hash = 8b7237128ce5575b
-Struct hash = 8b7237128ce5575b
+CalcSt hash = f9e2336b3a7e7822
+Struct hash = f9e2336b3a7e7822
 
 Stack->data [0x603000000558]
 CalcBu hash = 2d2012a9245a23cd
@@ -1345,18 +1345,18 @@ data canary #1 = 6030deadbfe6
     [i] = 1 elem =  1162628936 (454c4f48)
 }
 data canary #2 = 6030deadbfe6
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 0
 Stack size    : 0
 
-CalcSt hash = c4a8a52c9bf96626
-Struct hash = c4a8a52c9bf96626
+CalcSt hash = 3318a185499286ed
+Struct hash = 3318a185499286ed
 
 Stack->data [0x602000000378]
 CalcBu hash = a316054d9d914b91
@@ -1366,18 +1366,18 @@ data canary #1 = 6020deadb9c6
 {
 }
 data canary #2 = 6020deadb9c6
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec7068] "proc.ret_val_stack" born at src/my_processor.cpp:68 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241cad6
+Stack_t[0x7ffefc112d38] "proc.ret_val_stack" born at src/my_processor.cpp:68 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9786
 Stack capacity: 8
 Stack size    : 5
 
-CalcSt hash = 8b421a8c0fddbfc0
-Struct hash = 8b421a8c0fddbfc0
+CalcSt hash = aeda792395fbdd13
+Struct hash = aeda792395fbdd13
 
 Stack->data [0x607000000178]
 CalcBu hash = 9a753c4a41a60bc8
@@ -1395,18 +1395,18 @@ data canary #1 = 6070deadbbc6
     [i] = 7 elem =  1162628936 (454c4f48)
 }
 data canary #2 = 6070deadbbc6
-Canary #2 = 7fffa241cad6
+Canary #2 = 7ffe22bc9786
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec7068] "proc.ret_val_stack" born at src/my_processor.cpp:68 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241cad6
+Stack_t[0x7ffefc112d38] "proc.ret_val_stack" born at src/my_processor.cpp:68 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9786
 Stack capacity: 2
 Stack size    : 2
 
-CalcSt hash = affdd161487ffa8c
-Struct hash = affdd161487ffa8c
+CalcSt hash = d3962ff8ce9e17df
+Struct hash = d3962ff8ce9e17df
 
 Stack->data [0x603000000588]
 CalcBu hash = a768a239279f2997
@@ -1418,18 +1418,18 @@ data canary #1 = 6030deadbf36
    *[i] = 1 elem =  43 (2b)
 }
 data canary #2 = 6030deadbf36
-Canary #2 = 7fffa241cad6
+Canary #2 = 7ffe22bc9786
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec7068] "proc.ret_val_stack" born at src/my_processor.cpp:68 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241cad6
+Stack_t[0x7ffefc112d38] "proc.ret_val_stack" born at src/my_processor.cpp:68 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9786
 Stack capacity: 0
 Stack size    : 0
 
-CalcSt hash = a7e94d7204ac9039
-Struct hash = a7e94d7204ac9039
+CalcSt hash = cb81ac098acaad8c
+Struct hash = cb81ac098acaad8c
 
 Stack->data [0x602000000398]
 CalcBu hash = 1fec702aca2f5451
@@ -1439,18 +1439,18 @@ data canary #1 = 6020deadb926
 {
 }
 data canary #2 = 6020deadb926
-Canary #2 = 7fffa241cad6
+Canary #2 = 7ffe22bc9786
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 2
 Stack size    : 0
 
-CalcSt hash = 1b1d900f7961dcf6
-Struct hash = 1b1d900f7961dcf6
+CalcSt hash = 898d8c6826fafdbd
+Struct hash = 898d8c6826fafdbd
 
 Stack->data [0x6030000005b8]
 CalcBu hash = dd310293586dbc0d
@@ -1462,18 +1462,18 @@ data canary #1 = 6030deadbf06
     [i] = 1 elem =  1162628936 (454c4f48)
 }
 data canary #2 = 6030deadbf06
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 
 
 [----------------BEGIN STACK_DUMP----------------]
-Stack_t[0x7fff7cec6ff8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
-Canary #1 = 7fffa241d546
+Stack_t[0x7ffefc112cc8] "proc.stack" born at src/my_processor.cpp:63 function:[run_code()] called from ../../Stack/src/my_stack.cpp:190 function:[stack_realloc()]
+Canary #1 = 7ffe22bc9676
 Stack capacity: 0
 Stack size    : 0
 
-CalcSt hash = a4431200b17efdd9
-Struct hash = a4431200b17efdd9
+CalcSt hash = 12b30e595f181ea0
+Struct hash = 12b30e595f181ea0
 
 Stack->data [0x6020000003b8]
 CalcBu hash = a0fa4c8bbb4ffc11
@@ -1483,6 +1483,6 @@ data canary #1 = 6020deadb906
 {
 }
 data canary #2 = 6020deadb906
-Canary #2 = 7fffa241d546
+Canary #2 = 7ffe22bc9676
 [-----------------END STACK_DUMP-----------------]
 

@@ -233,28 +233,7 @@ COMMAND_DESCR(SQRT, "sqrt",
 
 COMMAND_DESCR(JMP, "jump",
 {
-    proc_val_t to_scan = 0;
-    char label_str[MAX_LABEL_LEN] = {};
-    char jump_arg [MAX_COMMAND_LEN] = {};
-
-    fgets(jump_arg, MAX_COMMAND_LEN, input_file);
-    printf("Readed value is '%s'", jump_arg);
-
-    if (sscanf(jump_arg, "%d", &to_scan) == 1)
-    {
-        fprintf(output_file, "%d %d\n", JMP, to_scan);
-        printf("We are in immediate_jump value\n");
-    }
-    else if (sscanf(jump_arg, " %s:", &label_str) == 1)
-    {
-        fprintf(output_file, "%d %d\n", JMP, labels[find_label(labels, label_str)].label_code_ptr);
-        print_label_arr(labels);
-    }
-    else
-    {
-        printf("Wtf this is command: %s", jump_arg);
-    }
-
+    fill_jump_arg(input_file, output_file, labels, JMP);
     commands_counter += 2;
 },
 {
@@ -266,32 +245,10 @@ COMMAND_DESCR(JMP, "jump",
 
 COMMAND_DESCR(JA, "ja",
 {
-    proc_val_t to_scan = 0;
-    char label_str[MAX_LABEL_LEN] = {};
-    char jump_arg [MAX_COMMAND_LEN] = {};
-
-    fgets(jump_arg, MAX_COMMAND_LEN, input_file);
-    printf("Readed value is '%s'", jump_arg);
-
-    if (sscanf(jump_arg, "%d", &to_scan) == 1)
-    {
-        fprintf(output_file, "%d %d\n", JA, to_scan);
-        printf("We are in immediate_jump value\n");
-    }
-    else if (sscanf(jump_arg, " %s:", &label_str) == 1)
-    {
-        fprintf(output_file, "%d %d\n", JA, labels[find_label(labels, label_str)].label_code_ptr);
-        print_label_arr(labels);
-    }
-    else
-    {
-        printf("Wtf this is command: %s", jump_arg);
-    }
-
+    fill_jump_arg(input_file, output_file, labels, JA);
     commands_counter += 2;
 },
 {
-
     proc_val_t  first_val = 0;
     proc_val_t second_val = 0;
     stack_pop(&proc.stack, &second_val);
@@ -325,28 +282,7 @@ COMMAND_DESCR(GPU, "gpu",
 
 COMMAND_DESCR(CALL, "call", //TODO remove copypaste
 {
-    proc_val_t to_scan = 0;
-    char label_str[MAX_LABEL_LEN] = {};
-    char jump_arg [MAX_COMMAND_LEN] = {};
-
-    fgets(jump_arg, MAX_COMMAND_LEN, input_file);
-    printf("Readed value is '%s'", jump_arg);
-
-    if (sscanf(jump_arg, "%d", &to_scan) == 1)
-    {
-        fprintf(output_file, "%d %d\n", CALL, to_scan);
-        printf("We are in immediate_jump value\n");
-    }
-    else if (sscanf(jump_arg, " %s:", &label_str) == 1)
-    {
-        fprintf(output_file, "%d %d\n", CALL, labels[find_label(labels, label_str)].label_code_ptr);
-        print_label_arr(labels);
-    }
-    else
-    {
-        printf("Wtf this is command: %s", jump_arg);
-    }
-
+    fill_jump_arg(input_file, output_file, labels, CALL);
     commands_counter += 2;
 },
 {

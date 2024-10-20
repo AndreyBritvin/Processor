@@ -106,3 +106,30 @@ int print_label_arr(label_t *label_arr)
 
     return 0;
 }
+
+int fill_jump_arg(FILE *input_file, FILE *output_file, label_t *labels, int cmd_type)
+{
+    proc_val_t to_scan = 0;
+    char label_str[MAX_LABEL_LEN] = {};
+    char jump_arg [MAX_COMMAND_LEN] = {};
+
+    fgets(jump_arg, MAX_COMMAND_LEN, input_file);
+    printf("Readed value is '%s'", jump_arg);
+
+    if (sscanf(jump_arg, "%d", &to_scan) == 1)
+    {
+        fprintf(output_file, "%d %d\n", cmd_type, to_scan);
+        printf("We are in immediate_jump value\n");
+    }
+    else if (sscanf(jump_arg, " %s:", &label_str) == 1)
+    {
+        fprintf(output_file, "%d %d\n", cmd_type, labels[find_label(labels, label_str)].label_code_ptr);
+        print_label_arr(labels);
+    }
+    else
+    {
+        printf("Wtf this is command: %s", jump_arg);
+    }
+
+    return 0;
+}
