@@ -3,7 +3,7 @@ pop ax
 push 20
 push ax
 add
-push ax 30
+push ax + 30
 dump
 add
 out

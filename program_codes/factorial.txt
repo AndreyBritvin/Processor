@@ -23,7 +23,7 @@ push cx
 
 ja END:
 
-push ax 1
+push ax + 1
 pop ax
 
 push ax

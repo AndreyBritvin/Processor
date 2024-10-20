@@ -134,7 +134,7 @@ int fill_jump_arg(FILE *input_file, FILE *output_file, label_t *labels, int cmd_
     return 0;
 }
 
-int parse_argument(FILE *input_file, FILE *output_file, int *commands_counter)
+int parse_argument(FILE *input_file, FILE *output_file, int *commands_counter, int command)
 {
     proc_val_t to_scan = 0;
     char register_num  = 0;
@@ -142,6 +142,50 @@ int parse_argument(FILE *input_file, FILE *output_file, int *commands_counter)
 
     fgets(push_arg, MAX_COMMAND_LEN, input_file);
     printf("Readed value is '%s'\n", push_arg);
+    printf("Command in input = %d\n", command);
+
+    if (strchr(push_arg, '[') != NULL)
+    {
+        command |= RAM_VALUE;
+    }
+
+    if (strchr(push_arg, '+') != NULL)
+    {
+        command |=  REGISTER_VALUE;
+        command |= IMMEDIATE_VALUE;
+
+        *commands_counter += 1;
+        sscanf(push_arg, " %cx + %d", &register_num, &to_scan);
+    }
+    else if (strchr(push_arg, 'x') != NULL)
+    {
+        command |=  REGISTER_VALUE;
+
+        sscanf(push_arg, " %cx", &register_num);
+    }
+    else
+    {
+        command |=  IMMEDIATE_VALUE;
+
+        sscanf(push_arg, "%d", &to_scan);
+    }
+    register_num -= 'a';
+
+    fprintf(output_file, "%d", command);
+
+    if (command & REGISTER_VALUE)
+    {
+        fprintf(output_file, " %d", register_num);
+    }
+    if (command & IMMEDIATE_VALUE)
+    {
+        fprintf(output_file, " %d", to_scan);
+    }
+    fprintf(output_file, "\n");
+    printf("Command in OUTput = %d\n", command);
+
+    /*
+    sscanf(push_arg, "%d", &to_scan)
 
     if (sscanf(push_arg, "%d", &to_scan) == 1)
     {
@@ -164,6 +208,7 @@ int parse_argument(FILE *input_file, FILE *output_file, int *commands_counter)
     {
         printf("Wtf this is command: %s\n", push_arg);
     }
+    */
 
     return 0;
 }

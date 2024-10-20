@@ -31,8 +31,7 @@ COMMAND_DESCR(HLT, "hlt",
 
 COMMAND_DESCR(PUSH, "push",
 {
-    parse_argument(input_file, output_file, &commands_counter);
-
+    parse_argument(input_file, output_file, &commands_counter, PUSH);
     commands_counter += 2;
 },
 {

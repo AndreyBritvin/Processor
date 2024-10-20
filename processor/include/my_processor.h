@@ -4,7 +4,8 @@
 #include <my_stack.h>
 
 static const char        *SIGNATURE = "Lychok";
-static const int           CODE_VER = 8;
+static const int           CODE_VER = 9;
+
 static const size_t REGISTERS_COUNT = 16;
 static const int           CMD_MASK = 0b00011111;
 static const size_t MAX_COMMAND_LEN = 20;

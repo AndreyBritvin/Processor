@@ -7,7 +7,7 @@ push ax
 mul
 out
 
-push ax 1
+push ax + 1
 pop ax
 
 push bx
