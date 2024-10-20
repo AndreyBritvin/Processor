@@ -23,19 +23,19 @@ COMMAND_DESCR(PUSH, "push",
 
     if (sscanf(push_arg, "%d", &to_scan) == 1)
     {
-        fprintf(output_file, "%d %d\n", PUSH | IMMEDIATE_VALUE << 5, to_scan);
+        fprintf(output_file, "%d %d\n", PUSH | IMMEDIATE_VALUE, to_scan);
         // printf("We are in immediate_val\n");
     }
     else if (sscanf(push_arg, " %cx %d", &register_num, &to_scan) == 2)
     {
-        fprintf(output_file, "%d %d %d\n", PUSH | REGISTER_VALUE << 5 | IMMEDIATE_VALUE << 5,
+        fprintf(output_file, "%d %d %d\n", PUSH | REGISTER_VALUE | IMMEDIATE_VALUE,
                                            register_num - 'a', to_scan);
         commands_counter += 1;
         // printf("We are in register+immediate_value\n");
     }
     else if (sscanf(push_arg, " %cx", &register_num) == 1)
     {
-        fprintf(output_file, "%d %d\n", PUSH | REGISTER_VALUE << 5, register_num - 'a');
+        fprintf(output_file, "%d %d\n", PUSH | REGISTER_VALUE, register_num - 'a');
         // printf("We are in register_value\n");
     }
     else
@@ -46,40 +46,8 @@ COMMAND_DESCR(PUSH, "push",
     commands_counter += 2;
 },
 {
-    switch (proc.code.arr[proc.instr_ptr] & ~CMD_MASK)  // TODO: Make universal getarg function
-    {
-        case IMMEDIATE_VALUE << 5:
-        {
-            proc_val_t to_push = proc.code.arr[proc.instr_ptr + 1];
-            stack_push(&proc.stack, &to_push);
-            proc.instr_ptr += 2;
-            break;
-        }
-        case REGISTER_VALUE << 5:
-        {
-            proc_val_t reg_num = proc.code.arr[proc.instr_ptr + 1];
-            stack_push(&proc.stack, &proc.registers_arr[reg_num]);
-            proc.instr_ptr += 2;
-            break;
-        }
-        case (IMMEDIATE_VALUE << 5) | (REGISTER_VALUE << 5):
-        {
-            proc_val_t reg_num = proc.code.arr[proc.instr_ptr + 1];
-            proc_val_t to_push = proc.code.arr[proc.instr_ptr + 2];
-            proc_val_t reg_plus_imm = proc.registers_arr[reg_num] + to_push;
-
-            stack_push(&proc.stack, &reg_plus_imm);
-
-            proc.instr_ptr += 3;
-            break;
-        }
-        default:
-        {
-            fprintf(stderr, "No such command: %lx", (unsigned long) proc.code.arr[proc.instr_ptr]);
-            is_valid_code = false;
-            break;
-        }
-    }
+    proc_val_t to_push = get_arg_push(&proc);
+    stack_push(&proc.stack, &to_push);
 }
 )
 
@@ -355,7 +323,7 @@ COMMAND_DESCR(GPU, "gpu",
 
 ///////////////////////////////////////////////////////////////
 
-COMMAND_DESCR(CALL, "call",
+COMMAND_DESCR(CALL, "call", //TODO remove copypaste
 {
     proc_val_t to_scan = 0;
     char label_str[MAX_LABEL_LEN] = {};
@@ -383,6 +351,7 @@ COMMAND_DESCR(CALL, "call",
 },
 {
     // proc_val_t ip_proc_val = (proc_val_t)proc.instr_ptr;
+    print_ret_val_stack(proc.ret_val_stack);
     stack_push(&proc.ret_val_stack, &proc.instr_ptr);
     proc.instr_ptr = proc.code.arr[proc.instr_ptr + 1];
 }
@@ -396,6 +365,7 @@ COMMAND_DESCR(RET, "ret",
 },
 {
     stack_pop(&proc.ret_val_stack, &proc.instr_ptr);
+    print_ret_val_stack(proc.ret_val_stack);
     proc.instr_ptr += 2;
 }
 )

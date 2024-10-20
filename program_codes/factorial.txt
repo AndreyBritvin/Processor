@@ -1,0 +1,41 @@
+in
+pop cx
+
+push 0
+pop ax
+
+push 1
+pop bx
+
+push 1
+pop dx
+
+call FACTORIAL:
+
+push dx
+out
+hlt
+
+FACTORIAL:
+
+push ax
+push cx
+
+ja END:
+
+push ax 1
+pop ax
+
+push ax
+push dx
+mul
+pop bx
+
+push bx
+pop dx
+
+call FACTORIAL:
+
+END:
+
+ret

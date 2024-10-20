@@ -181,6 +181,9 @@ int processor_dump(proc_t proc)
         printf("%02llX ", (unsigned long long) proc.registers_arr[reg_index]);
     }
 
+    printf("\n");
+    print_ret_val_stack(proc.ret_val_stack);
+
     return 0;
 }
 
@@ -205,6 +208,49 @@ int print_RAM(proc_t proc)
 
         printf("\n");
     }
+
+    return 0;
+}
+
+proc_val_t get_arg_push(proc_t *proc)
+{
+    // static proc_val_t buffer   = 0;
+    proc_val_t arg_type = proc->code.arr[proc->instr_ptr++] & (~CMD_MASK);
+    proc_val_t ret_val  = 0;
+
+    // printf("Argtype = %d\n", arg_type & REGISTER_VALUE);
+    // printf("Inst ptr is %d\n", proc->instr_ptr);
+
+    if (arg_type & REGISTER_VALUE ) {ret_val += proc->registers_arr[proc->code.arr[proc->instr_ptr++]];}
+    if (arg_type & IMMEDIATE_VALUE) {ret_val += proc->code.arr                    [proc->instr_ptr++];}
+
+    if (arg_type & RAM_VALUE)       {ret_val = proc->ram[ret_val];}
+
+    return ret_val;
+}
+
+proc_val_t* get_arg_pop(proc_t *proc) // TODO redo algorithm
+{
+    // static proc_val_t buffer   = 0;
+    proc_val_t arg_type = proc->code.arr[proc->instr_ptr++] & (~CMD_MASK);
+    proc_val_t* ret_val  = 0;
+/*
+    if (arg_type & REGISTER_VALUE ) {ret_val += &proc->registers_arr[proc->instr_ptr++];}
+    if (arg_type & IMMEDIATE_VALUE) {ret_val += &proc->code.arr     [proc->instr_ptr++];}
+
+    if (arg_type & RAM_VALUE)       {ret_val = &proc->ram[ret_val];}*/
+
+    return ret_val;
+}
+
+int print_ret_val_stack(my_stack_t ret_val_stack)
+{
+    printf("Printing ret val stack: ");
+    for (size_t stack_index = 0; stack_index < ret_val_stack.size; stack_index++)
+    {
+        printf("%lld ", ((proc_val_t *)ret_val_stack.data)[stack_index]);
+    }
+    printf("\n");
 
     return 0;
 }

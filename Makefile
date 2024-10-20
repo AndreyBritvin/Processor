@@ -1,4 +1,4 @@
-NAME = funcs
+NAME = factorial
 
 all:
 	make -C assembler

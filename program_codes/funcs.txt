@@ -1,7 +1,9 @@
 in
 pop ax
 call SUMMA:
+
 push ax
+
 out
 hlt
 

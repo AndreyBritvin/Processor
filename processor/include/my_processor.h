@@ -24,8 +24,9 @@ enum proc_errors
 
 enum proc_coommands_argument
 {
-    IMMEDIATE_VALUE = 0b001,
-    REGISTER_VALUE  = 0b010,
+    IMMEDIATE_VALUE = 0b001 << 5,
+    REGISTER_VALUE  = 0b010 << 5,
+    RAM_VALUE       = 0b100 << 5,
 };
 
 enum processor_commands
@@ -78,5 +79,10 @@ int read_code(const char *input_filename, proc_code_t *code);
 int processor_dump(proc_t proc);
 
 int print_RAM(proc_t proc);
+int print_ret_val_stack(my_stack_t ret_val_stack);
+
+proc_val_t  get_arg_push(proc_t *proc);
+proc_val_t* get_arg_pop (proc_t *proc);
+
 
 #endif // MY_PROCESSOR_H_
