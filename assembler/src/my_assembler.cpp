@@ -133,3 +133,37 @@ int fill_jump_arg(FILE *input_file, FILE *output_file, label_t *labels, int cmd_
 
     return 0;
 }
+
+int parse_argument(FILE *input_file, FILE *output_file, int *commands_counter)
+{
+    proc_val_t to_scan = 0;
+    char register_num  = 0;
+    char push_arg[MAX_COMMAND_LEN] = {};
+
+    fgets(push_arg, MAX_COMMAND_LEN, input_file);
+    printf("Readed value is '%s'\n", push_arg);
+
+    if (sscanf(push_arg, "%d", &to_scan) == 1)
+    {
+        fprintf(output_file, "%d %d\n", PUSH | IMMEDIATE_VALUE, to_scan);
+        // printf("We are in immediate_val\n");
+    }
+    else if (sscanf(push_arg, " %cx %d", &register_num, &to_scan) == 2)
+    {
+        fprintf(output_file, "%d %d %d\n", PUSH | REGISTER_VALUE | IMMEDIATE_VALUE,
+                                           register_num - 'a', to_scan);
+        *commands_counter += 1;
+        // printf("We are in register+immediate_value\n");
+    }
+    else if (sscanf(push_arg, " %cx", &register_num) == 1)
+    {
+        fprintf(output_file, "%d %d\n", PUSH | REGISTER_VALUE, register_num - 'a');
+        // printf("We are in register_value\n");
+    }
+    else
+    {
+        printf("Wtf this is command: %s\n", push_arg);
+    }
+
+    return 0;
+}

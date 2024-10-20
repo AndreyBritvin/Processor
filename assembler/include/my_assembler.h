@@ -26,5 +26,6 @@ int fill_fixup(fixup_t *fixup_arr, size_t cmd_counter);
 int find_label(label_t *label_arr, char *label_to_find);
 int print_label_arr(label_t *label_arr);
 int fill_jump_arg(FILE *input_file, FILE *output_file, label_t *labels, int cmd_type);
+int parse_argument(FILE *input_file, FILE *output_file, int *commands_counter);
 
 #endif // MY_ASSEMBLER_H_

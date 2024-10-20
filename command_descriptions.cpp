@@ -1,6 +1,23 @@
 #define PUT_ONE_CMD(CMD) fprintf(output_file, "%d\n", CMD);\
                          commands_counter += 1;
 
+#define MAKE_ARITHMETICAL_OPERATION(OPERATION)          \
+    proc_val_t  first_mul = 0;                          \
+    proc_val_t second_mul = 0;                          \
+    stack_pop(&proc.stack, &second_mul);                \
+    stack_pop(&proc.stack,  &first_mul);                \
+    proc_val_t to_mul = first_mul OPERATION second_mul; \
+    stack_push(&proc.stack, &to_mul);                   \
+    proc.instr_ptr += 1;
+
+#define MAKE_UNAR_OPERATION(FUNC)                       \
+    proc_val_t stack_value = 0;                         \
+    stack_pop(&proc.stack, &stack_value);               \
+    stack_value = FUNC(stack_value);                    \
+    stack_push(&proc.stack, &stack_value);              \
+    proc.instr_ptr += 1;
+
+
 COMMAND_DESCR(HLT, "hlt",
 {
     PUT_ONE_CMD(HLT)
@@ -14,34 +31,7 @@ COMMAND_DESCR(HLT, "hlt",
 
 COMMAND_DESCR(PUSH, "push",
 {
-    proc_val_t to_scan = 0;
-    char register_num  = 0;
-    char push_arg[MAX_COMMAND_LEN] = {};
-
-    fgets(push_arg, MAX_COMMAND_LEN, input_file);
-    printf("Readed value is '%s'\n", push_arg);
-
-    if (sscanf(push_arg, "%d", &to_scan) == 1)
-    {
-        fprintf(output_file, "%d %d\n", PUSH | IMMEDIATE_VALUE, to_scan);
-        // printf("We are in immediate_val\n");
-    }
-    else if (sscanf(push_arg, " %cx %d", &register_num, &to_scan) == 2)
-    {
-        fprintf(output_file, "%d %d %d\n", PUSH | REGISTER_VALUE | IMMEDIATE_VALUE,
-                                           register_num - 'a', to_scan);
-        commands_counter += 1;
-        // printf("We are in register+immediate_value\n");
-    }
-    else if (sscanf(push_arg, " %cx", &register_num) == 1)
-    {
-        fprintf(output_file, "%d %d\n", PUSH | REGISTER_VALUE, register_num - 'a');
-        // printf("We are in register_value\n");
-    }
-    else
-    {
-        printf("Wtf this is command: %s\n", push_arg);
-    }
+    parse_argument(input_file, output_file, &commands_counter);
 
     commands_counter += 2;
 },
@@ -58,13 +48,7 @@ COMMAND_DESCR(ADD, "add",
     PUT_ONE_CMD(ADD);
 },
 {
-    proc_val_t  first_add = 0;
-    proc_val_t second_add = 0;
-    stack_pop(&proc.stack, &second_add);
-    stack_pop(&proc.stack,  &first_add);
-    proc_val_t to_add = first_add + second_add;
-    stack_push(&proc.stack, &to_add);
-    proc.instr_ptr += 1;
+    MAKE_ARITHMETICAL_OPERATION(+);
 }
 )
 
@@ -121,13 +105,7 @@ COMMAND_DESCR(SUB, "sub",
     PUT_ONE_CMD(SUB);
 },
 {
-    proc_val_t  first_sub = 0;
-    proc_val_t second_sub = 0;
-    stack_pop(&proc.stack, &second_sub);
-    stack_pop(&proc.stack,  &first_sub);
-    proc_val_t to_sub = first_sub - second_sub;
-    stack_push(&proc.stack, &to_sub);
-    proc.instr_ptr += 1;
+    MAKE_ARITHMETICAL_OPERATION(-);
 }
 )
 
@@ -138,13 +116,7 @@ COMMAND_DESCR(MUL, "mul",
     PUT_ONE_CMD(MUL);
 },
 {
-    proc_val_t  first_mul = 0;
-    proc_val_t second_mul = 0;
-    stack_pop(&proc.stack, &second_mul);
-    stack_pop(&proc.stack,  &first_mul);
-    proc_val_t to_mul = first_mul * second_mul;
-    stack_push(&proc.stack, &to_mul);
-    proc.instr_ptr += 1;
+    MAKE_ARITHMETICAL_OPERATION(*);
 }
 )
 
@@ -155,13 +127,7 @@ COMMAND_DESCR(DIV, "div",
     PUT_ONE_CMD(DIV);
 },
 {
-    proc_val_t  first_div = 0;
-    proc_val_t second_div = 0;
-    stack_pop(&proc.stack, &second_div);
-    stack_pop(&proc.stack,  &first_div);
-    proc_val_t to_div = first_div / second_div;
-    stack_push(&proc.stack, &to_div);
-    proc.instr_ptr += 1;
+    MAKE_ARITHMETICAL_OPERATION(/);
 }
 )
 
@@ -188,12 +154,7 @@ COMMAND_DESCR(SIN, "sin",
     PUT_ONE_CMD(SIN);
 },
 {
-    proc_val_t stack_value = 0;
-    stack_pop(&proc.stack, &stack_value);
-    stack_value = sin(stack_value);
-
-    stack_push(&proc.stack, &stack_value);
-    proc.instr_ptr += 1;
+    MAKE_UNAR_OPERATION(sin);
 }
 )
 
@@ -204,12 +165,7 @@ COMMAND_DESCR(COS, "cos",
     PUT_ONE_CMD(COS);
 },
 {
-    proc_val_t stack_value = 0;
-    stack_pop(&proc.stack, &stack_value);
-    stack_value = cos(stack_value);
-
-    stack_push(&proc.stack, &stack_value);
-    proc.instr_ptr += 1;
+   MAKE_UNAR_OPERATION(cos);
 }
 )
 
@@ -220,12 +176,7 @@ COMMAND_DESCR(SQRT, "sqrt",
     PUT_ONE_CMD(SQRT);
 },
 {
-    proc_val_t stack_value = 0;
-    stack_pop(&proc.stack, &stack_value);
-    stack_value = sqrt(stack_value);
-
-    stack_push(&proc.stack, &stack_value);
-    proc.instr_ptr += 1;
+    MAKE_UNAR_OPERATION(sqrt);
 }
 )
 
@@ -308,3 +259,5 @@ COMMAND_DESCR(RET, "ret",
 
 
 #undef PUT_ONE_CMD
+#undef MAKE_UNAR_OPERATION
+#undef MAKE_ARITHMETICAL_OPERATION
