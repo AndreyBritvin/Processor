@@ -214,7 +214,6 @@ int print_RAM(proc_t proc)
 
 proc_val_t get_arg_push(proc_t *proc)
 {
-    // static proc_val_t buffer   = 0;
     proc_val_t arg_type = proc->code.arr[proc->instr_ptr++] & (~CMD_MASK);
     proc_val_t ret_val  = 0;
 
@@ -231,14 +230,16 @@ proc_val_t get_arg_push(proc_t *proc)
 
 proc_val_t* get_arg_pop(proc_t *proc) // TODO redo algorithm
 {
-    // static proc_val_t buffer   = 0;
-    proc_val_t arg_type = proc->code.arr[proc->instr_ptr++] & (~CMD_MASK);
-    proc_val_t* ret_val  = 0;
-/*
-    if (arg_type & REGISTER_VALUE ) {ret_val += &proc->registers_arr[proc->instr_ptr++];}
-    if (arg_type & IMMEDIATE_VALUE) {ret_val += &proc->code.arr     [proc->instr_ptr++];}
+    static proc_val_t  buffer   = 0;
+           proc_val_t* ret_val  = 0;
+           proc_val_t  arg_type = proc->code.arr[proc->instr_ptr++] & (~CMD_MASK);
 
-    if (arg_type & RAM_VALUE)       {ret_val = &proc->ram[ret_val];}*/
+    // printf("Register value  is %LX\n",   proc->registers_arr[proc->code.arr[proc->instr_ptr]] );
+    // printf("Register addres is %LX\n", &(proc->registers_arr[proc->code.arr[proc->instr_ptr]]));
+    // if (arg_type & IMMEDIATE_VALUE) {ret_val += &proc->code.arr     [proc->instr_ptr++];}
+
+    if (arg_type & REGISTER_VALUE ) {ret_val = &(proc->registers_arr[proc->code.arr[proc->instr_ptr++]]);}
+    if (arg_type & RAM_VALUE)       {ret_val = &(proc->ram[*ret_val]);}
 
     return ret_val;
 }

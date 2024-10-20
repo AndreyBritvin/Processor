@@ -82,18 +82,14 @@ COMMAND_DESCR(DUMP, "dump",
 
 COMMAND_DESCR(POP, "pop",
 {
-    fprintf(output_file, "%d ", POP);
-    char reg_index = 0;
-    fscanf(input_file, " %c", &reg_index);
-    fprintf(output_file, "%d\n", reg_index - 'a');
+    parse_argument(input_file, output_file, &commands_counter, POP);
     commands_counter += 2;
 },
 {
-    char reg_index = proc.code.arr[proc.instr_ptr + 1];
     proc_val_t pop_val = 0;
     stack_pop(&proc.stack, &pop_val);
-    proc.registers_arr[reg_index] = pop_val;
-    proc.instr_ptr += 2;
+    proc_val_t* addr_to_change = get_arg_pop(&proc);
+    *addr_to_change = pop_val;
 }
 )
 
