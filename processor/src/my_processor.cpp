@@ -205,7 +205,7 @@ int print_RAM(proc_t proc)
         {
             if (proc.ram[line * length + row] == 0)
             {
-                printf(".");
+                printf("-");
             }
             else
             {

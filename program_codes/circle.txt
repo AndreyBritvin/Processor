@@ -1,13 +1,13 @@
-push 25 ; wtf
+push 100 ; wtf
 pop ax
-push 2
+push 5   ; center
 pop bx
 push 0
 pop cx
 
 LOOP:
-push bx
-push bx
+push 3 ; radius
+push 3
 mul
 call GET_X:
 call GET_X:
