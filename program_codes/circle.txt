@@ -1,0 +1,63 @@
+push 25 ; wtf
+pop ax
+push 2
+pop bx
+push 0
+pop cx
+
+LOOP:
+push bx
+push bx
+mul
+call GET_X:
+call GET_X:
+mul
+
+call GET_Y:
+call GET_Y:
+mul
+
+add
+ja DONT_FILL:
+call FILL_MEMORY:
+
+out
+DONT_FILL:
+
+push cx + 1
+pop cx
+
+push ax
+push cx
+ja LOOP:
+
+gpu
+
+hlt
+
+FILL_MEMORY:
+push 1
+pop [cx]
+ret
+
+GET_X:
+push bx
+push cx
+push ax
+sqrt
+div
+sub
+ret
+
+GET_Y:
+push bx
+push cx
+push ax
+sqrt
+push bx
+call GET_X:
+sub
+mul
+sub
+sub
+ret

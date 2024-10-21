@@ -1,4 +1,4 @@
-NAME = ram_exp
+NAME = circle
 
 all:
 	make -C assembler

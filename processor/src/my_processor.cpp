@@ -161,9 +161,9 @@ int processor_dump(proc_t proc)
     {
         printf("   ");
     }
-    printf("  ^ ip = %lu\n\n", proc.instr_ptr);
+    printf("  ^ ip = %lu\n", proc.instr_ptr);
 
-    printf("Stack dump: ");
+    printf("\nStack dump: ");
     for (size_t stack_index = 0;  stack_index < proc.stack.size; stack_index++)
     {
         printf("%lld ", ((proc_val_t *)proc.stack.data)[stack_index]);
@@ -184,7 +184,7 @@ int processor_dump(proc_t proc)
     printf("\n");
     print_ret_val_stack(proc.ret_val_stack);
 
-    printf("RAM dump: ");
+    printf("\nRAM dump: ");
     for (size_t ram_index = 0;  ram_index < MAX_RAM_SIZE; ram_index++)
     {
         printf("%lld ", proc.ram[ram_index]);

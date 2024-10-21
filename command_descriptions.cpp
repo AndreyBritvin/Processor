@@ -233,7 +233,7 @@ COMMAND_DESCR(CALL, "call", //TODO remove copypaste
 },
 {
     // proc_val_t ip_proc_val = (proc_val_t)proc.instr_ptr;
-    print_ret_val_stack(proc.ret_val_stack);
+    // print_ret_val_stack(proc.ret_val_stack);
     stack_push(&proc.ret_val_stack, &proc.instr_ptr);
     proc.instr_ptr = proc.code.arr[proc.instr_ptr + 1];
 }
@@ -247,7 +247,7 @@ COMMAND_DESCR(RET, "ret",
 },
 {
     stack_pop(&proc.ret_val_stack, &proc.instr_ptr);
-    print_ret_val_stack(proc.ret_val_stack);
+    // print_ret_val_stack(proc.ret_val_stack);
     proc.instr_ptr += 2;
 }
 )
