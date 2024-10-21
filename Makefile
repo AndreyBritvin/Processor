@@ -1,4 +1,4 @@
-NAME = factorial
+NAME = ram_exp
 
 all:
 	make -C assembler

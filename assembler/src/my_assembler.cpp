@@ -136,8 +136,9 @@ int fill_jump_arg(FILE *input_file, FILE *output_file, label_t *labels, int cmd_
 
 int parse_argument(FILE *input_file, FILE *output_file, int *commands_counter, int command)
 {
-    proc_val_t to_scan = 0;
-    char register_num  = 0;
+    proc_val_t to_scan    = 0;
+    char register_num     = 0;
+    char register_name[5] = {}; // register name e.g. ax, bx
     char push_arg[MAX_COMMAND_LEN] = {};
 
     fgets(push_arg, MAX_COMMAND_LEN, input_file);
@@ -161,7 +162,11 @@ int parse_argument(FILE *input_file, FILE *output_file, int *commands_counter, i
     {
         command |=  REGISTER_VALUE;
 
-        sscanf(push_arg, " %cx", &register_num);
+        // sscanf(push_arg,        "%s", &register_name);
+        (command & RAM_VALUE) ? sscanf(push_arg, " [%cx", &register_num):
+                                sscanf(push_arg,  " %cx", &register_num);
+
+        printf("Register_num is %c (%d)\n", register_num, register_num);
     }
     else
     {

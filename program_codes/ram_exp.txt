@@ -1,7 +1,11 @@
+push 5
+pop ax
+push 1
+pop bx
+
 in
-pop [5]
-push [6]
-pop[6]
+pop [bx]
+push [bx]
 gpu
 out
 hlt
