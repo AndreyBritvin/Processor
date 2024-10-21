@@ -7,8 +7,9 @@
 
 int compile_file(const char *input_filename, const char *output_filename)
 {
-    SAFE_OPEN_FILE( input_file,  input_filename, "r");
-    SAFE_OPEN_FILE(output_file, output_filename, "w");
+    SAFE_OPEN_FILE( input_file,  input_filename, "r" );
+    // SAFE_OPEN_FILE(output_file, output_filename, "w" );
+    SAFE_OPEN_FILE(output_file, output_filename, "wb");
 
     fprintf(output_file, "       "); // commands counter
     fprintf(output_file, "%s %d\n", SIGNATURE, CODE_VER);
@@ -142,8 +143,8 @@ int parse_argument(FILE *input_file, FILE *output_file, int *commands_counter, i
     char push_arg[MAX_COMMAND_LEN] = {};
 
     fgets(push_arg, MAX_COMMAND_LEN, input_file);
-    printf("Readed value is '%s'\n", push_arg);
-    printf("Command in input = %d\n", command);
+    // printf("Readed value is '%s'\n", push_arg);
+    // printf("Command in input = %d\n", command);
 
     if (strchr(push_arg, '[') != NULL)
     {
@@ -166,7 +167,7 @@ int parse_argument(FILE *input_file, FILE *output_file, int *commands_counter, i
         (command & RAM_VALUE) ? sscanf(push_arg, " [%cx", &register_num):
                                 sscanf(push_arg,  " %cx", &register_num);
 
-        printf("Register_num is %c (%d)\n", register_num, register_num);
+        // printf("Register_num is %c (%d)\n", register_num, register_num);
     }
     else
     {
@@ -188,33 +189,19 @@ int parse_argument(FILE *input_file, FILE *output_file, int *commands_counter, i
         fprintf(output_file, " %d", to_scan);
     }
     fprintf(output_file, "\n");
-    printf("Command in OUTput = %d\n", command);
+    // printf("Command in OUTput = %d\n", command);
 
-    /*
-    sscanf(push_arg, "%d", &to_scan)
+    return 0;
+}
 
-    if (sscanf(push_arg, "%d", &to_scan) == 1)
-    {
-        fprintf(output_file, "%d %d\n", PUSH | IMMEDIATE_VALUE, to_scan);
-        // printf("We are in immediate_val\n");
-    }
-    else if (sscanf(push_arg, " %cx %d", &register_num, &to_scan) == 2)
-    {
-        fprintf(output_file, "%d %d %d\n", PUSH | REGISTER_VALUE | IMMEDIATE_VALUE,
-                                           register_num - 'a', to_scan);
-        *commands_counter += 1;
-        // printf("We are in register+immediate_value\n");
-    }
-    else if (sscanf(push_arg, " %cx", &register_num) == 1)
-    {
-        fprintf(output_file, "%d %d\n", PUSH | REGISTER_VALUE, register_num - 'a');
-        // printf("We are in register_value\n");
-    }
-    else
-    {
-        printf("Wtf this is command: %s\n", push_arg);
-    }
-    */
+int print_code_to_file(FILE *output_file_txt, /*FILE *output_file_bin,*/ const char *format ...)
+{
+    va_list fprintf_args;
+    va_start(fprintf_args, format);
+    vfprintf(output_file_txt, format, fprintf_args);
+    // fwrite();
+    // vfprintf(output_file_bin, format, fprintf_args);
+    va_end(fprintf_args);
 
     return 0;
 }
