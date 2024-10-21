@@ -1,11 +1,18 @@
-push 5
+push 0
 pop ax
-push 1
+
+in
+pop bx
+push bx + 1
 pop bx
 
 in
 pop [bx]
+push 123
+pop [bx + 1]
 push [bx]
+push [bx + 1]
 gpu
+out
 out
 hlt

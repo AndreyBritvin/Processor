@@ -184,6 +184,13 @@ int processor_dump(proc_t proc)
     printf("\n");
     print_ret_val_stack(proc.ret_val_stack);
 
+    printf("RAM dump: ");
+    for (size_t ram_index = 0;  ram_index < MAX_RAM_SIZE; ram_index++)
+    {
+        printf("%lld ", proc.ram[ram_index]);
+    }
+    printf("\n");
+
     return 0;
 }
 
@@ -230,16 +237,18 @@ proc_val_t get_arg_push(proc_t *proc)
 
 proc_val_t* get_arg_pop(proc_t *proc) // TODO redo algorithm
 {
-    static proc_val_t  buffer   = 0;
-           proc_val_t* ret_val  = 0;
-           proc_val_t  arg_type = proc->code.arr[proc->instr_ptr++] & (~CMD_MASK);
-
-    // printf("Register value  is %LX\n",   proc->registers_arr[proc->code.arr[proc->instr_ptr]] );
-    // printf("Register addres is %LX\n", &(proc->registers_arr[proc->code.arr[proc->instr_ptr]]));
-    // if (arg_type & IMMEDIATE_VALUE) {ret_val += &proc->code.arr     [proc->instr_ptr++];}
+    proc_val_t  buffer   = 0;
+    proc_val_t* ret_val  = 0;
+    proc_val_t  arg_type = proc->code.arr[proc->instr_ptr++] & (~CMD_MASK);
 
     if (arg_type & REGISTER_VALUE ) {ret_val = &(proc->registers_arr[proc->code.arr[proc->instr_ptr++]]);}
-    if (arg_type & RAM_VALUE)       {ret_val = &(proc->ram[*ret_val]);}
+    if (arg_type & IMMEDIATE_VALUE) {buffer  =   proc->code.arr                    [proc->instr_ptr++] ;}
+
+    if (arg_type & RAM_VALUE)
+    {
+        if (ret_val != 0)           {ret_val = &(proc->ram[*ret_val + buffer]);}
+        else                        {ret_val = &(proc->ram[buffer]);}
+    }
 
     return ret_val;
 }

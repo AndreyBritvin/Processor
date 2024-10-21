@@ -156,13 +156,13 @@ int parse_argument(FILE *input_file, FILE *output_file, int *commands_counter, i
         command |= IMMEDIATE_VALUE;
 
         *commands_counter += 1;
-        sscanf(push_arg, " %cx + %d", &register_num, &to_scan);
+        (command & RAM_VALUE) ? sscanf(push_arg, " [%cx + %d]", &register_num, &to_scan):
+                                sscanf(push_arg,  " %cx + %d" , &register_num, &to_scan);
     }
     else if (strchr(push_arg, 'x') != NULL)
     {
         command |=  REGISTER_VALUE;
 
-        // sscanf(push_arg,        "%s", &register_name);
         (command & RAM_VALUE) ? sscanf(push_arg, " [%cx", &register_num):
                                 sscanf(push_arg,  " %cx", &register_num);
 
@@ -172,7 +172,8 @@ int parse_argument(FILE *input_file, FILE *output_file, int *commands_counter, i
     {
         command |=  IMMEDIATE_VALUE;
 
-        sscanf(push_arg, "%d", &to_scan);
+        (command & RAM_VALUE) ? sscanf(push_arg, " [%d", &to_scan):
+                                sscanf(push_arg,  " %d", &to_scan);
     }
     register_num -= 'a';
 
