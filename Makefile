@@ -1,4 +1,4 @@
-NAME = circle
+NAME = factorial
 
 all:
 	make -C assembler

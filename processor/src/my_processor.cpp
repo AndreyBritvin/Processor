@@ -19,13 +19,13 @@ int read_code(const char *input_filename, proc_code_t *code)
     // FILE *input_file = fopen(input_filename, "r");
     SAFE_OPEN_FILE(input_file, input_filename, "r");
 
-    fscanf(input_file, "%lu", &code->size);
+    fscanf(input_file, "%llu", &code->size);
 
     char signature[sizeof(SIGNATURE)] = {};
-    int version = 0;
+    uint64_t version = 0;
 
-    fscanf(input_file, "%s", signature);
-    fscanf(input_file, "%d", &version);
+    fscanf(input_file, "%s",  signature);
+    fscanf(input_file, "%llu", &version);
 
     if (!check_signature(signature, version))
     {
@@ -139,7 +139,7 @@ int run_code(proc_code_t code)
     stack_dtor(&proc.ret_val_stack);
     free(code.arr);
 
-    return 0;
+    return SUCCESS;
 }
 
 int processor_dump(proc_t proc)
@@ -191,7 +191,7 @@ int processor_dump(proc_t proc)
     }
     printf("\n");
 
-    return 0;
+    return SUCCESS;
 }
 
 int print_RAM(proc_t proc)
@@ -216,7 +216,7 @@ int print_RAM(proc_t proc)
         printf("\n");
     }
 
-    return 0;
+    return SUCCESS;
 }
 
 proc_val_t get_arg_push(proc_t *proc)
@@ -262,5 +262,5 @@ int print_ret_val_stack(my_stack_t ret_val_stack)
     }
     printf("\n");
 
-    return 0;
+    return SUCCESS;
 }

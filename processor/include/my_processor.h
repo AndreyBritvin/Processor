@@ -2,9 +2,10 @@
 #define MY_PROCESSOR_H_
 #include <stdlib.h>
 #include <my_stack.h>
+#include <stdint.h>
 
-static const char        *SIGNATURE = "Lychok";
-static const int           CODE_VER = 9;
+static const char       SIGNATURE[] = "LychokBest";
+static const uint64_t      CODE_VER = 9;
 
 static const size_t REGISTERS_COUNT = 16;
 static const int           CMD_MASK = 0b00011111;
