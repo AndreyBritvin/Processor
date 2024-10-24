@@ -8,9 +8,18 @@
                         if (file_ptr == NULL)                                      \
                         {                                                          \
                             printf("Unable open output file '%s'\n", filename);    \
-                            return errno;                                          \
+                            return ERROR_FILE;                                     \
                         }
 
 // header utils
+typedef int err_code_t;
+
+enum errors
+{
+    OK,
+    ERROR_FILE,
+    ERROR_ALLOC,
+
+};
 
 #endif //UTILS_H_

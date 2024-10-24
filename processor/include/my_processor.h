@@ -4,6 +4,7 @@
 #include <my_stack.h>
 #include <stdint.h>
 #include "commands_enum.h"
+#include "utils.h"
 
 static const char       SIGNATURE[] = "LychokBest";
 static const uint64_t      CODE_VER = 9;
@@ -22,7 +23,6 @@ enum proc_errors
 {
     // SUCCESS         = 0,
     ERROR_SIGNATURE = 1,
-    ERROR_ALLOC = 2,
 };
 
 enum proc_coommands_argument
@@ -48,10 +48,10 @@ struct proc_t
     proc_val_t                ram[MAX_RAM_SIZE];
 };
 
-int run_code(proc_code_t code);
+err_code_t run_code(proc_code_t code);
 bool check_signature(char *signature, int version);
 
-int read_code(const char *input_filename, proc_code_t *code);
+err_code_t read_code(const char *input_filename, proc_code_t *code);
 int processor_dump(proc_t proc);
 
 int print_RAM(proc_t proc);

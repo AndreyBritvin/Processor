@@ -14,7 +14,7 @@ bool check_signature(char *signature, int version)
     return (strcmp(signature, SIGNATURE) == 0) && (version == CODE_VER);
 }
 
-int read_code(const char *input_filename, proc_code_t *code)
+err_code_t read_code(const char *input_filename, proc_code_t *code)
 {
     // FILE *input_file = fopen(input_filename, "r");
     SAFE_OPEN_FILE(input_file, input_filename, "r");
@@ -50,10 +50,10 @@ int read_code(const char *input_filename, proc_code_t *code)
 
     fclose(input_file);
 
-    return SUCCESS;
+    return OK;
 }
 
-int run_code(proc_code_t code)
+err_code_t run_code(proc_code_t code)
 {
     proc_t proc = {};
     proc.code = code;
@@ -139,7 +139,7 @@ int run_code(proc_code_t code)
     stack_dtor(&proc.ret_val_stack);
     free(code.arr);
 
-    return SUCCESS;
+    return OK;
 }
 
 int processor_dump(proc_t proc)
