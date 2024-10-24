@@ -6,10 +6,18 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <stdarg.h>
+#include <assert.h>
 
 static const int MAX_LABEL_COUNT = 32;
 static const int MAX_LABEL_LEN   = 32;
 static const int MAX_FIXUP_COUNT = 32;
+
+enum arg_types
+{
+    NO_ARGUMENTS = 0,
+    REG_IMM_ARG  = 1,
+    LABEL_ARG    = 2,
+};
 
 struct fixup_t
 {
@@ -34,10 +42,10 @@ struct signature_t
 
 int compile_file(const char *input_filename, const char *output_filename);
 int fill_fixup(fixup_t *fixup_arr, size_t cmd_counter);
-int find_label(label_t *label_arr, char *label_to_find);
+size_t find_label(label_t *label_arr, char *label_to_find);
 int print_label_arr(label_t *label_arr);
 int fill_jump_arg(FILE *input_file, FILE *output_file, label_t *labels, int cmd_type);
-int parse_argument(FILE *input_file, FILE *output_file, int *commands_counter, int command);
+int parse_argument(FILE *input_file, FILE *output_file, size_t *commands_counter, int command);
 
 int print_code_to_file(FILE *output_file_txt, /*FILE *output_file_bin,*/ const char *format ...);
 

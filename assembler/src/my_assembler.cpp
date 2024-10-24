@@ -18,10 +18,10 @@ int compile_file(const char *input_filename, const char *output_filename)
     signature_t signature = {0, *((uint64_t *)SIGNATURE), CODE_VER, 0};
 
     fprintf(output_file, "       "); // commands counter
-    fprintf(output_file, "%s %d\n", SIGNATURE, CODE_VER);
+    fprintf(output_file, "%s %lu\n", SIGNATURE, CODE_VER);
 
     char command[MAX_COMMAND_LEN] = "";
-    int  commands_counter = 0;
+    size_t  commands_counter = 0;
 
     proc_val_t proc_code[10] = {};
 
@@ -42,35 +42,35 @@ int compile_file(const char *input_filename, const char *output_filename)
                 strcpy(labels[first_free_label++].label_str, command);
             }
         }
-        #define COMMAND_DESCR(ENUM_NAME, STR_NAME, ASS_CODE, ...) \
-            else if (strcmp(command, STR_NAME) == 0)              \
-                ASS_CODE
+
+        #define COMMAND_DESCR(ENUM_NAME, STR_NAME, ARG_TYPE, ...)                           \
+            else if (strcmp(command, STR_NAME) == 0)                                        \
+            {                                                                               \
+                if (ARG_TYPE == NO_ARGUMENTS)                                               \
+                {                                                                           \
+                    fprintf(output_file, "%d\n", ENUM_NAME);                                \
+                    commands_counter += 1;                                                  \
+                }                                                                           \
+                else if (ARG_TYPE == REG_IMM_ARG)                                           \
+                {                                                                           \
+                    parse_argument(input_file, output_file, &commands_counter, ENUM_NAME);  \
+                    commands_counter += 2;                                                  \
+                }                                                                           \
+                else if (ARG_TYPE == LABEL_ARG)                                             \
+                {                                                                           \
+                    fill_jump_arg(input_file, output_file, labels, ENUM_NAME);              \
+                    commands_counter += 2;                                                  \
+                }                                                                           \
+            }
+
             #include "../../command_descriptions.cpp"
         #undef COMMAND_DESCR
-        /*
-        if (strcmp(command, "push") == 0)
+
+        else
         {
-            proc_val_t to_scan = 0;
-            fscanf(input_file, "%d", &to_scan);
-            fprintf(output_file, "%d %d\n", PUSH, to_scan);
+            fprintf(stderr, "Unknown command %s\n", command); // TODO this part dont work...
+            assert(0);
         }
-        else if (strcmp(command, "add") == 0)
-        {
-            fprintf(output_file, "%d\n", ADD);
-        }
-        else if (strcmp(command, "hlt") == 0)
-        {
-            fprintf(output_file, "%d\n", HLT);
-        }
-        else if (strcmp(command, "dump") == 0)
-        {
-            fprintf(output_file, "%d\n", DUMP);
-        }
-        else if (strcmp(command, "out") == 0)
-        {
-            printf("%d", fprintf(output_file, "%d\n", OUT));
-        }
-        */
     }
 
     signature.code_size = commands_counter;
@@ -109,7 +109,7 @@ int fill_fixup(fixup_t *fixup_arr, size_t cmd_counter)
     return 0;
 }
 
-int find_label(label_t *label_arr, char *label_to_find)
+size_t find_label(label_t *label_arr, char *label_to_find)
 {
     size_t label_ind = 0;
     for (; label_ind < MAX_LABEL_COUNT; label_ind++)
@@ -152,7 +152,7 @@ int fill_jump_arg(FILE *input_file, FILE *output_file, label_t *labels, int cmd_
     else if (sscanf(jump_arg, " %s:", &label_str) == 1)
     {
         fprintf(output_file, "%d %d\n", cmd_type, labels[find_label(labels, label_str)].label_code_ptr);
-        print_label_arr(labels);
+        // print_label_arr(labels);
     }
     else
     {
@@ -162,7 +162,7 @@ int fill_jump_arg(FILE *input_file, FILE *output_file, label_t *labels, int cmd_
     return 0;
 }
 
-int parse_argument(FILE *input_file, FILE *output_file, int *commands_counter, int command)
+int parse_argument(FILE *input_file, FILE *output_file, size_t *commands_counter, int command)
 {
     proc_val_t to_scan    = 0;
     char register_num     = 0;

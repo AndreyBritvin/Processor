@@ -1,6 +1,3 @@
-#define PUT_ONE_CMD(CMD) fprintf(output_file, "%d\n", CMD);\
-                         commands_counter += 1;
-
 #define MAKE_ARITHMETICAL_OPERATION(OPERATION)          \
 {                                                       \
     proc_val_t  first_mul = 0;                          \
@@ -26,11 +23,7 @@
     proc.instr_ptr += 1;                                \
 }
 
-
-COMMAND_DESCR(HLT, "hlt",
-{
-    PUT_ONE_CMD(HLT)
-},
+COMMAND_DESCR(HLT, "hlt", NO_ARGUMENTS,
 {
     is_valid_code = false;
 }
@@ -38,11 +31,7 @@ COMMAND_DESCR(HLT, "hlt",
 
 //////////////////////////////////////////////
 
-COMMAND_DESCR(PUSH, "push",
-{
-    parse_argument(input_file, output_file, &commands_counter, PUSH);
-    commands_counter += 2;
-},
+COMMAND_DESCR(PUSH, "push", REG_IMM_ARG,
 {
     proc_val_t to_push = get_arg_push(&proc);
     stack_push(&proc.stack, &to_push);
@@ -51,10 +40,7 @@ COMMAND_DESCR(PUSH, "push",
 
 /////////////////////////////////////////////
 
-COMMAND_DESCR(ADD, "add",
-{
-    PUT_ONE_CMD(ADD);
-},
+COMMAND_DESCR(ADD, "add", NO_ARGUMENTS,
 {
     MAKE_ARITHMETICAL_OPERATION(+);
 }
@@ -62,10 +48,7 @@ COMMAND_DESCR(ADD, "add",
 
 ///////////////////////////////////////////////
 
-COMMAND_DESCR(OUT, "out",
-{
-    PUT_ONE_CMD(OUT);
-},
+COMMAND_DESCR(OUT, "out", NO_ARGUMENTS,
 {
     proc_val_t to_out = 0;
     stack_pop(&proc.stack, &to_out);
@@ -76,10 +59,7 @@ COMMAND_DESCR(OUT, "out",
 
 ///////////////////////////////////////////////
 
-COMMAND_DESCR(DUMP, "dump",
-{
-    PUT_ONE_CMD(DUMP);
-},
+COMMAND_DESCR(DUMP, "dump", NO_ARGUMENTS,
 {
     // STACK_DUMP(&progr_stack);
     processor_dump(proc);
@@ -89,11 +69,7 @@ COMMAND_DESCR(DUMP, "dump",
 
 ///////////////////////////////////////////////
 
-COMMAND_DESCR(POP, "pop",
-{
-    parse_argument(input_file, output_file, &commands_counter, POP);
-    commands_counter += 2;
-},
+COMMAND_DESCR(POP, "pop", REG_IMM_ARG,
 {
     proc_val_t pop_val = 0;
     stack_pop(&proc.stack, &pop_val);
@@ -104,10 +80,7 @@ COMMAND_DESCR(POP, "pop",
 
 //////////////////////////////////////////////
 
-COMMAND_DESCR(SUB, "sub",
-{
-    PUT_ONE_CMD(SUB);
-},
+COMMAND_DESCR(SUB, "sub", NO_ARGUMENTS,
 {
     MAKE_ARITHMETICAL_OPERATION(-);
 }
@@ -115,10 +88,7 @@ COMMAND_DESCR(SUB, "sub",
 
 //////////////////////////////////////////////
 
-COMMAND_DESCR(MUL, "mul",
-{
-    PUT_ONE_CMD(MUL);
-},
+COMMAND_DESCR(MUL, "mul", NO_ARGUMENTS,
 {
     MAKE_ARITHMETICAL_OPERATION(*);
 }
@@ -126,10 +96,7 @@ COMMAND_DESCR(MUL, "mul",
 
 //////////////////////////////////////////////
 
-COMMAND_DESCR(DIV, "div",
-{
-    PUT_ONE_CMD(DIV);
-},
+COMMAND_DESCR(DIV, "div", NO_ARGUMENTS,
 {
     MAKE_ARITHMETICAL_OPERATION(/);
 }
@@ -137,10 +104,7 @@ COMMAND_DESCR(DIV, "div",
 
 ////////////////////////////////////////////
 
-COMMAND_DESCR(IN, "in",
-{
-    PUT_ONE_CMD(IN);
-},
+COMMAND_DESCR(IN, "in", NO_ARGUMENTS,
 {
     proc_val_t user_input = 0;
     printf("Enter a number: ");
@@ -153,10 +117,7 @@ COMMAND_DESCR(IN, "in",
 
 ///////////////////////////////////////////
 
-COMMAND_DESCR(SIN, "sin",
-{
-    PUT_ONE_CMD(SIN);
-},
+COMMAND_DESCR(SIN, "sin", NO_ARGUMENTS,
 {
     MAKE_UNAR_OPERATION(sin);
 }
@@ -164,10 +125,7 @@ COMMAND_DESCR(SIN, "sin",
 
 ///////////////////////////////////////////
 
-COMMAND_DESCR(COS, "cos",
-{
-    PUT_ONE_CMD(COS);
-},
+COMMAND_DESCR(COS, "cos", NO_ARGUMENTS,
 {
    MAKE_UNAR_OPERATION(cos);
 }
@@ -175,10 +133,7 @@ COMMAND_DESCR(COS, "cos",
 
 //////////////////////////////////////////
 
-COMMAND_DESCR(SQRT, "sqrt",
-{
-    PUT_ONE_CMD(SQRT);
-},
+COMMAND_DESCR(SQRT, "sqrt", NO_ARGUMENTS,
 {
     MAKE_UNAR_OPERATION(sqrt);
 }
@@ -186,11 +141,7 @@ COMMAND_DESCR(SQRT, "sqrt",
 
 /////////////////////////////////////////////
 
-COMMAND_DESCR(JMP, "jump",
-{
-    fill_jump_arg(input_file, output_file, labels, JMP);
-    commands_counter += 2;
-},
+COMMAND_DESCR(JMP, "jump", LABEL_ARG,
 {
     proc.instr_ptr = proc.code.arr[proc.instr_ptr + 1];
 }
@@ -198,11 +149,7 @@ COMMAND_DESCR(JMP, "jump",
 
 ///////////////////////////////////////////////////////
 
-COMMAND_DESCR(JA, "ja",
-{
-    fill_jump_arg(input_file, output_file, labels, JA);
-    commands_counter += 2;
-},
+COMMAND_DESCR(JA, "ja", LABEL_ARG,
 {
     proc_val_t  first_val = 0;
     proc_val_t second_val = 0;
@@ -222,10 +169,7 @@ COMMAND_DESCR(JA, "ja",
 
 /////////////////////////////////////////////////////////////
 
-COMMAND_DESCR(GPU, "gpu",
-{
-    PUT_ONE_CMD(GPU);
-},
+COMMAND_DESCR(GPU, "gpu", NO_ARGUMENTS,
 {
     print_RAM(proc);
     proc.instr_ptr += 1;
@@ -235,11 +179,7 @@ COMMAND_DESCR(GPU, "gpu",
 
 ///////////////////////////////////////////////////////////////
 
-COMMAND_DESCR(CALL, "call", //TODO remove copypaste
-{
-    fill_jump_arg(input_file, output_file, labels, CALL);
-    commands_counter += 2;
-},
+COMMAND_DESCR(CALL, "call", LABEL_ARG,
 {
     // proc_val_t ip_proc_val = (proc_val_t)proc.instr_ptr;
     // print_ret_val_stack(proc.ret_val_stack);
@@ -250,10 +190,7 @@ COMMAND_DESCR(CALL, "call", //TODO remove copypaste
 
 ////////////////////////////////////////////////////////////
 
-COMMAND_DESCR(RET, "ret",
-{
-    PUT_ONE_CMD(RET);
-},
+COMMAND_DESCR(RET, "ret", NO_ARGUMENTS,
 {
     stack_pop(&proc.ret_val_stack, &proc.instr_ptr);
     // print_ret_val_stack(proc.ret_val_stack);
