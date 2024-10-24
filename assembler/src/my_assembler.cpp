@@ -141,12 +141,12 @@ err_code_t fill_jump_arg(FILE *input_file, FILE *output_file, label_t *labels, i
 
     if (sscanf(jump_arg, "%lld", &to_scan) == 1)
     {
-        fprintf(output_file, "%d %lld\n", cmd_type, to_scan);
+        fprintf(output_file, "%d %d\n", cmd_type, to_scan);
         printf("We are in immediate_jump value\n");
     }
     else if (sscanf(jump_arg, " %s:", label_str) == 1)
     {
-        fprintf(output_file, "%d %lu\n", cmd_type, labels[find_label(labels, label_str)].label_code_ptr);
+        fprintf(output_file, "%d %d\n", cmd_type, labels[find_label(labels, label_str)].label_code_ptr);
         // print_label_arr(labels);
     }
     else
@@ -179,8 +179,8 @@ err_code_t parse_argument(FILE *input_file, FILE *output_file, size_t *commands_
         command |= IMMEDIATE_VALUE;
 
         *commands_counter += 1;
-        (command & RAM_VALUE) ? sscanf(push_arg,  "[%cx + %lld]", &register_num, &to_scan):
-                                sscanf(push_arg,  " %cx + %lld" , &register_num, &to_scan);
+        (command & RAM_VALUE) ? sscanf(push_arg,  " [%cx + %d]", &register_num, &to_scan): // DONT REMOVE SPACES!
+                                sscanf(push_arg,   " %cx + %d" , &register_num, &to_scan);
     }
     else if (strchr(push_arg, 'x') != NULL)
     {
@@ -195,8 +195,8 @@ err_code_t parse_argument(FILE *input_file, FILE *output_file, size_t *commands_
     {
         command |=  IMMEDIATE_VALUE;
 
-        (command & RAM_VALUE) ? sscanf(push_arg, " [%lld", &to_scan):
-                                sscanf(push_arg,  " %lld", &to_scan);
+        (command & RAM_VALUE) ? sscanf(push_arg, " [%d", &to_scan):
+                                sscanf(push_arg,  " %d", &to_scan);
     }
     register_num -= 'a';
 
@@ -208,7 +208,7 @@ err_code_t parse_argument(FILE *input_file, FILE *output_file, size_t *commands_
     }
     if (command & IMMEDIATE_VALUE)
     {
-        fprintf(output_file, " %lld", to_scan);
+        fprintf(output_file, " %d", to_scan);
     }
     fprintf(output_file, "\n");
     // printf("Command in OUTput = %d\n", command);

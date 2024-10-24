@@ -4,15 +4,23 @@ pop ax
 in
 pop bx
 push bx + 1
+dump
 pop bx
-
+dump
 in
 pop [bx]
+dump
+in
 push 123
 pop [bx + 1]
+in dump
 push [bx]
 push [bx + 1]
 gpu
 out
+out
+push bx
+pop [1]
+push [1]
 out
 hlt

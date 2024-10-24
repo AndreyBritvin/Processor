@@ -50,7 +50,8 @@ COMMAND_DESCR(HLT, "hlt", NO_ARGUMENTS,
 
 COMMAND_DESCR(PUSH, "push", REG_IMM_ARG,
 {
-    proc_val_t to_push = get_arg_push(&proc);
+    proc_val_t to_push = *get_arg(&proc);
+    printf("We are here, ptr = %lld\n", proc.instr_ptr);
     stack_push(&proc.stack, &to_push);
 }
 )
@@ -90,7 +91,7 @@ COMMAND_DESCR(POP, "pop", REG_IMM_ARG,
 {
     proc_val_t pop_val = 0;
     stack_pop(&proc.stack, &pop_val);
-    proc_val_t* addr_to_change = get_arg_pop(&proc);
+    proc_val_t* addr_to_change = get_arg(&proc);
     *addr_to_change = pop_val;
 }
 )

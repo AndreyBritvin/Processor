@@ -219,35 +219,20 @@ err_code_t print_RAM(proc_t proc)
     return OK;
 }
 
-proc_val_t get_arg_push(proc_t *proc)
-{
-    proc_val_t arg_type = proc->code.arr[proc->instr_ptr++] & (~CMD_MASK);
-    proc_val_t ret_val  = 0;
-
-    // printf("Argtype = %d\n", arg_type & REGISTER_VALUE);
-    // printf("Inst ptr is %d\n", proc->instr_ptr);
-
-    if (arg_type & REGISTER_VALUE ) {ret_val += proc->registers_arr[proc->code.arr[proc->instr_ptr++]];}
-    if (arg_type & IMMEDIATE_VALUE) {ret_val += proc->code.arr                    [proc->instr_ptr++];}
-
-    if (arg_type & RAM_VALUE)       {ret_val = proc->ram[ret_val];}
-
-    return ret_val;
-}
-
-proc_val_t* get_arg_pop(proc_t *proc) // TODO redo algorithm
+proc_val_t* get_arg(proc_t *proc) // TODO redo algorithm
 {
     proc_val_t  buffer   = 0;
     proc_val_t* ret_val  = 0;
     proc_val_t  arg_type = proc->code.arr[proc->instr_ptr++] & (~CMD_MASK);
 
-    if (arg_type & REGISTER_VALUE ) {ret_val = &(proc->registers_arr[proc->code.arr[proc->instr_ptr++]]);}
-    if (arg_type & IMMEDIATE_VALUE) {buffer  =   proc->code.arr                    [proc->instr_ptr++] ;}
+    if (arg_type & REGISTER_VALUE ) {ret_val = &(proc->registers_arr[proc->code.arr[proc->instr_ptr++]]);
+                                     buffer  = *ret_val; }
+    if (arg_type & IMMEDIATE_VALUE) {buffer +=  proc->code.arr[proc->instr_ptr++] ;
+                                     ret_val = & buffer;}
 
     if (arg_type & RAM_VALUE)
     {
-        if (ret_val != 0)           {ret_val = &(proc->ram[*ret_val + buffer]);}
-        else                        {ret_val = &(proc->ram[buffer]);}
+        ret_val = &(proc->ram[buffer]);
     }
 
     return ret_val;

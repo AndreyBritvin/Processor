@@ -57,8 +57,6 @@ err_code_t processor_dump(proc_t proc);
 err_code_t print_RAM(proc_t proc);
 err_code_t print_ret_val_stack(my_stack_t ret_val_stack);
 
-proc_val_t  get_arg_push(proc_t *proc);
-proc_val_t* get_arg_pop (proc_t *proc);
-
+proc_val_t* get_arg(proc_t *proc);
 
 #endif // MY_PROCESSOR_H_
