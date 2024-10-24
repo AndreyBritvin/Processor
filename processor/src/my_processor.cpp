@@ -142,7 +142,7 @@ err_code_t run_code(proc_code_t code)
     return OK;
 }
 
-int processor_dump(proc_t proc)
+err_code_t processor_dump(proc_t proc)
 {
     printf("Code index: ");
     for (size_t instr_index = 0; instr_index < proc.code.size; instr_index++)
@@ -191,10 +191,10 @@ int processor_dump(proc_t proc)
     }
     printf("\n");
 
-    return SUCCESS;
+    return OK;
 }
 
-int print_RAM(proc_t proc)
+err_code_t print_RAM(proc_t proc)
 {
     size_t length = sqrt(MAX_RAM_SIZE);
     size_t height = sqrt(MAX_RAM_SIZE);
@@ -216,7 +216,7 @@ int print_RAM(proc_t proc)
         printf("\n");
     }
 
-    return SUCCESS;
+    return OK;
 }
 
 proc_val_t get_arg_push(proc_t *proc)
@@ -253,7 +253,7 @@ proc_val_t* get_arg_pop(proc_t *proc) // TODO redo algorithm
     return ret_val;
 }
 
-int print_ret_val_stack(my_stack_t ret_val_stack)
+err_code_t print_ret_val_stack(my_stack_t ret_val_stack)
 {
     printf("Printing ret val stack: ");
     for (size_t stack_index = 0; stack_index < ret_val_stack.size; stack_index++)
@@ -262,5 +262,5 @@ int print_ret_val_stack(my_stack_t ret_val_stack)
     }
     printf("\n");
 
-    return SUCCESS;
+    return OK;
 }

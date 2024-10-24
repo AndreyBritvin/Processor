@@ -52,10 +52,10 @@ err_code_t run_code(proc_code_t code);
 bool check_signature(char *signature, int version);
 
 err_code_t read_code(const char *input_filename, proc_code_t *code);
-int processor_dump(proc_t proc);
+err_code_t processor_dump(proc_t proc);
 
-int print_RAM(proc_t proc);
-int print_ret_val_stack(my_stack_t ret_val_stack);
+err_code_t print_RAM(proc_t proc);
+err_code_t print_ret_val_stack(my_stack_t ret_val_stack);
 
 proc_val_t  get_arg_push(proc_t *proc);
 proc_val_t* get_arg_pop (proc_t *proc);

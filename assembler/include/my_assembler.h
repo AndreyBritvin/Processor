@@ -7,6 +7,7 @@
 #include <stdint.h>
 #include <stdarg.h>
 #include <assert.h>
+#include "utils.h"
 #include "commands_enum.h"
 
 static const int MAX_LABEL_COUNT = 32;
@@ -41,14 +42,13 @@ struct signature_t
     uint64_t   nothing;
 };
 
-int compile_file(const char *input_filename, const char *output_filename);
-int fill_fixup(fixup_t *fixup_arr, size_t cmd_counter);
+err_code_t compile_file(const char *input_filename, const char *output_filename);
 size_t find_label(label_t *label_arr, char *label_to_find);
-int print_label_arr(label_t *label_arr);
-int fill_jump_arg(FILE *input_file, FILE *output_file, label_t *labels, int cmd_type);
-int parse_argument(FILE *input_file, FILE *output_file, size_t *commands_counter, int command);
+err_code_t print_label_arr(label_t *label_arr);
+err_code_t fill_jump_arg(FILE *input_file, FILE *output_file, label_t *labels, int cmd_type);
+err_code_t parse_argument(FILE *input_file, FILE *output_file, size_t *commands_counter, int command);
 
-int print_code_to_file(FILE *output_file_txt, /*FILE *output_file_bin,*/ const char *format ...);
+err_code_t print_code_to_file(FILE *output_file_txt, /*FILE *output_file_bin,*/ const char *format ...);
 
 char *change_txt_name_to_bin(const char *txt_filename, size_t filename_len);
 

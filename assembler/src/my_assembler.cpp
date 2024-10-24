@@ -5,7 +5,7 @@
 #include <errno.h>
 #include <string.h>
 
-int compile_file(const char *input_filename, const char *output_filename)
+err_code_t compile_file(const char *input_filename, const char *output_filename)
 {
     SAFE_OPEN_FILE( input_file,  input_filename, "r" );
     SAFE_OPEN_FILE(output_file, output_filename, "w" );
@@ -34,7 +34,7 @@ int compile_file(const char *input_filename, const char *output_filename)
     {
         if (strchr(command, ':') != NULL)
         {
-            printf("At addres %d we met up with label %s\n", commands_counter, command);
+            printf("At addres %lu we met up with label %s\n", commands_counter, command);
 
             if (find_label(labels, command) >= first_free_label)
             {
@@ -77,13 +77,13 @@ int compile_file(const char *input_filename, const char *output_filename)
     fwrite(&signature, sizeof(signature), 1,output_file_bin);
 
     fseek(output_file, 0, SEEK_SET);
-    fprintf(output_file, "%d", commands_counter);
+    fprintf(output_file, "%lu", commands_counter);
 
     fclose( input_file);
     fclose(output_file);
     fclose(output_file_bin);
 
-    return 0;
+    return OK;
 }
 
 char *change_txt_name_to_bin(const char *txt_filename, size_t filename_len) // TODO:      \/
@@ -104,11 +104,6 @@ char *change_txt_name_to_bin(const char *txt_filename, size_t filename_len) // T
     return bin_filename;
 }
 
-int fill_fixup(fixup_t *fixup_arr, size_t cmd_counter)
-{
-    return 0;
-}
-
 size_t find_label(label_t *label_arr, char *label_to_find)
 {
     size_t label_ind = 0;
@@ -123,19 +118,19 @@ size_t find_label(label_t *label_arr, char *label_to_find)
     return label_ind;
 }
 
-int print_label_arr(label_t *label_arr)
+err_code_t print_label_arr(label_t *label_arr)
 {
     printf("Begin printing labels table:\n");
     for (size_t label_ind = 0; label_ind < MAX_LABEL_COUNT; label_ind++)
     {
-        printf("%02u: addr: %d, name: %s\n", label_ind, label_arr[label_ind].label_code_ptr,
-                                                        label_arr[label_ind].label_str);
+        printf("%02lu: addr: %lu, name: %s\n", label_ind, label_arr[label_ind].label_code_ptr,
+                                                          label_arr[label_ind].label_str);
     }
 
-    return 0;
+    return OK;
 }
 
-int fill_jump_arg(FILE *input_file, FILE *output_file, label_t *labels, int cmd_type)
+err_code_t fill_jump_arg(FILE *input_file, FILE *output_file, label_t *labels, int cmd_type)
 {
     proc_val_t to_scan = 0;
     char label_str[MAX_LABEL_LEN] = {};
@@ -144,14 +139,14 @@ int fill_jump_arg(FILE *input_file, FILE *output_file, label_t *labels, int cmd_
     fgets(jump_arg, MAX_COMMAND_LEN, input_file);
     printf("Readed value is '%s'", jump_arg);
 
-    if (sscanf(jump_arg, "%d", &to_scan) == 1)
+    if (sscanf(jump_arg, "%lld", &to_scan) == 1)
     {
-        fprintf(output_file, "%d %d\n", cmd_type, to_scan);
+        fprintf(output_file, "%d %lld\n", cmd_type, to_scan);
         printf("We are in immediate_jump value\n");
     }
-    else if (sscanf(jump_arg, " %s:", &label_str) == 1)
+    else if (sscanf(jump_arg, " %s:", label_str) == 1)
     {
-        fprintf(output_file, "%d %d\n", cmd_type, labels[find_label(labels, label_str)].label_code_ptr);
+        fprintf(output_file, "%d %lu\n", cmd_type, labels[find_label(labels, label_str)].label_code_ptr);
         // print_label_arr(labels);
     }
     else
@@ -159,14 +154,14 @@ int fill_jump_arg(FILE *input_file, FILE *output_file, label_t *labels, int cmd_
         printf("Wtf this is command: %s", jump_arg);
     }
 
-    return 0;
+    return OK;
 }
 
-int parse_argument(FILE *input_file, FILE *output_file, size_t *commands_counter, int command)
+err_code_t parse_argument(FILE *input_file, FILE *output_file, size_t *commands_counter, int command)
 {
     proc_val_t to_scan    = 0;
     char register_num     = 0;
-    char register_name[5] = {}; // register name e.g. ax, bx
+    // char register_name[5] = {}; // register name e.g. ax, bx
     char push_arg[MAX_COMMAND_LEN] = {};
 
     fgets(push_arg, MAX_COMMAND_LEN, input_file);
@@ -184,8 +179,8 @@ int parse_argument(FILE *input_file, FILE *output_file, size_t *commands_counter
         command |= IMMEDIATE_VALUE;
 
         *commands_counter += 1;
-        (command & RAM_VALUE) ? sscanf(push_arg,  "[%cx + %d]", &register_num, &to_scan):
-                                sscanf(push_arg,  " %cx + %d" , &register_num, &to_scan);
+        (command & RAM_VALUE) ? sscanf(push_arg,  "[%cx + %lld]", &register_num, &to_scan):
+                                sscanf(push_arg,  " %cx + %lld" , &register_num, &to_scan);
     }
     else if (strchr(push_arg, 'x') != NULL)
     {
@@ -200,8 +195,8 @@ int parse_argument(FILE *input_file, FILE *output_file, size_t *commands_counter
     {
         command |=  IMMEDIATE_VALUE;
 
-        (command & RAM_VALUE) ? sscanf(push_arg, " [%d", &to_scan):
-                                sscanf(push_arg,  " %d", &to_scan);
+        (command & RAM_VALUE) ? sscanf(push_arg, " [%lld", &to_scan):
+                                sscanf(push_arg,  " %lld", &to_scan);
     }
     register_num -= 'a';
 
@@ -213,15 +208,15 @@ int parse_argument(FILE *input_file, FILE *output_file, size_t *commands_counter
     }
     if (command & IMMEDIATE_VALUE)
     {
-        fprintf(output_file, " %d", to_scan);
+        fprintf(output_file, " %lld", to_scan);
     }
     fprintf(output_file, "\n");
     // printf("Command in OUTput = %d\n", command);
 
-    return 0;
+    return OK;
 }
 
-int print_code_to_file(FILE *output_file_txt, /*FILE *output_file_bin,*/ const char *format ...)
+err_code_t print_code_to_file(FILE *output_file_txt, /*FILE *output_file_bin,*/ const char *format ...)
 {
     va_list fprintf_args; // TODO: do it via array
     va_start(fprintf_args, format);
@@ -230,5 +225,5 @@ int print_code_to_file(FILE *output_file_txt, /*FILE *output_file_bin,*/ const c
     // vfprintf(output_file_bin, format, fprintf_args);
     va_end(fprintf_args);
 
-    return 0;
+    return OK;
 }
