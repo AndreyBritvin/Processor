@@ -1,4 +1,4 @@
-NAME = factorial
+# NAME = factorial_v2
 
 all:
 	make -C assembler

@@ -1,0 +1,30 @@
+in
+pop cx
+
+push 1
+push 1 ; how to fiks
+call FACTORIAL:
+
+out
+hlt
+
+FACTORIAL:
+
+push 1
+push cx
+ja END:
+
+push cx
+push cx
+push 1
+sub
+pop cx
+
+
+call FACTORIAL:
+dump
+
+END:
+mul
+
+ret

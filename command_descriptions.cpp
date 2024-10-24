@@ -2,20 +2,29 @@
                          commands_counter += 1;
 
 #define MAKE_ARITHMETICAL_OPERATION(OPERATION)          \
+{                                                       \
     proc_val_t  first_mul = 0;                          \
     proc_val_t second_mul = 0;                          \
+                                                        \
     stack_pop(&proc.stack, &second_mul);                \
     stack_pop(&proc.stack,  &first_mul);                \
+                                                        \
     proc_val_t to_mul = first_mul OPERATION second_mul; \
     stack_push(&proc.stack, &to_mul);                   \
-    proc.instr_ptr += 1;
+                                                        \
+    proc.instr_ptr += 1;                                \
+}
 
 #define MAKE_UNAR_OPERATION(FUNC)                       \
+{                                                       \
     proc_val_t stack_value = 0;                         \
     stack_pop(&proc.stack, &stack_value);               \
+                                                        \
     stack_value = FUNC(stack_value);                    \
     stack_push(&proc.stack, &stack_value);              \
-    proc.instr_ptr += 1;
+                                                        \
+    proc.instr_ptr += 1;                                \
+}
 
 
 COMMAND_DESCR(HLT, "hlt",
@@ -200,7 +209,7 @@ COMMAND_DESCR(JA, "ja",
     stack_pop(&proc.stack, &second_val);
     stack_pop(&proc.stack, &first_val);
 
-    if (first_val >= second_val)
+    if (first_val > second_val)
     {
         proc.instr_ptr = proc.code.arr[proc.instr_ptr + 1];
     }

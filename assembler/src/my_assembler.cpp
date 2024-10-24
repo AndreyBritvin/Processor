@@ -184,7 +184,7 @@ int parse_argument(FILE *input_file, FILE *output_file, int *commands_counter, i
         command |= IMMEDIATE_VALUE;
 
         *commands_counter += 1;
-        (command & RAM_VALUE) ? sscanf(push_arg, " [%cx + %d]", &register_num, &to_scan):
+        (command & RAM_VALUE) ? sscanf(push_arg,  "[%cx + %d]", &register_num, &to_scan):
                                 sscanf(push_arg,  " %cx + %d" , &register_num, &to_scan);
     }
     else if (strchr(push_arg, 'x') != NULL)
