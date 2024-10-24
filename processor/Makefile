@@ -41,7 +41,7 @@ build/main.o: src/main.cpp
 ../build/my_stack_print.o: ../../Stack/src/my_stack_print.cpp ../../Stack/include/my_stack.h
 	@$(CC) $(CFLAGS) -c ../../Stack/src/my_stack_print.cpp -o ../build/my_stack_print.o
 
-build/my_processor.o: src/my_processor.cpp include/my_processor.h ../command_descriptions.cpp
+build/my_processor.o: src/my_processor.cpp include/my_processor.h ../command_descriptions.cpp ../include/commands_enum.h
 	@$(CC) $(CFLAGS) -c src/my_processor.cpp -o build/my_processor.o
 
 build/my_log.o: ../src/my_log.cpp

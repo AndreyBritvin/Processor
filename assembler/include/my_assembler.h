@@ -7,6 +7,7 @@
 #include <stdint.h>
 #include <stdarg.h>
 #include <assert.h>
+#include "commands_enum.h"
 
 static const int MAX_LABEL_COUNT = 32;
 static const int MAX_LABEL_LEN   = 32;
