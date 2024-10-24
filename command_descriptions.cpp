@@ -23,6 +23,23 @@
     proc.instr_ptr += 1;                                \
 }
 
+#define JUMP_CONDITION(CONDITION)                           \
+{                                                           \
+    proc_val_t  first_val = 0;                              \
+    proc_val_t second_val = 0;                              \
+    stack_pop(&proc.stack, &second_val);                    \
+    stack_pop(&proc.stack, &first_val);                     \
+                                                            \
+    if (first_val CONDITION second_val)                     \
+    {                                                       \
+        proc.instr_ptr = proc.code.arr[proc.instr_ptr + 1]; \
+    }                                                       \
+    else                                                    \
+    {                                                       \
+        proc.instr_ptr += 2;                                \
+    }                                                       \
+}
+
 COMMAND_DESCR(HLT, "hlt", NO_ARGUMENTS,
 {
     is_valid_code = false;
@@ -151,19 +168,47 @@ COMMAND_DESCR(JMP, "jump", LABEL_ARG,
 
 COMMAND_DESCR(JA, "ja", LABEL_ARG,
 {
-    proc_val_t  first_val = 0;
-    proc_val_t second_val = 0;
-    stack_pop(&proc.stack, &second_val);
-    stack_pop(&proc.stack, &first_val);
+    JUMP_CONDITION(>);
+}
+)
 
-    if (first_val > second_val)
-    {
-        proc.instr_ptr = proc.code.arr[proc.instr_ptr + 1];
-    }
-    else
-    {
-        proc.instr_ptr += 2;
-    }
+///////////////////////////////////////////////////////
+
+COMMAND_DESCR(JAE, "jae", LABEL_ARG,
+{
+    JUMP_CONDITION(>=);
+}
+)
+
+///////////////////////////////////////////////////////
+
+COMMAND_DESCR(JB, "jb", LABEL_ARG,
+{
+    JUMP_CONDITION(<);
+}
+)
+
+///////////////////////////////////////////////////////
+
+COMMAND_DESCR(JBE, "jbe", LABEL_ARG,
+{
+    JUMP_CONDITION(<=);
+}
+)
+
+///////////////////////////////////////////////////////
+
+COMMAND_DESCR(JE, "je", LABEL_ARG,
+{
+    JUMP_CONDITION(==);
+}
+)
+
+///////////////////////////////////////////////////////
+
+COMMAND_DESCR(JNE, "jne", LABEL_ARG,
+{
+    JUMP_CONDITION(!=);
 }
 )
 
