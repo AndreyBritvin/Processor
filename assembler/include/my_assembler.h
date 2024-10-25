@@ -10,8 +10,8 @@
 #include "utils.h"
 #include "commands_enum.h"
 
-static const int MAX_LABEL_COUNT = 32;
-static const int MAX_LABEL_LEN   = 32;
+static const int MAX_LABEL_COUNT = 128;
+static const int MAX_LABEL_LEN   = 128;
 static const int MAX_FIXUP_COUNT = 32;
 
 enum arg_types

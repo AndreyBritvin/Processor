@@ -244,12 +244,29 @@ COMMAND_DESCR(RET, "ret", NO_ARGUMENTS,
 )
 
 ///////////////////////////////////////////////////////////
+
 COMMAND_DESCR(FLOOR, "flr", NO_ARGUMENTS,
 {
     MAKE_UNAR_OPERATION(floor);
 }
 )
 
+///////////////////////////////////////////////////////////
+
+COMMAND_DESCR(GULAG, "glg", NO_ARGUMENTS,
+{
+    proc_val_t to_pop = 0;
+    stack_pop(&proc.stack, &to_pop);
+}
+)
+
+///////////////////////////////////////////////////////////
+
+COMMAND_DESCR(MEOW, "meow", NO_ARGUMENTS,
+{
+    printf("Meow (at addr == %ld)\n", proc.instr_ptr++);
+}
+)
 
 #undef PUT_ONE_CMD
 #undef MAKE_UNAR_OPERATION

@@ -11,7 +11,7 @@ static const uint64_t      CODE_VER = 12;
 
 static const size_t REGISTERS_COUNT = 16;
 static const int           CMD_MASK = 0b00011111;
-static const size_t MAX_COMMAND_LEN = 20;
+static const size_t MAX_COMMAND_LEN = 128;
 static const size_t    MAX_RAM_SIZE = 21 * 21;
 
 static const size_t DEFAULT_RET_STACK_SIZE = 32;

@@ -107,7 +107,7 @@ char *change_txt_name_to_bin(const char *txt_filename, size_t filename_len) // T
 size_t find_label(label_t *label_arr, char *label_to_find)
 {
     size_t label_ind = 0;
-    for (; label_ind < MAX_LABEL_COUNT; label_ind++)
+    for (; label_ind < MAX_LABEL_COUNT - 1; label_ind++)
     {
         if (strcmp(label_to_find, label_arr[label_ind].label_str) == 0)
         {
@@ -141,13 +141,13 @@ err_code_t fill_jump_arg(FILE *input_file, FILE *output_file, label_t *labels, i
 
     if (sscanf(jump_arg, "%lf", &to_scan) == 1)
     {
-        fprintf(output_file, "%d %d\n", cmd_type, to_scan);
         printf("We are in immediate_jump value\n");
+        fprintf(output_file, "%d %d\n", cmd_type, to_scan);
     }
     else if (sscanf(jump_arg, " %s:", label_str) == 1)
     {
+        print_label_arr(labels);
         fprintf(output_file, "%d %d\n", cmd_type, labels[find_label(labels, label_str)].label_code_ptr);
-        // print_label_arr(labels);
     }
     else
     {

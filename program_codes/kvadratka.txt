@@ -1,0 +1,109 @@
+in
+pop ax
+in
+pop bx
+in
+pop cx
+call SOLVE_EQUATION:
+
+hlt
+
+SOLVE_EQUATION:
+    push 0
+    push ax
+    je LINEAR_CASE:
+    call SOLVE_QUADRATIC_EQUATION:
+    ret
+
+    LINEAR_CASE:
+    call SOLVE_LINEAR_EQUATION:
+ret
+
+SOLVE_QUADRATIC_EQUATION:
+    call CALC_DISCRIMINANT:
+    push 0
+    push dx
+    jbe SOLVE_DISCRIMINANT:
+
+    push nan
+    push nan
+    out
+    out
+  ret
+
+    SOLVE_DISCRIMINANT:
+    push dx
+    sqrt
+    pop dx
+
+    push dx
+    push 0
+    push bx
+    sub
+    add
+    push 2
+    push ax
+    mul
+    div
+    out
+    push 0
+    push dx
+    jne SOLVE_SECOND_SOL:
+
+  ret
+
+    SOLVE_SECOND_SOL:
+    push 0
+    push dx
+    sub
+    push 0
+    push bx
+    sub
+    add
+    push 2
+    push ax
+    mul
+    div
+    out
+
+ret
+
+CALC_DISCRIMINANT:
+    push bx
+    push bx
+    mul
+    push 4
+    push ax
+    push cx
+    mul
+    mul
+    sub
+    pop dx
+ret
+
+SOLVE_LINEAR_EQUATION:
+    push 0
+    push bx
+    je B_IS_ZERO_CASE:
+
+    push 0
+    push cx
+    sub
+    push bx
+    div
+    out
+  ret
+
+    B_IS_ZERO_CASE:
+    push 0
+    push cx
+    je BESK_ROOTS_CASE:
+    push nan
+    out
+  ret
+    BESK_ROOTS_CASE:
+    push inf
+    out
+
+ret
+
