@@ -19,7 +19,8 @@ enum errors
     OK,
     ERROR_FILE,
     ERROR_ALLOC,
-
+    ERROR_LABEL_NOT_FOUND,
+    ERROR_UNKNOWN_COMMAND,
 };
 
 #endif //UTILS_H_

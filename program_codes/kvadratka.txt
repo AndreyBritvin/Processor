@@ -97,7 +97,7 @@ SOLVE_LINEAR_EQUATION:
     B_IS_ZERO_CASE:
     push 0
     push cx
-    je BESK_ROOTS_CASE:
+    je BESK_ROOTS_CAS:
     push nan
     out
   ret

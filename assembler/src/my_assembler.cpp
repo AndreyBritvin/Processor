@@ -4,8 +4,8 @@
 #include <stdio.h>
 #include <errno.h>
 #include <string.h>
-
-err_code_t compile_file(const char *input_filename, const char *output_filename)
+// TODO: MAKE struct with input and output filenames and maybe file_ptrs
+err_code_t compile_file(const char *input_filename, const char *output_filename, label_t *labels, int iteration)
 {
     SAFE_OPEN_FILE( input_file,  input_filename, "r" );
     SAFE_OPEN_FILE(output_file, output_filename, "w" );
@@ -25,7 +25,6 @@ err_code_t compile_file(const char *input_filename, const char *output_filename)
 
     proc_val_t proc_code[10] = {};
 
-    static label_t labels[MAX_LABEL_COUNT] = {};
     static size_t first_free_label = 0;
 
     // fixup_t fixup [MAX_FIXUP_COUNT] = {};
@@ -36,10 +35,15 @@ err_code_t compile_file(const char *input_filename, const char *output_filename)
         {
             printf("At addres %lu we met up with label %s\n", commands_counter, command);
 
-            if (find_label(labels, command) >= first_free_label)
+            if (iteration == 0 && find_label(labels, command) >= first_free_label)
             {
                 labels[first_free_label].label_code_ptr = commands_counter;
                 strcpy(labels[first_free_label++].label_str, command);
+            }
+            else if (iteration == 1 && find_label(labels, command) == MAX_LABEL_COUNT - 1)
+            {
+                fprintf(stderr, "Unable to find label '%s'\n", command);
+                return ERROR_LABEL_NOT_FOUND;
             }
         }
 
@@ -68,13 +72,13 @@ err_code_t compile_file(const char *input_filename, const char *output_filename)
 
         else
         {
-            fprintf(stderr, "Unknown command %s\n", command); // TODO this part dont work...
-            assert(0);
+            fprintf(stderr, "Unknown command %s\n", command);
+            return ERROR_UNKNOWN_COMMAND;
         }
     }
 
     signature.code_size = commands_counter;
-    fwrite(&signature, sizeof(signature), 1,output_file_bin);
+    fwrite(&signature, sizeof(signature), 1, output_file_bin);
 
     fseek(output_file, 0, SEEK_SET);
     fprintf(output_file, "%lu", commands_counter);
@@ -146,7 +150,7 @@ err_code_t fill_jump_arg(FILE *input_file, FILE *output_file, label_t *labels, i
     }
     else if (sscanf(jump_arg, " %s:", label_str) == 1)
     {
-        print_label_arr(labels);
+        print_label_arr(labels); // TODO: return error if \/ not found label
         fprintf(output_file, "%d %d\n", cmd_type, labels[find_label(labels, label_str)].label_code_ptr);
     }
     else

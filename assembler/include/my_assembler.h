@@ -42,7 +42,7 @@ struct signature_t
     uint64_t   nothing;
 };
 
-err_code_t compile_file(const char *input_filename, const char *output_filename);
+err_code_t compile_file(const char *input_filename, const char *output_filename, label_t *labels, int iteration);
 size_t find_label(label_t *label_arr, char *label_to_find);
 err_code_t print_label_arr(label_t *label_arr);
 err_code_t fill_jump_arg(FILE *input_file, FILE *output_file, label_t *labels, int cmd_type);
