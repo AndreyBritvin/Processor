@@ -3,10 +3,10 @@
 
 enum processor_commands
 {
-    #define COMMAND_DESCR(ENUM_NAME, STR_NAME, ASS_CODE, ...) ENUM_NAME,
+    #define CMD_DESCR_DEF(ENUM_NAME, STR_NAME, ASS_CODE, ...) ENUM_NAME,
 
     #include "../command_descriptions.cpp"
-    #undef COMMAND_DESCR
+    #undef CMD_DESCR_DEF
     LAST_COMMAND_DONT_USE_IT
     // HLT      =  0,
     // PUSH     =  1,

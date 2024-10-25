@@ -54,3 +54,4 @@ dkms.conf
 processor/my_log.log
 my_log.log
 *.log
+*.log

@@ -64,7 +64,7 @@ err_code_t run_code(proc_code_t code)
     {
         switch ((uint64_t) proc.code.arr[proc.instr_ptr] & CMD_MASK)
         {
-            #define COMMAND_DESCR(ENUM_NAME, STR_NAME, ASS_CODE, ...) \
+            #define CMD_DESCR_DEF(ENUM_NAME, STR_NAME, ASS_CODE, ...) \
             case ENUM_NAME:                                           \
             {                                                         \
                 __VA_ARGS__                                           \
@@ -76,7 +76,7 @@ err_code_t run_code(proc_code_t code)
                 printf("Invalid instruction #%lld\n", code.arr[proc.instr_ptr]);
                 is_valid_code = false;
                 break;
-            #undef COMMAND_DESCR
+            #undef CMD_DESCR_DEF
         }
     }
 

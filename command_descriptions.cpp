@@ -40,7 +40,7 @@
     }                                                                  \
 }
 
-COMMAND_DESCR(HLT, "hlt", NO_ARGUMENTS,
+CMD_DESCR_DEF(HLT, "hlt", NO_ARGUMENTS,
 {
     is_valid_code = false;
 }
@@ -48,7 +48,7 @@ COMMAND_DESCR(HLT, "hlt", NO_ARGUMENTS,
 
 //////////////////////////////////////////////
 
-COMMAND_DESCR(PUSH, "push", REG_IMM_ARG,
+CMD_DESCR_DEF(PUSH, "push", REG_IMM_ARG,
 {
     proc_val_t to_push = *get_arg(&proc);
     stack_push(&proc.stack, &to_push);
@@ -57,7 +57,7 @@ COMMAND_DESCR(PUSH, "push", REG_IMM_ARG,
 
 /////////////////////////////////////////////
 
-COMMAND_DESCR(ADD, "add", NO_ARGUMENTS,
+CMD_DESCR_DEF(ADD, "add", NO_ARGUMENTS,
 {
     MAKE_ARITHMETICAL_OPERATION(+);
 }
@@ -65,7 +65,7 @@ COMMAND_DESCR(ADD, "add", NO_ARGUMENTS,
 
 ///////////////////////////////////////////////
 
-COMMAND_DESCR(OUT, "out", NO_ARGUMENTS,
+CMD_DESCR_DEF(OUT, "out", NO_ARGUMENTS,
 {
     proc_val_t to_out = 0;
     stack_pop(&proc.stack, &to_out);
@@ -76,7 +76,7 @@ COMMAND_DESCR(OUT, "out", NO_ARGUMENTS,
 
 ///////////////////////////////////////////////
 
-COMMAND_DESCR(DUMP, "dump", NO_ARGUMENTS,
+CMD_DESCR_DEF(DUMP, "dump", NO_ARGUMENTS,
 {
     // STACK_DUMP(&progr_stack);
     processor_dump(proc);
@@ -86,7 +86,7 @@ COMMAND_DESCR(DUMP, "dump", NO_ARGUMENTS,
 
 ///////////////////////////////////////////////
 
-COMMAND_DESCR(POP, "pop", REG_IMM_ARG,
+CMD_DESCR_DEF(POP, "pop", REG_IMM_ARG,
 {
     proc_val_t pop_val = 0;
     stack_pop(&proc.stack, &pop_val);
@@ -97,7 +97,7 @@ COMMAND_DESCR(POP, "pop", REG_IMM_ARG,
 
 //////////////////////////////////////////////
 
-COMMAND_DESCR(SUB, "sub", NO_ARGUMENTS,
+CMD_DESCR_DEF(SUB, "sub", NO_ARGUMENTS,
 {
     MAKE_ARITHMETICAL_OPERATION(-);
 }
@@ -105,7 +105,7 @@ COMMAND_DESCR(SUB, "sub", NO_ARGUMENTS,
 
 //////////////////////////////////////////////
 
-COMMAND_DESCR(MUL, "mul", NO_ARGUMENTS,
+CMD_DESCR_DEF(MUL, "mul", NO_ARGUMENTS,
 {
     MAKE_ARITHMETICAL_OPERATION(*);
 }
@@ -113,7 +113,7 @@ COMMAND_DESCR(MUL, "mul", NO_ARGUMENTS,
 
 //////////////////////////////////////////////
 
-COMMAND_DESCR(DIV, "div", NO_ARGUMENTS,
+CMD_DESCR_DEF(DIV, "div", NO_ARGUMENTS,
 {
     MAKE_ARITHMETICAL_OPERATION(/);
 }
@@ -121,7 +121,7 @@ COMMAND_DESCR(DIV, "div", NO_ARGUMENTS,
 
 ////////////////////////////////////////////
 
-COMMAND_DESCR(IN, "in", NO_ARGUMENTS,
+CMD_DESCR_DEF(IN, "in", NO_ARGUMENTS,
 {
     proc_val_t user_input = 0;
     printf("Enter a number: ");
@@ -134,7 +134,7 @@ COMMAND_DESCR(IN, "in", NO_ARGUMENTS,
 
 ///////////////////////////////////////////
 
-COMMAND_DESCR(SIN, "sin", NO_ARGUMENTS,
+CMD_DESCR_DEF(SIN, "sin", NO_ARGUMENTS,
 {
     MAKE_UNAR_OPERATION(sin);
 }
@@ -142,7 +142,7 @@ COMMAND_DESCR(SIN, "sin", NO_ARGUMENTS,
 
 ///////////////////////////////////////////
 
-COMMAND_DESCR(COS, "cos", NO_ARGUMENTS,
+CMD_DESCR_DEF(COS, "cos", NO_ARGUMENTS,
 {
    MAKE_UNAR_OPERATION(cos);
 }
@@ -150,7 +150,7 @@ COMMAND_DESCR(COS, "cos", NO_ARGUMENTS,
 
 //////////////////////////////////////////
 
-COMMAND_DESCR(SQRT, "sqrt", NO_ARGUMENTS,
+CMD_DESCR_DEF(SQRT, "sqrt", NO_ARGUMENTS,
 {
     MAKE_UNAR_OPERATION(sqrt);
 }
@@ -158,7 +158,7 @@ COMMAND_DESCR(SQRT, "sqrt", NO_ARGUMENTS,
 
 /////////////////////////////////////////////
 
-COMMAND_DESCR(JMP, "jump", LABEL_ARG,
+CMD_DESCR_DEF(JMP, "jump", LABEL_ARG,
 {
     proc.instr_ptr = (uint64_t) proc.code.arr[proc.instr_ptr + 1];
 }
@@ -166,7 +166,7 @@ COMMAND_DESCR(JMP, "jump", LABEL_ARG,
 
 ///////////////////////////////////////////////////////
 
-COMMAND_DESCR(JA, "ja", LABEL_ARG,
+CMD_DESCR_DEF(JA, "ja", LABEL_ARG,
 {
     JUMP_CONDITION(>);
 }
@@ -174,7 +174,7 @@ COMMAND_DESCR(JA, "ja", LABEL_ARG,
 
 ///////////////////////////////////////////////////////
 
-COMMAND_DESCR(JAE, "jae", LABEL_ARG,
+CMD_DESCR_DEF(JAE, "jae", LABEL_ARG,
 {
     JUMP_CONDITION(>=);
 }
@@ -182,7 +182,7 @@ COMMAND_DESCR(JAE, "jae", LABEL_ARG,
 
 ///////////////////////////////////////////////////////
 
-COMMAND_DESCR(JB, "jb", LABEL_ARG,
+CMD_DESCR_DEF(JB, "jb", LABEL_ARG,
 {
     JUMP_CONDITION(<);
 }
@@ -190,7 +190,7 @@ COMMAND_DESCR(JB, "jb", LABEL_ARG,
 
 ///////////////////////////////////////////////////////
 
-COMMAND_DESCR(JBE, "jbe", LABEL_ARG,
+CMD_DESCR_DEF(JBE, "jbe", LABEL_ARG,
 {
     JUMP_CONDITION(<=);
 }
@@ -198,7 +198,7 @@ COMMAND_DESCR(JBE, "jbe", LABEL_ARG,
 
 ///////////////////////////////////////////////////////
 
-COMMAND_DESCR(JE, "je", LABEL_ARG,
+CMD_DESCR_DEF(JE, "je", LABEL_ARG,
 {
     JUMP_CONDITION(==);
 }
@@ -206,7 +206,7 @@ COMMAND_DESCR(JE, "je", LABEL_ARG,
 
 ///////////////////////////////////////////////////////
 
-COMMAND_DESCR(JNE, "jne", LABEL_ARG,
+CMD_DESCR_DEF(JNE, "jne", LABEL_ARG,
 {
     JUMP_CONDITION(!=);
 }
@@ -214,7 +214,7 @@ COMMAND_DESCR(JNE, "jne", LABEL_ARG,
 
 /////////////////////////////////////////////////////////////
 
-COMMAND_DESCR(GPU, "gpu", NO_ARGUMENTS,
+CMD_DESCR_DEF(GPU, "gpu", NO_ARGUMENTS,
 {
     print_RAM(proc);
     proc.instr_ptr += 1;
@@ -224,7 +224,7 @@ COMMAND_DESCR(GPU, "gpu", NO_ARGUMENTS,
 
 ///////////////////////////////////////////////////////////////
 
-COMMAND_DESCR(CALL, "call", LABEL_ARG,
+CMD_DESCR_DEF(CALL, "call", LABEL_ARG,
 {
     // proc_val_t ip_proc_val = (proc_val_t)proc.instr_ptr;
     // print_ret_val_stack(proc.ret_val_stack);
@@ -235,7 +235,7 @@ COMMAND_DESCR(CALL, "call", LABEL_ARG,
 
 ////////////////////////////////////////////////////////////
 
-COMMAND_DESCR(RET, "ret", NO_ARGUMENTS,
+CMD_DESCR_DEF(RET, "ret", NO_ARGUMENTS,
 {
     stack_pop(&proc.ret_val_stack, &proc.instr_ptr);
     // print_ret_val_stack(proc.ret_val_stack);
@@ -245,7 +245,7 @@ COMMAND_DESCR(RET, "ret", NO_ARGUMENTS,
 
 ///////////////////////////////////////////////////////////
 
-COMMAND_DESCR(FLOOR, "flr", NO_ARGUMENTS,
+CMD_DESCR_DEF(FLOOR, "flr", NO_ARGUMENTS,
 {
     MAKE_UNAR_OPERATION(floor);
 }
@@ -253,7 +253,7 @@ COMMAND_DESCR(FLOOR, "flr", NO_ARGUMENTS,
 
 ///////////////////////////////////////////////////////////
 
-COMMAND_DESCR(GULAG, "glg", NO_ARGUMENTS,
+CMD_DESCR_DEF(GULAG, "glg", NO_ARGUMENTS,
 {
     proc_val_t to_pop = 0;
     stack_pop(&proc.stack, &to_pop);
@@ -262,7 +262,7 @@ COMMAND_DESCR(GULAG, "glg", NO_ARGUMENTS,
 
 ///////////////////////////////////////////////////////////
 
-COMMAND_DESCR(MEOW, "meow", NO_ARGUMENTS,
+CMD_DESCR_DEF(MEOW, "meow", NO_ARGUMENTS,
 {
     printf("Meow (at addr == %ld)\n", proc.instr_ptr++);
 }

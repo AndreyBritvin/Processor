@@ -47,7 +47,7 @@ err_code_t compile_file(const char *input_filename, const char *output_filename,
             }
         }
 
-        #define COMMAND_DESCR(ENUM_NAME, STR_NAME, ARG_TYPE, ...)                           \
+        #define CMD_DESCR_DEF(ENUM_NAME, STR_NAME, ARG_TYPE, ...)                           \
             else if (strcmp(command, STR_NAME) == 0)                                        \
             {                                                                               \
                 if (ARG_TYPE == NO_ARGUMENTS)                                               \
@@ -71,7 +71,7 @@ err_code_t compile_file(const char *input_filename, const char *output_filename,
             }
 
             #include "../../command_descriptions.cpp"
-        #undef COMMAND_DESCR
+        #undef CMD_DESCR_DEF
 
         else
         {
