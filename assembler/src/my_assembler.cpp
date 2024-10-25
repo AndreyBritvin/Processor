@@ -62,7 +62,10 @@ err_code_t compile_file(const char *input_filename, const char *output_filename,
                 }                                                                           \
                 else if (ARG_TYPE == LABEL_ARG)                                             \
                 {                                                                           \
-                    fill_jump_arg(input_file, output_file, labels, ENUM_NAME);              \
+                    if (fill_jump_arg(input_file, output_file, labels, ENUM_NAME) != OK)    \
+                    {                                                                       \
+                        return fill_jump_arg(input_file, output_file, labels, ENUM_NAME);   \
+                    }                                                                       \
                     commands_counter += 2;                                                  \
                 }                                                                           \
             }
@@ -151,7 +154,12 @@ err_code_t fill_jump_arg(FILE *input_file, FILE *output_file, label_t *labels, i
     else if (sscanf(jump_arg, " %s:", label_str) == 1)
     {
         print_label_arr(labels); // TODO: return error if \/ not found label
-        fprintf(output_file, "%d %d\n", cmd_type, labels[find_label(labels, label_str)].label_code_ptr);
+        size_t label_index = find_label(labels, label_str);
+        if (label_index == MAX_LABEL_COUNT)
+        {
+            return ERROR_LABEL_NOT_FOUND;
+        }
+        fprintf(output_file, "%d %d\n", cmd_type, labels[label_index].label_code_ptr);
     }
     else
     {
