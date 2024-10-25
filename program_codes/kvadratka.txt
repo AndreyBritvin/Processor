@@ -26,25 +26,21 @@ SOLVE_QUADRATIC_EQUATION:
     jbe SOLVE_DISCRIMINANT:
 
     push nan
-    push nan
-    out
     out
   ret
 
     SOLVE_DISCRIMINANT:
     push dx
     sqrt
-    pop dx
-
-    push dx
-    push 0
-    push bx
-    sub
-    add
     push 2
     push ax
     mul
     div
+    pop dx
+
+    call CALC_FIRST_ADITION:
+    push dx
+    add
     out
     push 0
     push dx
@@ -53,17 +49,9 @@ SOLVE_QUADRATIC_EQUATION:
   ret
 
     SOLVE_SECOND_SOL:
-    push 0
+    call CALC_FIRST_ADITION:
     push dx
     sub
-    push 0
-    push bx
-    sub
-    add
-    push 2
-    push ax
-    mul
-    div
     out
 
 ret
@@ -79,6 +67,16 @@ CALC_DISCRIMINANT:
     mul
     sub
     pop dx
+ret
+
+CALC_FIRST_ADITION:
+    push 0
+    push bx
+    sub
+    push 2
+    push ax
+    mul
+    div
 ret
 
 SOLVE_LINEAR_EQUATION:
