@@ -52,6 +52,8 @@ err_code_t run_code(proc_code_t code);
 bool check_signature(char *signature, int version);
 
 err_code_t read_code(const char *input_filename, proc_code_t *code);
+err_code_t proc_ctor(proc_t *proc, proc_code_t code);
+err_code_t proc_dtor(proc_t *proc);
 err_code_t processor_dump(proc_t proc);
 
 err_code_t print_RAM(proc_t proc);

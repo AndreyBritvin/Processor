@@ -56,18 +56,7 @@ err_code_t read_code(const char *input_filename, proc_code_t *code)
 err_code_t run_code(proc_code_t code)
 {
     proc_t proc = {};
-    proc.code = code;
-    proc.instr_ptr = 0;
-
-    proc.stack = {};
-    INIT_STACK(proc.stack);
-    proc_val_t stack_poison_value = (proc_val_t) STACK_POISON_VALUE;
-    stack_ctor(&proc.stack, DEFAULT_STACK_SIZE, sizeof(proc_val_t), print_doubles, &stack_poison_value);
-
-    proc.ret_val_stack = {};
-    INIT_STACK(proc.ret_val_stack);
-    size_t stack_poison_value_ip = (size_t) STACK_POISON_VALUE;
-    stack_ctor(&proc.ret_val_stack, DEFAULT_RET_STACK_SIZE, sizeof(size_t), print_longs, &stack_poison_value_ip);
+    proc_ctor(&proc, code);
 
     bool is_valid_code = true;
 
@@ -135,9 +124,34 @@ err_code_t run_code(proc_code_t code)
         }
     }
 
-    stack_dtor(&proc.stack);
-    stack_dtor(&proc.ret_val_stack);
-    free(code.arr);
+    proc_dtor(&proc);
+
+    return OK;
+}
+
+err_code_t proc_ctor(proc_t *proc, proc_code_t code)
+{
+    proc->code = code;
+    proc->instr_ptr = 0;
+
+    proc->stack = {};
+    INIT_STACK(proc->stack);
+    proc_val_t stack_poison_value = (proc_val_t) STACK_POISON_VALUE;
+    stack_ctor(&proc->stack, DEFAULT_STACK_SIZE, sizeof(proc_val_t), print_doubles, &stack_poison_value);
+
+    proc->ret_val_stack = {};
+    INIT_STACK(proc->ret_val_stack);
+    size_t stack_poison_value_ip = (size_t) STACK_POISON_VALUE;
+    stack_ctor(&proc->ret_val_stack, DEFAULT_RET_STACK_SIZE, sizeof(size_t), print_longs, &stack_poison_value_ip);
+
+    return OK;
+}
+
+err_code_t proc_dtor(proc_t *proc)
+{
+    stack_dtor(&proc->stack);
+    stack_dtor(&proc->ret_val_stack);
+    free(proc->code.arr);
 
     return OK;
 }
