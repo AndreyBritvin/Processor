@@ -229,7 +229,7 @@ CMD_DESCR_DEF(CALL, "call", LABEL_ARG,
     // proc_val_t ip_proc_val = (proc_val_t)proc.instr_ptr;
     // print_ret_val_stack(proc.ret_val_stack);
     stack_push(&proc.ret_val_stack, &proc.instr_ptr);
-    proc.instr_ptr = proc.code.arr[proc.instr_ptr + 1];
+    proc.instr_ptr = (uint64_t) proc.code.arr[proc.instr_ptr + 1];
 }
 )
 
@@ -264,7 +264,7 @@ CMD_DESCR_DEF(GULAG, "glg", NO_ARGUMENTS,
 
 CMD_DESCR_DEF(MEOW, "meow", NO_ARGUMENTS,
 {
-    printf("Meow (at addr == %ld)\n", proc.instr_ptr++);
+    printf("Meow (at addr == %lu)\n", proc.instr_ptr++);
 }
 )
 

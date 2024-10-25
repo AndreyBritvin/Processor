@@ -9,7 +9,7 @@
 
 static FILE *LOG_FILE = fopen("my_log.log", "w");
 
-bool check_signature(char *signature, int version)
+bool check_signature(char *signature, uint64_t version)
 {
     return (strcmp(signature, SIGNATURE) == 0) && (version == CODE_VER);
 }
@@ -19,13 +19,13 @@ err_code_t read_code(const char *input_filename, proc_code_t *code)
     // FILE *input_file = fopen(input_filename, "r");
     SAFE_OPEN_FILE(input_file, input_filename, "r");
 
-    fscanf(input_file, "%llu", &code->size);
+    fscanf(input_file, "%lu", &code->size);
 
     char signature[sizeof(SIGNATURE)] = {};
     uint64_t version = 0;
 
     fscanf(input_file, "%s",  signature);
-    fscanf(input_file, "%llu", &version);
+    fscanf(input_file, "%lu", &version );
 
     if (!check_signature(signature, version))
     {
@@ -73,7 +73,7 @@ err_code_t run_code(proc_code_t code)
             #include "../command_descriptions.cpp"
 
             default:
-                printf("Invalid instruction #%lld\n", code.arr[proc.instr_ptr]);
+                printf("Invalid instruction #%lu\n", (uint64_t) code.arr[proc.instr_ptr]);
                 is_valid_code = false;
                 break;
             #undef CMD_DESCR_DEF
@@ -142,13 +142,13 @@ err_code_t processor_dump(proc_t proc)
     printf("\nRegisters dump: ");
     for (size_t reg_index = 0; reg_index < REGISTERS_COUNT; reg_index++)
     {
-        printf("%cx ", reg_index + 'a');
+        printf("%cx ", (char) reg_index + 'a');
     }
 
     printf("\n                ");
     for (size_t reg_index = 0; reg_index < REGISTERS_COUNT; reg_index++)
     {
-        printf("%02llX ", (uint64_t) proc.registers_arr[reg_index]);
+        printf("%02lX ", (uint64_t) proc.registers_arr[reg_index]);
     }
 
     printf("\n");
@@ -214,7 +214,7 @@ err_code_t print_ret_val_stack(my_stack_t ret_val_stack)
     printf("Printing ret val stack: ");
     for (size_t stack_index = 0; stack_index < ret_val_stack.size; stack_index++)
     {
-        printf("%lld ", ((proc_val_t *)ret_val_stack.data)[stack_index]);
+        printf("%lg ", ((proc_val_t *)ret_val_stack.data)[stack_index]);
     }
     printf("\n");
 

@@ -9,10 +9,10 @@
 static const char       SIGNATURE[] = "LychokBest";
 static const uint64_t      CODE_VER = 12;
 
-static const size_t REGISTERS_COUNT = 16;
-static const int           CMD_MASK = 0b00011111;
-static const size_t MAX_COMMAND_LEN = 128;
-static const size_t    MAX_RAM_SIZE = 21 * 21;
+static const size_t   REGISTERS_COUNT = 16;
+static const uint64_t        CMD_MASK = 0b00011111;
+static const size_t   MAX_COMMAND_LEN = 128;
+static const size_t      MAX_RAM_SIZE = 21 * 21;
 
 static const size_t DEFAULT_RET_STACK_SIZE = 32;
 static const size_t DEFAULT_STACK_SIZE     = 32;
@@ -49,7 +49,7 @@ struct proc_t
 };
 
 err_code_t run_code(proc_code_t code);
-bool check_signature(char *signature, int version);
+bool check_signature(char *signature, uint64_t version);
 
 err_code_t read_code(const char *input_filename, proc_code_t *code);
 err_code_t proc_ctor(proc_t *proc, proc_code_t code);
