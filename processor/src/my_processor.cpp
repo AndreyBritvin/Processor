@@ -64,7 +64,7 @@ err_code_t run_code(proc_code_t code)
     {
         switch ((uint64_t) proc.code.arr[proc.instr_ptr] & CMD_MASK)
         {
-            #define CMD_DESCR_DEF(ENUM_NAME, STR_NAME, ASS_CODE, ...) \
+            #define CMD_DESCR_DEF(ENUM_NAME, STR_NAME, ARG_TYPE, ...) \
             case ENUM_NAME:                                           \
             {                                                         \
                 __VA_ARGS__                                           \
@@ -73,6 +73,7 @@ err_code_t run_code(proc_code_t code)
             #include "../command_descriptions.cpp"
 
             default:
+                processor_dump(proc);
                 printf("Invalid instruction #%lu\n", (uint64_t) code.arr[proc.instr_ptr]);
                 is_valid_code = false;
                 break;

@@ -23,7 +23,7 @@ err_code_t compile_file(const char *input_filename, const char *output_filename,
     char command[MAX_COMMAND_LEN] = "";
     size_t  commands_counter = 0;
 
-    proc_val_t proc_code[10] = {};
+    proc_val_t proc_code[10] = {}; // TODO: use this variable
 
     static size_t first_free_label = 0;
 
@@ -52,7 +52,7 @@ err_code_t compile_file(const char *input_filename, const char *output_filename,
             {                                                                               \
                 if (ARG_TYPE == NO_ARGUMENTS)                                               \
                 {                                                                           \
-                    fprintf(output_file, "%lld\n", ENUM_NAME);                              \
+                    fprintf(output_file, "%lf\n", (proc_val_t) ENUM_NAME);                  \
                     commands_counter += 1;                                                  \
                 }                                                                           \
                 else if (ARG_TYPE == REG_IMM_ARG)                                           \
@@ -139,7 +139,7 @@ err_code_t print_label_arr(label_t *label_arr)
 
 err_code_t fill_jump_arg(FILE *input_file, FILE *output_file, label_t *labels, int cmd_type)
 {
-    uint64_t to_scan = 0;
+    proc_val_t to_scan = 0;
     char label_str[MAX_LABEL_LEN] = {};
     char jump_arg [MAX_COMMAND_LEN] = {};
 
@@ -149,17 +149,17 @@ err_code_t fill_jump_arg(FILE *input_file, FILE *output_file, label_t *labels, i
     if (sscanf(jump_arg, "%lf", &to_scan) == 1)
     {
         printf("We are in immediate_jump value\n");
-        fprintf(output_file, "%d %d\n", cmd_type, to_scan);
+        fprintf(output_file, "%d %lf\n", cmd_type, to_scan);
     }
     else if (sscanf(jump_arg, " %s:", label_str) == 1)
     {
-        print_label_arr(labels); // TODO: return error if \/ not found label
+        // print_label_arr(labels); // TODO: return error if \/ not found label
         size_t label_index = find_label(labels, label_str);
         if (label_index == MAX_LABEL_COUNT)
         {
             return ERROR_LABEL_NOT_FOUND;
         }
-        fprintf(output_file, "%d %d\n", cmd_type, labels[label_index].label_code_ptr);
+        fprintf(output_file, "%d %lu\n", cmd_type, labels[label_index].label_code_ptr);
     }
     else
     {
