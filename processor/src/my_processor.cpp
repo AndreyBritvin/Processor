@@ -71,51 +71,7 @@ err_code_t run_code(proc_code_t code)
                 break;                                                \
             }
             #include "../command_descriptions.cpp"
-        /*
-            case HLT:
-            {
-                is_valid_code = false;
-                break;
-            }
-            case PUSH:
-            {
-                proc_val_t to_push = code[proc.instr_ptr + 1];
-                stack_push(&progr_stack, &to_push);
-                proc.instr_ptr += 2;
-                break;
-            }
-            case ADD:
-            {
-                proc_val_t  first_add = 0;
-                proc_val_t second_add = 0;
-                stack_pop(&progr_stack, &second_add);
-                stack_pop(&progr_stack,  &first_add);
-                proc_val_t to_add = first_add + second_add;
-                stack_push(&progr_stack, &to_add);
-                proc.instr_ptr += 1;
-                break;
-            }
-            case OUT:
-            {
-                proc_val_t to_out = 0;
-                stack_pop(&progr_stack, &to_out);
-                printf("Processor out: %lld\n", to_out);
-                proc.instr_ptr += 1;
-                break;
-            }
-            case DUMP:
-            {
-                // STACK_DUMP(&progr_stack);
-                processor_dump(proc);
-                proc.instr_ptr += 1;
-                break;
-            }
-            case JUMP:
-            {
-                proc.instr_ptr = (size_t) proc.code[proc.instr_ptr + 1];
-                break;
-            }
-*/
+
             default:
                 printf("Invalid instruction #%lld\n", code.arr[proc.instr_ptr]);
                 is_valid_code = false;
