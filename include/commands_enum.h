@@ -7,7 +7,7 @@ enum processor_commands
 
     #include "../command_descriptions.cpp"
     #undef COMMAND_DESCR
-
+    LAST_COMMAND_DONT_USE_IT
     // HLT      =  0,
     // PUSH     =  1,
     // ADD      =  2,

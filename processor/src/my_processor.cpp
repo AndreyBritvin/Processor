@@ -43,7 +43,7 @@ err_code_t read_code(const char *input_filename, proc_code_t *code)
     proc_val_t command = 0;
     size_t instr_ptr = 0;
 
-    while (fscanf(input_file, "%lld", &command) != EOF)
+    while (fscanf(input_file, "%lf", &command) != EOF)
     {
         code->arr[instr_ptr++] = command;
     }
@@ -62,7 +62,7 @@ err_code_t run_code(proc_code_t code)
     proc.stack = {};
     INIT_STACK(proc.stack);
     proc_val_t stack_poison_value = (proc_val_t) STACK_POISON_VALUE;
-    stack_ctor(&proc.stack, DEFAULT_STACK_SIZE, sizeof(proc_val_t), print_longs, &stack_poison_value);
+    stack_ctor(&proc.stack, DEFAULT_STACK_SIZE, sizeof(proc_val_t), print_doubles, &stack_poison_value);
 
     proc.ret_val_stack = {};
     INIT_STACK(proc.ret_val_stack);
@@ -73,7 +73,7 @@ err_code_t run_code(proc_code_t code)
 
     while (is_valid_code)
     {
-        switch (proc.code.arr[proc.instr_ptr] & CMD_MASK)
+        switch ((uint64_t) proc.code.arr[proc.instr_ptr] & CMD_MASK)
         {
             #define COMMAND_DESCR(ENUM_NAME, STR_NAME, ASS_CODE, ...) \
             case ENUM_NAME:                                           \
@@ -166,7 +166,7 @@ err_code_t processor_dump(proc_t proc)
     printf("\nStack dump: ");
     for (size_t stack_index = 0;  stack_index < proc.stack.size; stack_index++)
     {
-        printf("%lld ", ((proc_val_t *)proc.stack.data)[stack_index]);
+        printf("%lg ", ((proc_val_t *)proc.stack.data)[stack_index]);
     }
 
     printf("\nRegisters dump: ");
@@ -178,7 +178,7 @@ err_code_t processor_dump(proc_t proc)
     printf("\n                ");
     for (size_t reg_index = 0; reg_index < REGISTERS_COUNT; reg_index++)
     {
-        printf("%02llX ", (unsigned long long) proc.registers_arr[reg_index]);
+        printf("%02llX ", (uint64_t) proc.registers_arr[reg_index]);
     }
 
     printf("\n");
@@ -187,7 +187,7 @@ err_code_t processor_dump(proc_t proc)
     printf("\nRAM dump: ");
     for (size_t ram_index = 0;  ram_index < MAX_RAM_SIZE; ram_index++)
     {
-        printf("%lld ", proc.ram[ram_index]);
+        printf("%lg ", proc.ram[ram_index]);
     }
     printf("\n");
 
@@ -203,7 +203,7 @@ err_code_t print_RAM(proc_t proc)
     {
         for (size_t row = 0; row < length; row++)
         {
-            if (proc.ram[line * length + row] == 0)
+            if ((uint64_t) proc.ram[line * length + row] == 0)
             {
                 printf("-");
             }
@@ -219,21 +219,22 @@ err_code_t print_RAM(proc_t proc)
     return OK;
 }
 
-proc_val_t* get_arg(proc_t *proc) // TODO redo algorithm
+proc_val_t* get_arg(proc_t *proc)
 {
     proc_val_t  buffer   = 0;
     proc_val_t* ret_val  = 0;
-    proc_val_t  arg_type = proc->code.arr[proc->instr_ptr++] & (~CMD_MASK);
+    uint64_t    arg_type = (uint64_t) proc->code.arr[proc->instr_ptr++] & (~CMD_MASK);
 
-    if (arg_type & REGISTER_VALUE ) {ret_val = &(proc->registers_arr[proc->code.arr[proc->instr_ptr++]]);
+    if (arg_type & REGISTER_VALUE ) {ret_val = &(proc->registers_arr[(uint64_t) proc->code.arr[proc->instr_ptr++]]);
                                      buffer  = *ret_val; }
     if (arg_type & IMMEDIATE_VALUE) {buffer +=  proc->code.arr[proc->instr_ptr++] ;
-                                     ret_val = & buffer;}
+                                     ret_val = &buffer;}
 
     if (arg_type & RAM_VALUE)
     {
-        ret_val = &(proc->ram[buffer]);
+        ret_val = &(proc->ram[(uint64_t) buffer]);
     }
+    // printf("Argtype = %d, ret_val = %p, ram_begin = %p\n", arg_type, ret_val, &proc->ram);
 
     return ret_val;
 }

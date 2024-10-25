@@ -9,6 +9,7 @@ LOOP:
 push 8 ; radius
 push 8
 mul
+
 call GET_X:
 call GET_X:
 mul
@@ -17,6 +18,7 @@ call GET_Y:
 call GET_Y:
 mul
 add
+
 ja DONT_FILL:
 call FILL_MEMORY:
 
@@ -28,7 +30,7 @@ pop cx
 push ax
 push cx
 ja LOOP:
-
+dump
 gpu
 
 hlt
@@ -55,6 +57,7 @@ sqrt
 push bx
 call GET_X:
 sub
+flr
 mul
 sub
 sub

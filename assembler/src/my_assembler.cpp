@@ -48,7 +48,7 @@ err_code_t compile_file(const char *input_filename, const char *output_filename)
             {                                                                               \
                 if (ARG_TYPE == NO_ARGUMENTS)                                               \
                 {                                                                           \
-                    fprintf(output_file, "%d\n", ENUM_NAME);                                \
+                    fprintf(output_file, "%lld\n", ENUM_NAME);                              \
                     commands_counter += 1;                                                  \
                 }                                                                           \
                 else if (ARG_TYPE == REG_IMM_ARG)                                           \
@@ -132,14 +132,14 @@ err_code_t print_label_arr(label_t *label_arr)
 
 err_code_t fill_jump_arg(FILE *input_file, FILE *output_file, label_t *labels, int cmd_type)
 {
-    proc_val_t to_scan = 0;
+    uint64_t to_scan = 0;
     char label_str[MAX_LABEL_LEN] = {};
     char jump_arg [MAX_COMMAND_LEN] = {};
 
     fgets(jump_arg, MAX_COMMAND_LEN, input_file);
     printf("Readed value is '%s'", jump_arg);
 
-    if (sscanf(jump_arg, "%lld", &to_scan) == 1)
+    if (sscanf(jump_arg, "%lf", &to_scan) == 1)
     {
         fprintf(output_file, "%d %d\n", cmd_type, to_scan);
         printf("We are in immediate_jump value\n");
@@ -179,8 +179,8 @@ err_code_t parse_argument(FILE *input_file, FILE *output_file, size_t *commands_
         command |= IMMEDIATE_VALUE;
 
         *commands_counter += 1;
-        (command & RAM_VALUE) ? sscanf(push_arg,  " [%cx + %d]", &register_num, &to_scan): // DONT REMOVE SPACES!
-                                sscanf(push_arg,   " %cx + %d" , &register_num, &to_scan);
+        (command & RAM_VALUE) ? sscanf(push_arg,  " [%cx + %lf]", &register_num, &to_scan): // DONT REMOVE SPACES!
+                                sscanf(push_arg,   " %cx + %lf" , &register_num, &to_scan);
     }
     else if (strchr(push_arg, 'x') != NULL)
     {
@@ -195,8 +195,8 @@ err_code_t parse_argument(FILE *input_file, FILE *output_file, size_t *commands_
     {
         command |=  IMMEDIATE_VALUE;
 
-        (command & RAM_VALUE) ? sscanf(push_arg, " [%d", &to_scan):
-                                sscanf(push_arg,  " %d", &to_scan);
+        (command & RAM_VALUE) ? sscanf(push_arg, " [%lf", &to_scan):
+                                sscanf(push_arg,  " %lf", &to_scan);
     }
     register_num -= 'a';
 
@@ -208,7 +208,7 @@ err_code_t parse_argument(FILE *input_file, FILE *output_file, size_t *commands_
     }
     if (command & IMMEDIATE_VALUE)
     {
-        fprintf(output_file, " %d", to_scan);
+        fprintf(output_file, " %lf", to_scan);
     }
     fprintf(output_file, "\n");
     // printf("Command in OUTput = %d\n", command);

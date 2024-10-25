@@ -23,21 +23,21 @@
     proc.instr_ptr += 1;                                \
 }
 
-#define JUMP_CONDITION(CONDITION)                           \
-{                                                           \
-    proc_val_t  first_val = 0;                              \
-    proc_val_t second_val = 0;                              \
-    stack_pop(&proc.stack, &second_val);                    \
-    stack_pop(&proc.stack, &first_val);                     \
-                                                            \
-    if (first_val CONDITION second_val)                     \
-    {                                                       \
-        proc.instr_ptr = proc.code.arr[proc.instr_ptr + 1]; \
-    }                                                       \
-    else                                                    \
-    {                                                       \
-        proc.instr_ptr += 2;                                \
-    }                                                       \
+#define JUMP_CONDITION(CONDITION)                                      \
+{                                                                      \
+    proc_val_t  first_val = 0;                                         \
+    proc_val_t second_val = 0;                                         \
+    stack_pop(&proc.stack, &second_val);                               \
+    stack_pop(&proc.stack, &first_val);                                \
+                                                                       \
+    if (first_val CONDITION second_val)                                \
+    {                                                                  \
+        proc.instr_ptr = (uint64_t) proc.code.arr[proc.instr_ptr + 1]; \
+    }                                                                  \
+    else                                                               \
+    {                                                                  \
+        proc.instr_ptr += 2;                                           \
+    }                                                                  \
 }
 
 COMMAND_DESCR(HLT, "hlt", NO_ARGUMENTS,
@@ -51,7 +51,6 @@ COMMAND_DESCR(HLT, "hlt", NO_ARGUMENTS,
 COMMAND_DESCR(PUSH, "push", REG_IMM_ARG,
 {
     proc_val_t to_push = *get_arg(&proc);
-    printf("We are here, ptr = %lld\n", proc.instr_ptr);
     stack_push(&proc.stack, &to_push);
 }
 )
@@ -70,7 +69,7 @@ COMMAND_DESCR(OUT, "out", NO_ARGUMENTS,
 {
     proc_val_t to_out = 0;
     stack_pop(&proc.stack, &to_out);
-    printf("Processor out: %lld\n", to_out);
+    printf("Processor out: %lf\n", to_out);
     proc.instr_ptr += 1;
 }
 )
@@ -126,7 +125,7 @@ COMMAND_DESCR(IN, "in", NO_ARGUMENTS,
 {
     proc_val_t user_input = 0;
     printf("Enter a number: ");
-    scanf("%d", &user_input);
+    scanf("%lf", &user_input);
 
     stack_push(&proc.stack, &user_input);
     proc.instr_ptr += 1;
@@ -161,7 +160,7 @@ COMMAND_DESCR(SQRT, "sqrt", NO_ARGUMENTS,
 
 COMMAND_DESCR(JMP, "jump", LABEL_ARG,
 {
-    proc.instr_ptr = proc.code.arr[proc.instr_ptr + 1];
+    proc.instr_ptr = (uint64_t) proc.code.arr[proc.instr_ptr + 1];
 }
 )
 
@@ -241,6 +240,13 @@ COMMAND_DESCR(RET, "ret", NO_ARGUMENTS,
     stack_pop(&proc.ret_val_stack, &proc.instr_ptr);
     // print_ret_val_stack(proc.ret_val_stack);
     proc.instr_ptr += 2;
+}
+)
+
+///////////////////////////////////////////////////////////
+COMMAND_DESCR(FLOOR, "flr", NO_ARGUMENTS,
+{
+    MAKE_UNAR_OPERATION(floor);
 }
 )
 

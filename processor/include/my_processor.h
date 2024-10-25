@@ -7,7 +7,7 @@
 #include "utils.h"
 
 static const char       SIGNATURE[] = "LychokBest";
-static const uint64_t      CODE_VER = 9;
+static const uint64_t      CODE_VER = 12;
 
 static const size_t REGISTERS_COUNT = 16;
 static const int           CMD_MASK = 0b00011111;
@@ -17,7 +17,7 @@ static const size_t    MAX_RAM_SIZE = 21 * 21;
 static const size_t DEFAULT_RET_STACK_SIZE = 32;
 static const size_t DEFAULT_STACK_SIZE     = 32;
 
-typedef long long proc_val_t;
+typedef double proc_val_t;
 
 enum proc_errors
 {
