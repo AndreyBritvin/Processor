@@ -22,7 +22,6 @@ pop cx
 
 
 call FACTORIAL:
-dump
 
 END:
 mul

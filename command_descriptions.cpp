@@ -69,7 +69,7 @@ CMD_DESCR_DEF(OUT, "out", NO_ARGUMENTS,
 {
     proc_val_t to_out = 0;
     stack_pop(&proc.stack, &to_out);
-    printf("Processor out: %lf\n", to_out);
+    printf("Processor out: %lg\n", to_out);
     proc.instr_ptr += 1;
 }
 )

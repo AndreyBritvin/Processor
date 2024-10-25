@@ -11,8 +11,8 @@ err_code_t compile_file(const char *input_filename, const char *output_filename,
     assert(output_filename);
     assert(         labels);
 
-    SAFE_OPEN_FILE( input_file,  input_filename, "r" );
-    SAFE_OPEN_FILE(output_file, output_filename, "w" );
+    SAFE_OPEN_FILE( input_file,  input_filename, "r");
+    SAFE_OPEN_FILE(output_file, output_filename, "w");
 
     char *bin_output_name = change_txt_name_to_bin(output_filename, strlen(output_filename));
     SAFE_OPEN_FILE(output_file_bin, bin_output_name, "wb");
