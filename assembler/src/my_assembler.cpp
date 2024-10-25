@@ -7,11 +7,14 @@
 // TODO: MAKE struct with input and output filenames and maybe file_ptrs
 err_code_t compile_file(const char *input_filename, const char *output_filename, label_t *labels, int iteration)
 {
+    assert( input_filename);
+    assert(output_filename);
+    assert(         labels);
+
     SAFE_OPEN_FILE( input_file,  input_filename, "r" );
     SAFE_OPEN_FILE(output_file, output_filename, "w" );
 
     char *bin_output_name = change_txt_name_to_bin(output_filename, strlen(output_filename));
-    // printf("New name is '%s'\n", bin_output_name);
     SAFE_OPEN_FILE(output_file_bin, bin_output_name, "wb");
     free(bin_output_name);
 
@@ -95,6 +98,9 @@ err_code_t compile_file(const char *input_filename, const char *output_filename,
 
 char *change_txt_name_to_bin(const char *txt_filename, size_t filename_len) // TODO:      \/
 {
+    assert(txt_filename);
+    assert(filename_len);
+
     char *bin_filename = (char *) calloc(filename_len + 4 + 1, sizeof(char)); //4 = bin/ TODO: redo this to auto
     printf("Calloced addr %p\n", bin_filename);
     memcpy(bin_filename + 4, txt_filename, filename_len);
@@ -113,6 +119,9 @@ char *change_txt_name_to_bin(const char *txt_filename, size_t filename_len) // T
 
 size_t find_label(label_t *label_arr, char *label_to_find)
 {
+    assert(label_arr);
+    assert(label_to_find);
+
     size_t label_ind = 0;
     for (; label_ind < MAX_LABEL_COUNT - 1; label_ind++)
     {
@@ -127,6 +136,8 @@ size_t find_label(label_t *label_arr, char *label_to_find)
 
 err_code_t print_label_arr(label_t *label_arr)
 {
+    assert(label_arr);
+
     printf("Begin printing labels table:\n");
     for (size_t label_ind = 0; label_ind < MAX_LABEL_COUNT; label_ind++)
     {
@@ -139,6 +150,10 @@ err_code_t print_label_arr(label_t *label_arr)
 
 err_code_t fill_jump_arg(FILE *input_file, FILE *output_file, label_t *labels, int cmd_type)
 {
+    assert( input_file);
+    assert(output_file);
+    assert(     labels);
+
     proc_val_t to_scan = 0;
     char label_str[MAX_LABEL_LEN] = {};
     char jump_arg [MAX_COMMAND_LEN] = {};
@@ -171,6 +186,10 @@ err_code_t fill_jump_arg(FILE *input_file, FILE *output_file, label_t *labels, i
 
 err_code_t parse_argument(FILE *input_file, FILE *output_file, size_t *commands_counter, int command)
 {
+    assert(      input_file);
+    assert(     output_file);
+    assert(commands_counter);
+
     proc_val_t to_scan    = 0;
     char register_num     = 0;
     // char register_name[5] = {}; // register name e.g. ax, bx
@@ -227,7 +246,7 @@ err_code_t parse_argument(FILE *input_file, FILE *output_file, size_t *commands_
 
     return OK;
 }
-
+// TODO: REMOVE THIS FUNC???
 err_code_t print_code_to_file(FILE *output_file_txt, /*FILE *output_file_bin,*/ const char *format ...)
 {
     va_list fprintf_args; // TODO: do it via array

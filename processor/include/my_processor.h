@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <my_stack.h>
 #include <stdint.h>
+#include <assert.h>
 #include "commands_enum.h"
 #include "utils.h"
 

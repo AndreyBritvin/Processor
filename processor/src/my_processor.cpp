@@ -11,11 +11,15 @@ static FILE *LOG_FILE = fopen("my_log.log", "w");
 
 bool check_signature(char *signature, uint64_t version)
 {
+    assert(signature);
+
     return (strcmp(signature, SIGNATURE) == 0) && (version == CODE_VER);
 }
 
 err_code_t read_code(const char *input_filename, proc_code_t *code)
 {
+    assert(input_filename);
+    assert(code);
     // FILE *input_file = fopen(input_filename, "r");
     SAFE_OPEN_FILE(input_file, input_filename, "r");
 
@@ -88,6 +92,8 @@ err_code_t run_code(proc_code_t code)
 
 err_code_t proc_ctor(proc_t *proc, proc_code_t code)
 {
+    assert(proc);
+
     proc->code = code;
     proc->instr_ptr = 0;
 
@@ -106,6 +112,8 @@ err_code_t proc_ctor(proc_t *proc, proc_code_t code)
 
 err_code_t proc_dtor(proc_t *proc)
 {
+    assert(proc);
+
     stack_dtor(&proc->stack);
     stack_dtor(&proc->ret_val_stack);
     free(proc->code.arr);
@@ -192,6 +200,8 @@ err_code_t print_RAM(proc_t proc)
 
 proc_val_t* get_arg(proc_t *proc)
 {
+    assert(proc);
+
     proc_val_t  buffer   = 0;
     proc_val_t* ret_val  = 0;
     uint64_t    arg_type = (uint64_t) proc->code.arr[proc->instr_ptr++] & (~CMD_MASK);
