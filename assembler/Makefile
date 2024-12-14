@@ -45,7 +45,7 @@ build/my_assembler.o: src/my_assembler.cpp include/my_assembler.h ../command_des
 	@$(CC) $(CFLAGS) -c src/my_assembler.cpp -o build/my_assembler.o
 
 run:
-	./assembler.out
+	./assembler.out ../program_codes/$(PROG_NAME).txt ../compiled/$(PROG_NAME)_asm.txt
 
 run_reg:
 	./assembler.out ../program_codes/registers_code.txt ../compiled/registers_code_asm.txt

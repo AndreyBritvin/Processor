@@ -14,9 +14,9 @@ err_code_t compile_file(const char *input_filename, const char *output_filename,
     SAFE_OPEN_FILE( input_file,  input_filename, "r");
     SAFE_OPEN_FILE(output_file, output_filename, "w");
 
-    char *bin_output_name = change_txt_name_to_bin(output_filename, strlen(output_filename));
-    SAFE_OPEN_FILE(output_file_bin, bin_output_name, "wb");
-    free(bin_output_name);
+    // char *bin_output_name = change_txt_name_to_bin(output_filename, strlen(output_filename));
+    // SAFE_OPEN_FILE(output_file_bin, bin_output_name, "wb");
+    // free(bin_output_name);
 
     signature_t signature = {0, *((uint64_t *)SIGNATURE), CODE_VER, 0};
 
@@ -34,6 +34,7 @@ err_code_t compile_file(const char *input_filename, const char *output_filename,
 
     while (fscanf(input_file, "%s", command) != EOF)
     {
+        printf("command is %s\n", command);
         if (strchr(command, ':') != NULL)
         {
             printf("At addres %lu we met up with label %s\n", commands_counter, command);
@@ -84,14 +85,14 @@ err_code_t compile_file(const char *input_filename, const char *output_filename,
     }
 
     signature.code_size = commands_counter;
-    fwrite(&signature, sizeof(signature), 1, output_file_bin);
+    // fwrite(&signature, sizeof(signature), 1, output_file_bin);
 
     fseek(output_file, 0, SEEK_SET);
     fprintf(output_file, "%lu", commands_counter);
 
     fclose( input_file);
     fclose(output_file);
-    fclose(output_file_bin);
+    // fclose(output_file_bin);
 
     return OK;
 }
